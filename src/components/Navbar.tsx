@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
+import { Sparkles, Menu, X, ChevronRight } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#hero" },
-  { label: "Introduction", href: "#introduction" },
+  { label: "Intro", href: "#introduction" },
   { label: "Scholars", href: "#scholars" },
   { label: "Literature", href: "#literature" },
   { label: "Shastra", href: "#shastra" },
   { label: "Timeline", href: "#timeline" },
-  { label: "Conservation", href: "#conservation" },
+  { label: "Preserve", href: "#conservation" },
 ];
 
 export default function Navbar() {
@@ -17,15 +18,15 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
+      setScrolled(window.scrollY > 40);
 
       // Update active section
       const sections = navLinks.map((l) => l.href.replace("#", ""));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el) {
-          const top = el.getBoundingClientRect().top;
-          if (top <= 100) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) {
             setActive(sections[i]);
             break;
           }
@@ -39,54 +40,94 @@ export default function Navbar() {
   const scrollTo = (href: string) => {
     const id = href.replace("#", "");
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
     setMenuOpen(false);
   };
 
   return (
-    <nav className="navbar" style={{
-      background: scrolled ? "rgba(15, 26, 48, 0.97)" : "linear-gradient(to bottom, rgba(10,16,30,0.6), transparent)",
-      padding: "0 clamp(16px, 4vw, 64px)",
-      height: "64px",
+    <nav style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
+      background: scrolled ? "rgba(13, 27, 42, 0.95)" : "transparent",
+      backdropFilter: scrolled ? "blur(12px)" : "none",
+      padding: "0 clamp(16px, 5vw, 80px)",
+      height: scrolled ? "72px" : "96px",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      borderBottom: scrolled ? "1px solid rgba(200,169,81,0.12)" : "none",
+      borderBottom: scrolled ? "1px solid rgba(212, 175, 55, 0.2)" : "1px solid transparent",
+      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
     }}>
       {/* Logo */}
       <button
         onClick={() => scrollTo("#hero")}
         style={{
           background: "none", border: "none", cursor: "pointer",
-          display: "flex", alignItems: "center", gap: "10px",
+          display: "flex", alignItems: "center", gap: "12px",
           textDecoration: "none"
         }}
       >
         <div style={{
-          width: "36px", height: "36px", borderRadius: "8px",
-          background: "linear-gradient(135deg, rgba(200,169,81,0.3), rgba(200,169,81,0.1))",
-          border: "1px solid rgba(200,169,81,0.4)",
+          width: "40px", height: "40px", borderRadius: "10px",
+          background: "linear-gradient(135deg, var(--accent), #A67C00)",
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: "18px"
-        }}>🕉️</div>
-        <span className="font-serif" style={{
-          color: "#F8F5F0", fontWeight: 600, fontSize: "17px",
-          letterSpacing: "0.02em"
-        }}>IKS</span>
+          color: "#0D1B2A",
+          boxShadow: scrolled ? "0 0 15px rgba(212, 175, 55, 0.4)" : "none",
+          transition: "all 0.3s ease"
+        }}>
+          <Sparkles size={24} />
+        </div>
+        <div style={{ textAlign: "left" }}>
+          <span className="font-serif" style={{
+            color: "white", fontWeight: 700, fontSize: "20px",
+            letterSpacing: "0.02em", display: "block", lineHeight: 1
+          }}>IKS</span>
+          <span className="font-ancient" style={{ 
+            color: "var(--accent)", fontSize: "10px", 
+            letterSpacing: "0.1em", fontWeight: 700,
+            display: scrolled ? "none" : "block", marginTop: "4px"
+          }}>MUSEUM</span>
+        </div>
       </button>
 
       {/* Desktop Nav */}
       <div style={{
-        display: "flex", gap: "28px", alignItems: "center"
+        display: "flex", gap: "12px", alignItems: "center"
       }} className="desktop-nav">
         {navLinks.map((link) => (
           <button
             key={link.href}
             onClick={() => scrollTo(link.href)}
-            className={`nav-link ${active === link.href.replace("#", "") ? "active" : ""}`}
             style={{
-              background: "none", border: "none", cursor: "pointer",
-              fontFamily: "inherit"
+              background: active === link.href.replace("#", "") ? "rgba(212, 175, 55, 0.1)" : "none",
+              border: "none", cursor: "pointer",
+              fontFamily: "var(--font-ancient)",
+              color: active === link.href.replace("#", "") ? "var(--accent)" : "rgba(255,255,255,0.7)",
+              fontSize: "13px", fontWeight: 700, letterSpacing: "0.1em",
+              textTransform: "uppercase", padding: "8px 16px",
+              borderRadius: "50px", transition: "all 0.3s ease"
+            }}
+            onMouseEnter={(e) => {
+              if (active !== link.href.replace("#", "")) {
+                (e.currentTarget as HTMLElement).style.color = "white";
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (active !== link.href.replace("#", "")) {
+                (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.7)";
+                (e.currentTarget as HTMLElement).style.background = "none";
+              }
             }}
           >
             {link.label}
@@ -94,50 +135,56 @@ export default function Navbar() {
         ))}
       </div>
 
-      {/* Mobile hamburger */}
+      {/* Mobile Toggle */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
         className="mobile-menu-btn"
         style={{
-          background: "none", border: "none", cursor: "pointer",
-          color: "rgba(255,255,255,0.85)", fontSize: "22px",
-          display: "none"
+          background: "rgba(212, 175, 55, 0.1)", border: "1px solid rgba(212, 175, 55, 0.3)",
+          cursor: "pointer", color: "var(--accent)",
+          width: "44px", height: "44px", borderRadius: "12px",
+          display: "none", alignItems: "center", justifyContent: "center"
         }}
       >
-        {menuOpen ? "✕" : "☰"}
+        {menuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div style={{
-          position: "fixed", top: "64px", left: 0, right: 0,
-          background: "rgba(10, 18, 35, 0.98)",
-          backdropFilter: "blur(20px)",
-          borderBottom: "1px solid rgba(200,169,81,0.15)",
-          padding: "16px 24px",
-          display: "flex", flexDirection: "column", gap: "4px",
-          zIndex: 999
-        }}>
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => scrollTo(link.href)}
-              style={{
-                background: "none", border: "none", cursor: "pointer",
-                color: active === link.href.replace("#", "") ? "#C8A951" : "rgba(255,255,255,0.8)",
-                fontSize: "15px", fontWeight: 500, padding: "12px 0",
-                textAlign: "left", borderBottom: "1px solid rgba(255,255,255,0.05)",
-                fontFamily: "inherit"
-              }}
-            >
-              {link.label}
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Mobile Menu Overlay */}
+      <div style={{
+        position: "fixed", top: scrolled ? "72px" : "96px", left: 0, right: 0,
+        height: menuOpen ? "calc(100vh - 72px)" : "0",
+        background: "rgba(13, 27, 42, 0.98)",
+        backdropFilter: "blur(20px)",
+        overflow: "hidden",
+        transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        display: "flex", flexDirection: "column",
+        padding: menuOpen ? "32px" : "0 32px",
+        zIndex: 999
+      }}>
+        {navLinks.map((link, i) => (
+          <button
+            key={link.href}
+            onClick={() => scrollTo(link.href)}
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              color: active === link.href.replace("#", "") ? "var(--accent)" : "white",
+              fontSize: "24px", fontWeight: 700, padding: "20px 0",
+              textAlign: "left", fontFamily: "var(--font-serif)",
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              opacity: menuOpen ? 1 : 0,
+              transform: menuOpen ? "translateX(0)" : "translateX(-20px)",
+              transition: `all 0.4s ease ${i * 0.05}s`,
+              borderBottom: "1px solid rgba(255,255,255,0.05)"
+            }}
+          >
+            {link.label}
+            {active === link.href.replace("#", "") && <ChevronRight size={24} />}
+          </button>
+        ))}
+      </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 991px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
         }

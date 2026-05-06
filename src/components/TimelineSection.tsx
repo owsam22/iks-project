@@ -1,5 +1,36 @@
 import { useRef, useEffect, useState } from "react";
 import { timelineData } from "../data/iksData";
+import { 
+  Scroll, 
+  Mountain, 
+  Triangle, 
+  Atom, 
+  GraduationCap, 
+  PersonStanding, 
+  Stars, 
+  Calculator, 
+  AlertTriangle, 
+  Flag, 
+  Globe, 
+  BookOpen,
+  ChevronRight,
+  Info
+} from "lucide-react";
+
+const IconMap: Record<string, any> = {
+  Scroll,
+  Mountain,
+  Triangle,
+  Atom,
+  GraduationCap,
+  PersonStanding,
+  Stars,
+  Calculator,
+  AlertTriangle,
+  Flag,
+  Globe,
+  BookOpen
+};
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -20,72 +51,64 @@ export default function TimelineSection() {
 
   return (
     <section id="timeline" style={{
-      padding: "100px clamp(20px, 6vw, 96px)",
-      background: "var(--primary)",
+      padding: "120px clamp(20px, 6vw, 96px)",
+      background: "#1B263B",
       position: "relative",
       overflow: "hidden"
     }}>
       {/* Background overlay */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "radial-gradient(ellipse at 20% 50%, rgba(200,169,81,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(200,169,81,0.05) 0%, transparent 60%)"
+        background: "radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 60%)"
       }} />
 
-      {/* Mandala watermark */}
-      <div style={{
-        position: "absolute", left: "50%", top: "50%",
-        transform: "translate(-50%, -50%)",
-        fontSize: "60vw", opacity: 0.02, pointerEvents: "none",
-        userSelect: "none", lineHeight: 1
-      }}>☸️</div>
+      {/* Texture overlay */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')" }}></div>
 
       <div ref={sectionRef} style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
 
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "72px" }}>
+        <div style={{ textAlign: "center", marginBottom: "80px" }}>
           <div style={{
-            display: "inline-flex", alignItems: "center", gap: "8px",
-            background: "rgba(200,169,81,0.12)",
-            borderRadius: "50px", padding: "6px 20px",
-            border: "1px solid rgba(200,169,81,0.25)",
-            marginBottom: "16px"
+            display: "inline-flex", alignItems: "center", gap: "10px",
+            background: "rgba(212, 175, 55, 0.15)",
+            borderRadius: "50px", padding: "8px 24px",
+            border: "1px solid rgba(212, 175, 55, 0.4)",
+            marginBottom: "20px"
           }}>
-            <span style={{ fontSize: "13px", color: "#C8A951", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase" }}>
-              Historical Timeline
+            <span className="font-ancient" style={{ fontSize: "14px", color: "var(--accent)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+              5,000 Years of Heritage
             </span>
           </div>
           <h2 className="font-serif" style={{
-            fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 700,
-            color: "white", marginBottom: "16px"
+            fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 700,
+            color: "#F8F5F0", marginBottom: "20px", letterSpacing: "0.05em"
           }}>
-            5,000 Years of Knowledge
+            The Timeline of <span className="gold-shimmer">Wisdom</span>
           </h2>
-          <div style={{
-            width: "60px", height: "4px",
-            background: "linear-gradient(90deg, #C8A951, #E8C87A)",
-            borderRadius: "2px", margin: "0 auto 20px"
-          }} />
+          <div className="accent-bar" style={{ margin: "0 auto 24px", width: "80px" }} />
           <p style={{
-            fontSize: "16px", color: "rgba(255,255,255,0.65)",
-            maxWidth: "560px", margin: "0 auto", lineHeight: 1.7
+            fontSize: "18px", color: "rgba(248,245,240,0.6)",
+            maxWidth: "650px", margin: "0 auto", lineHeight: 1.8
           }}>
-            From the Vedic dawn to NEP 2020 — trace how Indian knowledge evolved, spread globally, faced suppression, and is now experiencing a powerful revival.
+            From the Vedic dawn to the modern revival — trace the evolution of Indian knowledge, its global impact, and its enduring resilience through the ages.
           </p>
         </div>
 
         {/* Timeline — vertical */}
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", padding: "40px 0" }}>
           {/* Vertical line */}
           <div style={{
             position: "absolute", left: "50%", top: 0, bottom: 0,
             width: "2px",
-            background: "linear-gradient(to bottom, transparent, rgba(200,169,81,0.4), rgba(200,169,81,0.4), transparent)",
+            background: "linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.5) 10%, rgba(212, 175, 55, 0.5) 90%, transparent)",
             transform: "translateX(-50%)"
           }} />
 
           {timelineData.map((event, i) => {
             const isLeft = i % 2 === 0;
-            const delay = i * 0.08;
+            const delay = i * 0.05;
+            const Icon = IconMap[event.icon as string] || Info;
 
             return (
               <div
@@ -93,10 +116,10 @@ export default function TimelineSection() {
                 className={`fade-in-section ${sectionVisible ? "visible" : ""}`}
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 60px 1fr",
+                  gridTemplateColumns: "1fr 100px 1fr",
                   gap: "0",
-                  marginBottom: "32px",
-                  transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
+                  marginBottom: "40px",
+                  transition: `opacity 0.8s ease ${delay}s, transform 0.8s ease ${delay}s`,
                   alignItems: "center"
                 }}
               >
@@ -105,36 +128,41 @@ export default function TimelineSection() {
                   <div
                     onClick={() => setActiveEvent(activeEvent === i ? null : i)}
                     style={{
-                      textAlign: "right", paddingRight: "32px", cursor: "pointer"
+                      textAlign: "right", paddingRight: "40px", cursor: "pointer"
                     }}
                   >
                     <div style={{
-                      background: "rgba(255,255,255,0.05)",
-                      border: activeEvent === i ? `1px solid ${event.color}` : "1px solid rgba(255,255,255,0.08)",
-                      borderRadius: "16px",
-                      padding: "20px 24px",
-                      transition: "all 0.3s ease",
-                      boxShadow: activeEvent === i ? `0 8px 32px ${event.color}30` : "none"
-                    }}>
-                      <div style={{
-                        fontSize: "11px", color: event.color, fontWeight: 600,
-                        textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "4px"
+                      background: "rgba(255,255,255,0.03)",
+                      border: activeEvent === i ? `1px solid var(--accent)` : "1px solid rgba(212, 175, 55, 0.2)",
+                      borderRadius: "24px",
+                      padding: "24px 32px",
+                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                      boxShadow: activeEvent === i ? `0 15px 40px rgba(212, 175, 55, 0.15)` : "none",
+                      backdropFilter: "blur(8px)"
+                    }}
+                    onMouseEnter={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)" }}
+                    onMouseLeave={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)" }}
+                    >
+                      <div className="font-ancient" style={{
+                        fontSize: "12px", color: "var(--accent)", fontWeight: 700,
+                        textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px"
                       }}>
                         {event.era}
                       </div>
                       <div className="font-serif" style={{
-                        fontSize: "22px", fontWeight: 700, color: "white",
-                        marginBottom: "4px"
+                        fontSize: "24px", fontWeight: 700, color: "white",
+                        marginBottom: "6px"
                       }}>{event.event}</div>
-                      <div style={{
-                        fontSize: "18px", fontWeight: 700, color: event.color,
-                        marginBottom: activeEvent === i ? "12px" : "0"
+                      <div className="font-ancient" style={{
+                        fontSize: "20px", fontWeight: 700, color: "var(--accent-light)",
+                        marginBottom: activeEvent === i ? "16px" : "0"
                       }}>{event.year}</div>
                       {activeEvent === i && (
                         <p style={{
-                          fontSize: "13px", color: "rgba(255,255,255,0.7)",
-                          lineHeight: 1.7, animation: "fadeIn 0.3s ease",
-                          textAlign: "left"
+                          fontSize: "14px", color: "rgba(248,245,240,0.7)",
+                          lineHeight: 1.8, animation: "fadeIn 0.4s ease",
+                          textAlign: "right", borderTop: "1px solid rgba(212, 175, 55, 0.2)",
+                          paddingTop: "16px", marginTop: "16px"
                         }}>{event.detail}</p>
                       )}
                     </div>
@@ -149,17 +177,18 @@ export default function TimelineSection() {
                   <div
                     onClick={() => setActiveEvent(activeEvent === i ? null : i)}
                     style={{
-                      width: "48px", height: "48px", borderRadius: "50%",
-                      background: `linear-gradient(135deg, ${event.color}, ${event.color}88)`,
-                      border: "3px solid rgba(255,255,255,0.15)",
+                      width: "60px", height: "60px", borderRadius: "50%",
+                      background: activeEvent === i ? "var(--accent)" : "#1B263B",
+                      border: "2px solid var(--accent)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: "20px", cursor: "pointer",
-                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                      transform: activeEvent === i ? "scale(1.2)" : "scale(1)",
-                      boxShadow: activeEvent === i ? `0 0 24px ${event.color}60` : `0 0 12px ${event.color}30`
+                      color: activeEvent === i ? "#1B263B" : "var(--accent)",
+                      cursor: "pointer",
+                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                      transform: activeEvent === i ? "scale(1.1)" : "scale(1)",
+                      boxShadow: activeEvent === i ? `0 0 30px var(--accent)` : "none"
                     }}
                   >
-                    {event.icon}
+                    <Icon size={28} />
                   </div>
                 </div>
 
@@ -167,34 +196,40 @@ export default function TimelineSection() {
                 {!isLeft ? (
                   <div
                     onClick={() => setActiveEvent(activeEvent === i ? null : i)}
-                    style={{ paddingLeft: "32px", cursor: "pointer" }}
+                    style={{ paddingLeft: "40px", cursor: "pointer" }}
                   >
                     <div style={{
-                      background: "rgba(255,255,255,0.05)",
-                      border: activeEvent === i ? `1px solid ${event.color}` : "1px solid rgba(255,255,255,0.08)",
-                      borderRadius: "16px",
-                      padding: "20px 24px",
-                      transition: "all 0.3s ease",
-                      boxShadow: activeEvent === i ? `0 8px 32px ${event.color}30` : "none"
-                    }}>
-                      <div style={{
-                        fontSize: "11px", color: event.color, fontWeight: 600,
-                        textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "4px"
+                      background: "rgba(255,255,255,0.03)",
+                      border: activeEvent === i ? `1px solid var(--accent)` : "1px solid rgba(212, 175, 55, 0.2)",
+                      borderRadius: "24px",
+                      padding: "24px 32px",
+                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                      boxShadow: activeEvent === i ? `0 15px 40px rgba(212, 175, 55, 0.15)` : "none",
+                      backdropFilter: "blur(8px)"
+                    }}
+                    onMouseEnter={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)" }}
+                    onMouseLeave={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)" }}
+                    >
+                      <div className="font-ancient" style={{
+                        fontSize: "12px", color: "var(--accent)", fontWeight: 700,
+                        textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px"
                       }}>
                         {event.era}
                       </div>
                       <div className="font-serif" style={{
-                        fontSize: "22px", fontWeight: 700, color: "white",
-                        marginBottom: "4px"
+                        fontSize: "24px", fontWeight: 700, color: "white",
+                        marginBottom: "6px"
                       }}>{event.event}</div>
-                      <div style={{
-                        fontSize: "18px", fontWeight: 700, color: event.color,
-                        marginBottom: activeEvent === i ? "12px" : "0"
+                      <div className="font-ancient" style={{
+                        fontSize: "20px", fontWeight: 700, color: "var(--accent-light)",
+                        marginBottom: activeEvent === i ? "16px" : "0"
                       }}>{event.year}</div>
                       {activeEvent === i && (
                         <p style={{
-                          fontSize: "13px", color: "rgba(255,255,255,0.7)",
-                          lineHeight: 1.7, animation: "fadeIn 0.3s ease"
+                          fontSize: "14px", color: "rgba(248,245,240,0.7)",
+                          lineHeight: 1.8, animation: "fadeIn 0.4s ease",
+                          borderTop: "1px solid rgba(212, 175, 55, 0.2)",
+                          paddingTop: "16px", marginTop: "16px"
                         }}>{event.detail}</p>
                       )}
                     </div>
@@ -205,56 +240,41 @@ export default function TimelineSection() {
           })}
         </div>
 
-        {/* Click hint */}
-        <div style={{ textAlign: "center", marginTop: "32px" }}>
-          <span style={{
-            fontSize: "13px", color: "rgba(200,169,81,0.6)",
-            letterSpacing: "0.1em"
-          }}>
-            👆 Click any event to expand details
-          </span>
-        </div>
-
-        {/* Era summary cards */}
+        {/* Footer info */}
         <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-          gap: "16px",
-          marginTop: "64px"
+          textAlign: "center", marginTop: "60px",
+          display: "flex", flexDirection: "column", alignItems: "center", gap: "16px"
         }}>
-          {[
-            { era: "Ancient Era", period: "3000–500 BCE", color: "#C8A951", desc: "Vedas, Upanishads, foundational sciences, Nalanda University" },
-            { era: "Classical Era", period: "500 BCE–1000 CE", color: "#1E8449", desc: "Aryabhata, Brahmagupta, Charaka, Sushruta, Panini" },
-            { era: "Medieval Era", period: "1000–1700 CE", color: "#1F3A5F", desc: "Knowledge spreads to Arab world; Bhaskara II, synthesis texts" },
-            { era: "Colonial Era", period: "1757–1947 CE", color: "#922B21", desc: "Suppression of IKS; Macaulay's education policy displaces tradition" },
-            { era: "Modern Era", period: "1947–Present", color: "#1F3A5F", desc: "Revival: NEP 2020, AYUSH, Yoga Day, manuscript digitisation" },
-          ].map((card) => (
-            <div key={card.era} style={{
-              background: "rgba(255,255,255,0.04)",
-              border: `1px solid ${card.color}30`,
-              borderRadius: "16px",
-              padding: "20px 18px"
-            }}>
-              <div style={{
-                fontSize: "11px", color: card.color, fontWeight: 600,
-                textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "4px"
-              }}>{card.period}</div>
-              <div className="font-serif" style={{
-                fontSize: "16px", fontWeight: 700, color: "white", marginBottom: "8px"
-              }}>{card.era}</div>
-              <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
-                {card.desc}
-              </p>
-            </div>
-          ))}
+          <div style={{ color: "rgba(212, 175, 55, 0.6)", display: "flex", alignItems: "center", gap: "8px" }}>
+            <ChevronRight size={16} />
+            <span className="font-ancient" style={{ letterSpacing: "0.15em", fontSize: "14px", textTransform: "uppercase", fontWeight: 700 }}>Tap events to explore deeper</span>
+          </div>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          [style*="gridTemplateColumns: 1fr 60px 1fr"] {
-            grid-template-columns: 40px 1fr !important;
-            grid-template-rows: auto !important;
+        @media (max-width: 991px) {
+          [style*="gridTemplateColumns: 1fr 100px 1fr"] {
+            grid-template-columns: 80px 1fr !important;
+            gap: 0 !important;
+          }
+          [style*="gridTemplateColumns: 1fr 100px 1fr"] > div:first-child:empty {
+            display: none !important;
+          }
+          [style*="gridTemplateColumns: 1fr 100px 1fr"] > div:last-child:empty {
+            display: none !important;
+          }
+          #timeline [style*="textAlign: right"] {
+            textAlign: left !important;
+            padding-right: 0 !important;
+            padding-left: 24px !important;
+          }
+          #timeline [style*="paddingLeft: 40px"] {
+            padding-left: 24px !important;
+          }
+          #timeline [style*="left: 50%"] {
+            left: 40px !important;
+            transform: none !important;
           }
         }
       `}</style>

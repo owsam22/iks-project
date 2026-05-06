@@ -1,5 +1,25 @@
 import { useState } from "react";
 import { shastraData } from "../data/iksData";
+import { 
+  Scale, 
+  Languages, 
+  Sprout, 
+  Palette, 
+  Building2, 
+  Music,
+  ChevronDown,
+  Globe,
+  Sparkles
+} from "lucide-react";
+
+const IconMap: Record<string, any> = {
+  Scale: <Scale size={28} />,
+  Languages: <Languages size={28} />,
+  Sprout: <Sprout size={28} />,
+  Palette: <Palette size={28} />,
+  Building2: <Building2 size={28} />,
+  Music: <Music size={28} />
+};
 
 export default function ShastraSection() {
   const [activeShatra, setActiveShastra] = useState<string | null>(null);
@@ -7,16 +27,16 @@ export default function ShastraSection() {
   return (
     <section id="shastra" style={{
       padding: "100px clamp(20px, 6vw, 96px)",
-      background: "#F0ECE4",
+      background: "#F2E8CF",
       position: "relative",
       overflow: "hidden"
     }}>
-      {/* Decorative */}
+      {/* Decorative background image */}
       <div style={{
-        position: "absolute", bottom: 0, right: 0,
-        width: "400px", height: "400px",
-        background: "radial-gradient(circle, rgba(200,169,81,0.08) 0%, transparent 70%)",
-        pointerEvents: "none"
+        position: "absolute", inset: 0,
+        backgroundImage: "url('/images/unit3-bg.png')",
+        backgroundSize: "cover", backgroundPosition: "center",
+        opacity: 0.06, pointerEvents: "none"
       }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
@@ -24,87 +44,92 @@ export default function ShastraSection() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "64px" }}>
           <div style={{
-            display: "inline-flex", alignItems: "center", gap: "8px",
-            background: "rgba(31,58,95,0.07)",
-            borderRadius: "50px", padding: "6px 20px",
-            border: "1px solid rgba(31,58,95,0.15)",
-            marginBottom: "16px"
+            display: "inline-flex", alignItems: "center", gap: "10px",
+            background: "rgba(27, 38, 59, 0.08)",
+            borderRadius: "50px", padding: "8px 24px",
+            border: "1px solid rgba(27, 38, 59, 0.15)",
+            marginBottom: "20px"
           }}>
-            <span style={{ fontSize: "13px", color: "var(--primary)", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase" }}>
-              Unit II · Applied Knowledge
+            <Sparkles size={16} color="var(--primary)" />
+            <span className="font-ancient" style={{ fontSize: "14px", color: "var(--primary)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+              Unit III · Applied Knowledge
             </span>
           </div>
-          <h2 className="font-serif section-title" style={{ marginBottom: "16px" }}>
-            Shastra — Sciences of Application
+          <h2 className="font-serif section-title" style={{ marginBottom: "20px" }}>
+            Shastras — The Applied Sciences
           </h2>
-          <div className="accent-bar" style={{ margin: "0 auto 20px" }} />
-          <p className="section-subtitle" style={{ maxWidth: "600px", margin: "0 auto" }}>
-            Beyond philosophy — India systematised every domain of human application into formal Shastras (sciences), from grammar and music to architecture and agriculture.
+          <div className="accent-bar" style={{ margin: "0 auto 24px", width: "80px" }} />
+          <p className="section-subtitle" style={{ maxWidth: "650px", margin: "0 auto", fontSize: "1.2rem" }}>
+            Beyond philosophy — India systematised every domain of human application into formal Shastras (sciences), from linguistics and music to architecture and agriculture.
           </p>
         </div>
 
         {/* Shastra cards - 2×3 grid */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-          gap: "24px",
-          marginBottom: "80px"
+          gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
+          gap: "32px",
+          marginBottom: "100px"
         }}>
           {shastraData.map((s) => (
             <div
               key={s.name}
               onClick={() => setActiveShastra(activeShatra === s.name ? null : s.name)}
               style={{
-                background: "var(--card-bg)",
-                borderRadius: "20px",
-                border: activeShatra === s.name ? `2px solid ${s.color}` : "1px solid var(--border)",
+                background: "white",
+                borderRadius: "24px",
+                border: activeShatra === s.name ? `2px solid var(--accent)` : "1px solid var(--border)",
                 overflow: "hidden",
                 cursor: "pointer",
-                transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-                boxShadow: activeShatra === s.name ? `0 16px 48px ${s.color}20` : "0 2px 16px rgba(0,0,0,0.04)",
-                transform: activeShatra === s.name ? "translateY(-4px)" : "translateY(0)"
+                transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                boxShadow: activeShatra === s.name ? `0 20px 60px rgba(0,0,0,0.15)` : "0 4px 24px rgba(0,0,0,0.03)",
+                transform: activeShatra === s.name ? "translateY(-8px)" : "translateY(0)"
               }}
             >
               {/* Card header */}
               <div style={{
                 background: s.gradient,
-                padding: "28px 24px 20px",
+                padding: "32px 32px 24px",
                 position: "relative", overflow: "hidden"
               }}>
+                {/* Large watermark icon */}
                 <div style={{
                   position: "absolute", top: "-20px", right: "-20px",
-                  fontSize: "100px", opacity: 0.1, pointerEvents: "none"
-                }}>{s.emoji}</div>
+                  fontSize: "120px", opacity: 0.12, pointerEvents: "none",
+                  color: "white"
+                }}>{IconMap[s.icon]}</div>
 
-                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
                   <div style={{
-                    width: "56px", height: "56px", borderRadius: "14px",
-                    background: "rgba(255,255,255,0.15)",
+                    width: "64px", height: "64px", borderRadius: "16px",
+                    background: "rgba(255,255,255,0.2)",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "28px", flexShrink: 0,
-                    border: "1px solid rgba(255,255,255,0.2)"
-                  }}>{s.emoji}</div>
-                  <div>
+                    color: "white", flexShrink: 0,
+                    border: "1px solid rgba(255,255,255,0.3)",
+                    backdropFilter: "blur(4px)"
+                  }}>{IconMap[s.icon]}</div>
+                  <div style={{ flex: 1 }}>
                     <h3 className="font-serif" style={{
-                      fontSize: "20px", fontWeight: 700, color: "white",
+                      fontSize: "24px", fontWeight: 700, color: "white",
                       marginBottom: "4px"
                     }}>{s.name}</h3>
-                    <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>{s.desc}</div>
+                    <div className="font-ancient" style={{ fontSize: "12px", color: "rgba(255,255,255,0.8)", textTransform: "uppercase", letterSpacing: "0.1em" }}>{s.desc}</div>
                   </div>
                   <div style={{
-                    marginLeft: "auto",
-                    color: "rgba(255,255,255,0.7)", fontSize: "20px",
-                    transition: "transform 0.3s ease",
+                    color: "rgba(255,255,255,0.8)",
+                    transition: "transform 0.4s ease",
                     transform: activeShatra === s.name ? "rotate(180deg)" : "rotate(0)"
-                  }}>⌄</div>
+                  }}>
+                    <ChevronDown size={24} />
+                  </div>
                 </div>
               </div>
 
-              {/* Expanded content */}
-              <div style={{ padding: "20px 24px 24px" }}>
+              {/* Content */}
+              <div style={{ padding: "32px" }}>
                 <p style={{
-                  fontSize: "13px", lineHeight: 1.75, color: "var(--text)",
-                  marginBottom: activeShatra === s.name ? "16px" : "0",
+                  fontSize: "15px", lineHeight: 1.85, color: "var(--text)",
+                  marginBottom: activeShatra === s.name ? "24px" : "0",
                   display: "-webkit-box",
                   WebkitLineClamp: activeShatra === s.name ? "none" : 3,
                   WebkitBoxOrient: "vertical",
@@ -114,36 +139,36 @@ export default function ShastraSection() {
                 </p>
 
                 {activeShatra === s.name && (
-                  <div style={{ animation: "fadeIn 0.3s ease" }}>
+                  <div style={{ animation: "fadeIn 0.5s ease" }}>
                     {/* Indian example */}
                     <div style={{
-                      background: `${s.color}0D`,
-                      border: `1px solid ${s.color}25`,
-                      borderRadius: "12px", padding: "14px 18px",
-                      marginBottom: "14px"
+                      background: "rgba(0,0,0,0.03)",
+                      borderLeft: `5px solid ${s.color}`,
+                      borderRadius: "4px 12px 12px 4px", padding: "20px 24px",
+                      marginBottom: "24px"
                     }}>
                       <div style={{
-                        fontSize: "11px", color: s.color, fontWeight: 600,
-                        textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "6px"
+                        fontSize: "12px", color: s.color, fontWeight: 700,
+                        textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "8px"
                       }}>
-                        🏺 Indian Example
+                        🏺 Historical Evidence
                       </div>
-                      <p style={{ fontSize: "13px", color: "var(--text)", lineHeight: 1.6 }}>{s.example}</p>
+                      <p style={{ fontSize: "14px", color: "var(--text)", lineHeight: 1.7, fontStyle: "italic" }}>{s.example}</p>
                     </div>
 
                     {/* Modern link */}
                     <div style={{
-                      display: "flex", alignItems: "center", gap: "8px",
-                      background: "rgba(31,58,95,0.05)",
-                      border: "1px solid rgba(31,58,95,0.1)",
-                      borderRadius: "12px", padding: "14px 18px"
+                      display: "flex", alignItems: "flex-start", gap: "16px",
+                      background: "var(--bg)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "16px", padding: "20px"
                     }}>
-                      <span style={{ fontSize: "16px" }}>🌐</span>
+                      <Globe size={20} color="var(--primary)" style={{ marginTop: "4px", flexShrink: 0 }} />
                       <div>
-                        <div style={{ fontSize: "11px", color: "var(--primary)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "3px" }}>
+                        <div style={{ fontSize: "11px", color: "var(--primary)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "6px" }}>
                           Modern Relevance
                         </div>
-                        <p style={{ fontSize: "12px", color: "var(--text-light)", lineHeight: 1.5 }}>{s.modernLink}</p>
+                        <p style={{ fontSize: "13px", color: "var(--text-light)", lineHeight: 1.65 }}>{s.modernLink}</p>
                       </div>
                     </div>
                   </div>
@@ -154,74 +179,91 @@ export default function ShastraSection() {
         </div>
 
         {/* 64 Kala visual */}
-        <div style={{
-          background: "linear-gradient(135deg, var(--primary), #0d2442)",
-          borderRadius: "24px",
-          padding: "48px clamp(24px, 4vw, 64px)",
+        <div className="parchment-texture" style={{
+          borderRadius: "40px",
+          padding: "80px clamp(24px, 4vw, 64px)",
           textAlign: "center",
           position: "relative",
-          overflow: "hidden"
+          overflow: "hidden",
+          border: "1px solid var(--border)",
+          boxShadow: "0 40px 100px rgba(0,0,0,0.1)"
         }}>
           <div style={{
             position: "absolute", top: "-40px", right: "-40px",
-            fontSize: "300px", opacity: 0.03, pointerEvents: "none"
+            fontSize: "300px", opacity: 0.04, pointerEvents: "none"
           }}>🎭</div>
 
           <h3 className="font-serif" style={{
-            fontSize: "clamp(22px, 3vw, 32px)", color: "white",
-            marginBottom: "12px", fontWeight: 700
+            fontSize: "clamp(28px, 4vw, 44px)", color: "var(--primary)",
+            marginBottom: "16px", fontWeight: 700
           }}>
-            चतुःषष्टि कलाः — The 64 Classical Arts
+            चतुःषष्टि कलाः
           </h3>
-          <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.6)", marginBottom: "32px", fontStyle: "italic" }}>
-            "Chatuhshashthi Kala" — Ancient India's comprehensive curriculum of 64 disciplines
+          <div className="font-ancient" style={{ fontSize: "14px", color: "var(--accent-dark)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "32px" }}>
+            The 64 Classical Arts & Disciplines
+          </div>
+          <p style={{ fontSize: "16px", color: "var(--text-light)", marginBottom: "48px", maxWidth: "800px", margin: "0 auto 48px", lineHeight: 1.8 }}>
+            Ancient India's holistic curriculum recognized 64 distinct disciplines of learning, ranging from mathematics and alchemy to poetry, textile arts, and animal training.
           </p>
 
           <div style={{
-            display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "center",
-            maxWidth: "900px", margin: "0 auto"
+            display: "flex", flexWrap: "wrap", gap: "12px", justifyContent: "center",
+            maxWidth: "1000px", margin: "0 auto"
           }}>
             {[
-              "🎵 Sangeet (Music)", "💃 Nritya (Dance)", "🎭 Natya (Drama)", "📚 Sahitya (Literature)",
-              "🏹 Dhanurvidya (Archery)", "🌿 Vriksha Ayurveda (Botany)", "🏺 Pottery", "💎 Gem Cutting",
-              "🔥 Cookery", "🧵 Textile Art", "🏛️ Architecture", "⚔️ Martial Arts",
-              "🔢 Mathematics", "🌌 Astronomy", "🎲 Board Games", "🌸 Flower Arrangement",
-              "🐘 Animal Training", "⚗️ Alchemy", "🪡 Weaving", "🗣️ Oratory",
-              "🎨 Painting", "✍️ Calligraphy", "🔮 Magic & Illusion", "📏 Mensuration"
+              "Sangeet (Music)", "Nritya (Dance)", "Natya (Drama)", "Sahitya (Literature)",
+              "Dhanurvidya (Archery)", "Vriksha Ayurveda (Botany)", "Pottery", "Gem Cutting",
+              "Cookery", "Textile Art", "Architecture", "Martial Arts",
+              "Mathematics", "Astronomy", "Board Games", "Flower Arrangement",
+              "Animal Training", "Alchemy", "Weaving", "Oratory",
+              "Painting", "Calligraphy", "Illusion Arts", "Mensuration"
             ].map((art) => (
               <div key={art} style={{
-                background: "rgba(255,255,255,0.07)",
-                border: "1px solid rgba(200,169,81,0.2)",
+                background: "white",
+                border: "1px solid var(--border)",
                 borderRadius: "50px",
-                padding: "6px 16px",
-                fontSize: "12px", color: "rgba(255,255,255,0.8)",
-                transition: "all 0.2s ease",
-                cursor: "default"
+                padding: "10px 24px",
+                fontSize: "14px", color: "var(--text)",
+                transition: "all 0.3s ease",
+                cursor: "default",
+                fontWeight: 600,
+                fontFamily: "Marcellus, serif"
               }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(200,169,81,0.15)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,169,81,0.5)";
+                  (e.currentTarget as HTMLElement).style.background = "var(--accent-light)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
+                  (e.currentTarget as HTMLElement).style.transform = "scale(1.05)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,169,81,0.2)";
+                  (e.currentTarget as HTMLElement).style.background = "white";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.transform = "scale(1)";
                 }}
               >
                 {art}
               </div>
             ))}
             <div style={{
-              background: "rgba(200,169,81,0.12)",
-              border: "1px solid rgba(200,169,81,0.3)",
+              background: "var(--primary)",
+              border: "1px solid var(--primary)",
               borderRadius: "50px",
-              padding: "6px 16px",
-              fontSize: "12px", color: "#C8A951"
+              padding: "10px 24px",
+              fontSize: "14px", color: "white",
+              fontWeight: 700,
+              fontFamily: "Cinzel, serif"
             }}>
-              + 40 more disciplines
+              + 40 More
             </div>
           </div>
         </div>
       </div>
+      <style>{`
+        @media (max-width: 991px) {
+          #shastra > div > div:nth-of-type(2) {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -1,3 +1,14 @@
+import { 
+  Code, 
+  UserCircle, 
+  Globe, 
+  Mail, 
+  Sparkles, 
+  ArrowRight,
+  Library,
+  GraduationCap
+} from "lucide-react";
+
 export default function Footer() {
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -5,89 +16,101 @@ export default function Footer() {
 
   return (
     <footer style={{
-      background: "#080f1c",
-      padding: "60px clamp(20px, 6vw, 96px) 32px",
+      background: "#0D1B2A",
+      padding: "80px clamp(20px, 6vw, 96px) 40px",
       position: "relative",
-      overflow: "hidden"
+      overflow: "hidden",
+      borderTop: "1px solid rgba(212, 175, 55, 0.2)"
     }}>
       {/* Background gradient */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "radial-gradient(ellipse at 50% 0%, rgba(200,169,81,0.06) 0%, transparent 60%)"
+        background: "radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 70%)"
       }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
         {/* Top grid */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr",
-          gap: "48px",
-          marginBottom: "48px"
+          gridTemplateColumns: "2.5fr 1fr 1.5fr",
+          gap: "80px",
+          marginBottom: "64px"
         }}>
           {/* Brand */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "24px" }}>
               <div style={{
-                width: "42px", height: "42px", borderRadius: "10px",
-                background: "linear-gradient(135deg, rgba(200,169,81,0.25), rgba(200,169,81,0.1))",
-                border: "1px solid rgba(200,169,81,0.3)",
+                width: "48px", height: "48px", borderRadius: "12px",
+                background: "linear-gradient(135deg, var(--accent), #A67C00)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "22px"
-              }}>🕉️</div>
+                color: "#0D1B2A",
+                boxShadow: "0 0 20px rgba(212, 175, 55, 0.3)"
+              }}>
+                <Sparkles size={24} />
+              </div>
               <div>
-                <div className="font-serif" style={{ fontSize: "20px", fontWeight: 700, color: "white" }}>
+                <div className="font-serif" style={{ fontSize: "24px", fontWeight: 700, color: "white", letterSpacing: "0.02em" }}>
                   Indian Knowledge System
                 </div>
-                <div style={{ fontSize: "12px", color: "rgba(200,169,81,0.6)" }}>Digital Museum</div>
+                <div className="font-ancient" style={{ fontSize: "12px", color: "var(--accent)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700 }}>
+                  A Digital Heritage Museum
+                </div>
               </div>
             </div>
             <p style={{
-              fontSize: "14px", color: "rgba(255,255,255,0.45)",
-              lineHeight: 1.8, maxWidth: "320px", marginBottom: "24px"
+              fontSize: "15px", color: "rgba(255,255,255,0.5)",
+              lineHeight: 1.8, maxWidth: "400px", marginBottom: "32px"
             }}>
-              An academic project exploring 5,000 years of Indian intellectual heritage — from Vedic mathematics to modern Ayurveda, mapped through interactive storytelling.
+              A comprehensive digital project dedicated to exploring 5,000 years of Indian intellectual tradition — from the abstract heights of philosophy to the empirical depths of applied sciences.
             </p>
             <div className="font-devanagari" style={{
-              fontSize: "18px", color: "rgba(200,169,81,0.6)",
-              marginBottom: "4px"
+              fontSize: "20px", color: "var(--accent)",
+              marginBottom: "4px", textShadow: "0 0 10px rgba(212, 175, 55, 0.3)"
             }}>
               ज्ञानं परमं बलम्
             </div>
-            <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.3)", fontStyle: "italic" }}>
-              "Knowledge is the supreme power"
+            <div className="font-ancient" style={{ fontSize: "12px", color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+              "Knowledge is the Supreme Power"
             </div>
           </div>
 
           {/* Navigation */}
           <div>
-            <div style={{
-              fontSize: "12px", color: "#C8A951", fontWeight: 600,
-              textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "16px"
+            <div className="font-ancient" style={{
+              fontSize: "13px", color: "var(--accent)", fontWeight: 700,
+              textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "24px"
             }}>
-              Sections
+              Quick Access
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
                 { label: "Introduction", id: "introduction" },
                 { label: "Scholar Gallery", id: "scholars" },
                 { label: "Literature & Vedas", id: "literature" },
                 { label: "Shastra Sciences", id: "shastra" },
                 { label: "Historical Timeline", id: "timeline" },
-                { label: "Conservation", id: "conservation" },
+                { label: "Preservation", id: "conservation" },
               ].map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
                   style={{
                     background: "none", border: "none", cursor: "pointer",
-                    color: "rgba(255,255,255,0.45)", fontSize: "14px",
+                    color: "rgba(255,255,255,0.5)", fontSize: "14px",
                     textAlign: "left", padding: 0, fontFamily: "inherit",
-                    transition: "color 0.2s"
+                    display: "flex", alignItems: "center", gap: "8px",
+                    transition: "all 0.3s ease"
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#C8A951")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = "var(--accent)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateX(4px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateX(0)";
+                  }}
                 >
-                  → {link.label}
+                  <ArrowRight size={14} /> {link.label}
                 </button>
               ))}
             </div>
@@ -95,53 +118,58 @@ export default function Footer() {
 
           {/* Creator */}
           <div>
-            <div style={{
-              fontSize: "12px", color: "#C8A951", fontWeight: 600,
-              textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "16px"
+            <div className="font-ancient" style={{
+              fontSize: "13px", color: "var(--accent)", fontWeight: 700,
+              textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "24px"
             }}>
-              Creator
+              The Designer
             </div>
 
             <div style={{
-              display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px"
+              display: "flex", alignItems: "center", gap: "16px", marginBottom: "24px"
             }}>
               <div style={{
-                width: "48px", height: "48px", borderRadius: "50%",
-                background: "linear-gradient(135deg, #C8A951, #8B6914)",
+                width: "56px", height: "56px", borderRadius: "16px",
+                background: "linear-gradient(135deg, var(--accent), #A67C00)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "22px"
-              }}>🎓</div>
+                color: "#0D1B2A", boxShadow: "0 0 20px rgba(212, 175, 55, 0.2)"
+              }}>
+                <GraduationCap size={28} />
+              </div>
               <div>
-                <div style={{ color: "white", fontWeight: 600, fontSize: "16px" }}>Owsam22</div>
-                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "12px" }}>IKS Project Author</div>
+                <div className="font-serif" style={{ color: "white", fontWeight: 700, fontSize: "18px", letterSpacing: "0.05em" }}>Owsam22</div>
+                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "13px" }}>IKS Research & Design</div>
               </div>
             </div>
 
-            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
               {[
-                { icon: "🐙", label: "GitHub" },
-                { icon: "💼", label: "LinkedIn" },
-                { icon: "🌐", label: "Portfolio" },
-                { icon: "📧", label: "Email" }
+                { icon: <Code size={18} />, label: "GitHub" },
+                { icon: <UserCircle size={18} />, label: "LinkedIn" },
+                { icon: <Globe size={18} />, label: "Portfolio" },
+                { icon: <Mail size={18} />, label: "Email" }
               ].map((s) => (
                 <button
                   key={s.label}
                   title={s.label}
                   style={{
-                    width: "38px", height: "38px", borderRadius: "10px",
+                    width: "44px", height: "44px", borderRadius: "12px",
                     background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    cursor: "pointer", fontSize: "16px",
+                    border: "1px solid rgba(212, 175, 55, 0.2)",
+                    cursor: "pointer", color: "white",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    transition: "all 0.2s ease", fontFamily: "inherit"
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 
+                    fontFamily: "inherit"
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(200,169,81,0.15)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,169,81,0.4)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(212, 175, 55, 0.15)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(212, 175, 55, 0.2)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
                   }}
                 >
                   {s.icon}
@@ -154,38 +182,39 @@ export default function Footer() {
         {/* Divider */}
         <div style={{
           height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(200,169,81,0.2), transparent)",
-          marginBottom: "24px"
+          background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent)",
+          marginBottom: "32px"
         }} />
 
         {/* Bottom row */}
         <div style={{
           display: "flex", justifyContent: "space-between", alignItems: "center",
-          flexWrap: "wrap", gap: "12px"
+          flexWrap: "wrap", gap: "24px"
         }}>
-          <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)" }}>
-            © 2025 Owsam22 · Indian Knowledge System Digital Museum · Academic Project
+          <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.02em" }}>
+            © 2025 Owsam22 · Indian Knowledge System Digital Museum · Heritage Preservation Project
           </div>
           <div style={{
             display: "flex", gap: "16px", alignItems: "center"
           }}>
-            <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.2)" }}>Subject: Indian Knowledge System</span>
             <div style={{
-              background: "rgba(200,169,81,0.12)",
-              border: "1px solid rgba(200,169,81,0.25)",
-              borderRadius: "50px", padding: "4px 14px",
-              fontSize: "12px", color: "#C8A951"
+              background: "rgba(212, 175, 55, 0.1)",
+              border: "1px solid rgba(212, 175, 55, 0.3)",
+              borderRadius: "50px", padding: "6px 20px",
+              fontSize: "13px", color: "var(--accent)",
+              fontWeight: 700, display: "flex", alignItems: "center", gap: "8px"
             }}>
-              🕉️ ज्ञानम् एव शक्तिः
+              <Library size={14} /> विद्या धनं सर्वधन प्रधानम्
             </div>
           </div>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          footer [style*="gridTemplateColumns: 2fr 1fr 1fr"] {
+        @media (max-width: 991px) {
+          footer [style*="gridTemplateColumns: 2.5fr 1fr 1.5fr"] {
             grid-template-columns: 1fr !important;
+            gap: 60px !important;
           }
         }
       `}</style>

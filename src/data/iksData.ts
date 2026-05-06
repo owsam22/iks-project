@@ -5,8 +5,8 @@ export const philosophers = [
     era: "c. 3000 BCE",
     field: "Philosophy & Literature",
     category: "philosophy",
-    emoji: "📜",
-    image: null,
+    icon: "Scroll",
+    image: "/images/scholar-vyas.png",
     color: "#8B4513",
     shortDesc: "Compiler of the Vedas, author of Mahabharata and Puranas",
     contribution: "Maharishi Vyasa (Krishna Dvaipayana) is credited with compiling the four Vedas (Rigveda, Samaveda, Yajurveda, Atharvaveda), authoring the Mahabharata—the world's longest epic with 100,000 verses—and composing 18 Puranas including Bhagavata Purana. He systematised the vast oral tradition of Indian knowledge into written form.",
@@ -20,7 +20,7 @@ export const philosophers = [
     era: "c. 1500 BCE",
     field: "Law & Social Order",
     category: "philosophy",
-    emoji: "⚖️",
+    icon: "Gavel",
     image: null,
     color: "#6B3A2A",
     shortDesc: "Author of Manusmriti — ancient India's code of law and social ethics",
@@ -35,7 +35,7 @@ export const philosophers = [
     era: "c. 600 BCE",
     field: "Philosophy & Atomic Theory",
     category: "philosophy",
-    emoji: "⚛️",
+    icon: "Atom",
     image: null,
     color: "#2C4A7A",
     shortDesc: "Founder of Vaisheshika school — proposed atomic theory 2500 years before Dalton",
@@ -50,7 +50,7 @@ export const philosophers = [
     era: "c. 300 BCE",
     field: "Mathematics & Linguistics",
     category: "philosophy",
-    emoji: "🔢",
+    icon: "Binary",
     image: null,
     color: "#1A5276",
     shortDesc: "Inventor of binary number system and combinatorics in Chandashashtra",
@@ -65,7 +65,7 @@ export const philosophers = [
     era: "c. 150 CE",
     field: "Philosophy & Chemistry",
     category: "philosophy",
-    emoji: "🧪",
+    icon: "FlaskConical",
     image: null,
     color: "#4A235A",
     shortDesc: "Founder of Madhyamaka Buddhist philosophy and pioneer of Indian alchemy",
@@ -80,7 +80,7 @@ export const philosophers = [
     era: "c. 400 BCE",
     field: "Linguistics & Grammar",
     category: "philosophy",
-    emoji: "🔤",
+    icon: "Type",
     image: "/images/panini.jpg",
     color: "#1E8449",
     shortDesc: "Created Ashtadhyayi — world's most precise grammar text, forerunner of modern linguistics",
@@ -98,8 +98,8 @@ export const mathematicians = [
     era: "476–550 CE",
     field: "Mathematics & Astronomy",
     category: "mathematics",
-    emoji: "🌌",
-    image: "/images/aryabhata.jpg",
+    icon: "MilkyWay",
+    image: "/images/scholar-aryabhatta.png",
     color: "#1A5276",
     shortDesc: "Calculated π, proposed heliocentric model, invented trigonometry",
     contribution: "Aryabhata, born in 476 CE in Kusumapura (modern Patna), wrote the Aryabhatiya at age 23. He calculated π (pi) as 3.1416 (correct to 4 decimal places), explained solar and lunar eclipses scientifically, stated Earth rotates on its axis, and developed sine (jya) trigonometry. He also worked on quadratic equations and indeterminate equations.",
@@ -113,7 +113,7 @@ export const mathematicians = [
     era: "598–668 CE",
     field: "Mathematics & Astronomy",
     category: "mathematics",
-    emoji: "🔭",
+    icon: "Telescope",
     image: null,
     color: "#154360",
     shortDesc: "Defined zero as a number, rules for negative numbers and quadratic equations",
@@ -128,7 +128,7 @@ export const mathematicians = [
     era: "1114–1185 CE",
     field: "Mathematics & Astronomy",
     category: "mathematics",
-    emoji: "📐",
+    icon: "Compass",
     image: null,
     color: "#1F618D",
     shortDesc: "Anticipated calculus, wrote Lilavati — mathematics explained through poetry",
@@ -143,7 +143,7 @@ export const mathematicians = [
     era: "505–587 CE",
     field: "Astronomy & Encyclopedia",
     category: "mathematics",
-    emoji: "🌠",
+    icon: "Stars",
     image: null,
     color: "#2E4057",
     shortDesc: "Encyclopedist of ancient Indian astronomy, astrology, and natural sciences",
@@ -158,7 +158,7 @@ export const mathematicians = [
     era: "c. 850 CE",
     field: "Mathematics",
     category: "mathematics",
-    emoji: "∞",
+    icon: "Infinity",
     image: null,
     color: "#633974",
     shortDesc: "First mathematician to work systematically with fractions and series",
@@ -173,7 +173,7 @@ export const mathematicians = [
     era: "c. 800 BCE",
     field: "Mathematics & Geometry",
     category: "mathematics",
-    emoji: "📏",
+    icon: "Ruler",
     image: null,
     color: "#A04000",
     shortDesc: "Stated the Pythagorean theorem 300 years before Pythagoras in Sulbasutras",
@@ -191,8 +191,8 @@ export const physicians = [
     era: "c. 300 BCE",
     field: "Medicine & Ayurveda",
     category: "medicine",
-    emoji: "🌿",
-    image: "/images/charaka.jpg",
+    icon: "Leaf",
+    image: "/images/scholar-charak.png",
     color: "#1E8449",
     shortDesc: "Father of Indian Medicine — authored Charaka Samhita, foundation of Ayurveda",
     contribution: "Charaka authored the Charaka Samhita, the foundational text of Ayurveda with 8 sections and 120 chapters. He classified diseases, described the three doshas (Vata, Pitta, Kapha), established principles of holistic health, emphasized preventive medicine, and wrote about medical ethics. He correctly identified 600+ cardiac conditions and described a prototype of the digestive system.",
@@ -206,7 +206,7 @@ export const physicians = [
     era: "c. 600 BCE",
     field: "Surgery & Medicine",
     category: "medicine",
-    emoji: "🔬",
+    icon: "Microscope",
     image: null,
     color: "#922B21",
     shortDesc: "Father of Surgery — performed rhinoplasty 2600 years ago with 300+ surgical procedures",
@@ -221,7 +221,7 @@ export const physicians = [
     era: "c. 200 BCE",
     field: "Yoga & Grammar",
     category: "medicine",
-    emoji: "🧘",
+    icon: "Activity",
     image: null,
     color: "#784212",
     shortDesc: "Codified Yoga in 196 Yoga Sutras — WHO now recognises International Yoga Day",
@@ -236,7 +236,7 @@ export const physicians = [
     era: "Mythological / c. 1000 BCE",
     field: "Ayurveda & Medicine",
     category: "medicine",
-    emoji: "🏺",
+    icon: "FlaskRound",
     image: null,
     color: "#117A65",
     shortDesc: "Divine physician — deity of Ayurveda, patron saint of Indian medicine",
@@ -254,7 +254,7 @@ export const banaAndParasar = [
     era: "c. 606–647 CE",
     field: "Sanskrit Literature",
     category: "philosophy",
-    emoji: "✍️",
+    icon: "PenTool",
     image: null,
     color: "#6D4C41",
     shortDesc: "Greatest Sanskrit prose writer — authored Kadambari and Harshacharita",
@@ -269,7 +269,7 @@ export const banaAndParasar = [
     era: "c. 1000 BCE",
     field: "Botany & Agriculture",
     category: "philosophy",
-    emoji: "🌱",
+    icon: "Sprout",
     image: null,
     color: "#2E7D32",
     shortDesc: "Father of Botany — authored Vrikshayurveda, the science of plant life",
@@ -370,8 +370,7 @@ export const literatureData = [
 export const shastraData = [
   {
     name: "Nyaya Shastra",
-    icon: "⚖️",
-    emoji: "⚖️",
+    icon: "Scale",
     color: "#1F3A5F",
     gradient: "linear-gradient(135deg, #1F3A5F, #2E86AB)",
     desc: "Science of Logic & Debate",
@@ -381,8 +380,7 @@ export const shastraData = [
   },
   {
     name: "Vyakarana",
-    icon: "🔤",
-    emoji: "🔤",
+    icon: "Languages",
     color: "#1E8449",
     gradient: "linear-gradient(135deg, #1E8449, #27AE60)",
     desc: "Science of Grammar & Linguistics",
@@ -392,8 +390,7 @@ export const shastraData = [
   },
   {
     name: "Krishi Shastra",
-    icon: "🌾",
-    emoji: "🌾",
+    icon: "Sprout",
     color: "#7D6608",
     gradient: "linear-gradient(135deg, #7D6608, #D4AC0D)",
     desc: "Science of Agriculture",
@@ -403,8 +400,7 @@ export const shastraData = [
   },
   {
     name: "Shilpa Shastra",
-    icon: "🏺",
-    emoji: "🏺",
+    icon: "Palette",
     color: "#8B4513",
     gradient: "linear-gradient(135deg, #8B4513, #C0392B)",
     desc: "Science of Arts & Crafts",
@@ -414,8 +410,7 @@ export const shastraData = [
   },
   {
     name: "Vastu Shastra",
-    icon: "🏛️",
-    emoji: "🏛️",
+    icon: "Building2",
     color: "#4A235A",
     gradient: "linear-gradient(135deg, #4A235A, #6C3483)",
     desc: "Science of Architecture & Space",
@@ -425,8 +420,7 @@ export const shastraData = [
   },
   {
     name: "Natya & Sangeet",
-    icon: "🎭",
-    emoji: "🎭",
+    icon: "Music",
     color: "#922B21",
     gradient: "linear-gradient(135deg, #922B21, #E74C3C)",
     desc: "Science of Performing Arts",
@@ -443,7 +437,7 @@ export const timelineData = [
     color: "#C8A951",
     event: "Vedas Composed",
     detail: "Rigveda composed — oldest known text of any Indo-European language. Oral tradition of preserving knowledge begins with extraordinary precision.",
-    icon: "🕉️"
+    icon: "Scroll"
   },
   {
     year: "2600 BCE",
@@ -451,7 +445,7 @@ export const timelineData = [
     color: "#8B4513",
     event: "Indus Valley Civilization",
     detail: "Mohenjo-daro and Harappa — planned grid cities with sewage systems, standardised weights, and bronze metallurgy. Proto-Indian Knowledge System in practice.",
-    icon: "🏙️"
+    icon: "Mountain"
   },
   {
     year: "800 BCE",
@@ -459,7 +453,7 @@ export const timelineData = [
     color: "#1F3A5F",
     event: "Bodhayan & Sulbasutras",
     detail: "Bodhayan states the Pythagorean theorem in Sulbasutras. Upanishads composed — greatest philosophical literature of ancient world.",
-    icon: "📐"
+    icon: "Triangle"
   },
   {
     year: "600 BCE",
@@ -467,7 +461,7 @@ export const timelineData = [
     color: "#4A235A",
     event: "Sushruta & Panini",
     detail: "Sushruta performs rhinoplasty. Panini writes Ashtadhyayi — the most complete grammar of any human language. Kanada proposes atomic theory.",
-    icon: "🔬"
+    icon: "Atom"
   },
   {
     year: "400 BCE",
@@ -475,7 +469,7 @@ export const timelineData = [
     color: "#1E8449",
     event: "Nalanda & Takshashila",
     detail: "World's first universities — Takshashila (600 BCE) and Nalanda (5th century BCE) educate scholars from China, Greece, and Central Asia.",
-    icon: "🏛️"
+    icon: "GraduationCap"
   },
   {
     year: "200 BCE",
@@ -483,7 +477,7 @@ export const timelineData = [
     color: "#922B21",
     event: "Patanjali's Yoga Sutras",
     detail: "Patanjali codifies yoga in 196 sutras. Charaka Samhita systematises Ayurveda. Pingala's Chandas-shastra describes binary mathematics.",
-    icon: "🧘"
+    icon: "PersonStanding"
   },
   {
     year: "476 CE",
@@ -491,7 +485,7 @@ export const timelineData = [
     color: "#C8A951",
     event: "Aryabhata Born",
     detail: "Gupta Empire's Golden Age. Aryabhata, Varahamihira, Brahmagupta make India the world's leading centre for mathematics and astronomy.",
-    icon: "🌌"
+    icon: "MilkyWay"
   },
   {
     year: "1000 CE",
@@ -499,7 +493,7 @@ export const timelineData = [
     color: "#1F3A5F",
     event: "Bhaskara II & Synthesis",
     detail: "Bhaskaracharya writes Lilavati and anticipates calculus. Indian Knowledge reaches Arab world, then Europe — zero, decimal system, algebra transmitted globally.",
-    icon: "📐"
+    icon: "Calculator"
   },
   {
     year: "1757 CE",
@@ -507,7 +501,7 @@ export const timelineData = [
     color: "#922B21",
     event: "Decline Under Colonial Rule",
     detail: "British colonial education (Macaulay's Minute, 1835) systematically displaces traditional IKS. Gurukula system dismantled. Ancient knowledge marginalised.",
-    icon: "⚠️"
+    icon: "AlertTriangle"
   },
   {
     year: "1947 CE",
@@ -515,7 +509,7 @@ export const timelineData = [
     color: "#1E8449",
     event: "Revival Begins",
     detail: "India's independence sparks revival interest. CSIR established. Ancient texts digitised. Yoga spreads globally. Ayurveda gains international recognition.",
-    icon: "🇮🇳"
+    icon: "Flag"
   },
   {
     year: "2015 CE",
@@ -523,7 +517,7 @@ export const timelineData = [
     color: "#C8A951",
     event: "International Yoga Day",
     detail: "UN declares June 21 International Yoga Day — 177 nations co-sponsor. India's traditional knowledge recognised globally.",
-    icon: "🌍"
+    icon: "Globe"
   },
   {
     year: "2020–Now",
@@ -531,14 +525,14 @@ export const timelineData = [
     color: "#1F3A5F",
     event: "NEP 2020 & IKS Integration",
     detail: "National Education Policy 2020 mandates IKS integration in curricula. 19 IKS Chairs established in IITs. Ayush Ministry promotes traditional medicine globally.",
-    icon: "🎓"
+    icon: "BookOpen"
   }
 ];
 
 export const conservationData = {
   documentation: {
     title: "Documentation & Preservation",
-    icon: "📜",
+    icon: "Book",
     color: "#8B4513",
     points: [
       { title: "National Mission for Manuscripts (NMM)", desc: "India holds 10 million manuscripts — world's largest collection. NMM has digitised 5+ million pages of ancient texts in 30+ scripts across Sanskrit, Tamil, Malayalam, Telugu, and other languages." },
@@ -549,7 +543,7 @@ export const conservationData = {
   },
   conservation: {
     title: "Nature & Bio-Resource Conservation",
-    icon: "🌿",
+    icon: "Leaf",
     color: "#1E8449",
     points: [
       { title: "Sacred Grove System (Devvans)", desc: "Ancient Indian tradition of protecting forest patches as sacred — 'Devvans' or 'Orans'. India has 1,00,000+ sacred groves preserving biodiversity for millennia. Maharashtra's Devrai system still operational." },
@@ -560,7 +554,7 @@ export const conservationData = {
   },
   strategies: {
     title: "Protection & Modern Integration",
-    icon: "🛡️",
+    icon: "Shield",
     color: "#1F3A5F",
     points: [
       { title: "Intellectual Property Protection", desc: "TKDL (Traditional Knowledge Digital Library) has successfully defended against 200+ patent applications attempting to patent traditional Indian knowledge — including turmeric healing, neem pesticide, and Yoga poses." },

@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Marcellus&family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Serif+Devanagari:wght@400;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --bg: #F8F5F0;
-  --primary: #1F3A5F;
-  --accent: #C8A951;
-  --accent-light: #E8D5A3;
-  --text: #2B2B2B;
-  --text-light: #6B6B6B;
-  --card-bg: #FEFCF8;
-  --border: #E8DFD0;
+  --bg: #F4EBD0; /* Parchment like */
+  --primary: #1B263B; /* Deep Indigo */
+  --accent: #D4AF37; /* Rich Gold */
+  --accent-dark: #A67C00;
+  --accent-light: #F9E2AF;
+  --text: #2D241E; /* Earthy Dark */
+  --text-light: #5D4D37;
+  --card-bg: #FCF8ED;
+  --border: #D1C0A3;
+  --saffron: #FF9933;
 }
 
 * {
@@ -23,10 +26,21 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Lora', serif;
   background-color: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 /* Intro Door */
@@ -79,7 +93,11 @@ body {
 
 /* Fonts */
 .font-serif {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cinzel', serif;
+}
+
+.font-ancient {
+  font-family: 'Marcellus', serif;
 }
 
 .font-devanagari {
@@ -104,11 +122,12 @@ body {
 
 /* Section styles */
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cinzel', serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   color: var(--primary);
   line-height: 1.2;
+  letter-spacing: 0.05em;
 }
 
 .section-subtitle {
@@ -241,9 +260,17 @@ body {
 
 /* Texture overlay */
 .parchment-texture {
-  background-image: 
-    radial-gradient(ellipse at 20% 20%, rgba(200, 169, 81, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(31, 58, 95, 0.04) 0%, transparent 50%);
+  background-color: #f7f1e3;
+  background-image: url("https://www.transparenttextures.com/patterns/old-mathematics.png");
+  position: relative;
+}
+
+.parchment-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.05) 100%);
+  pointer-events: none;
 }
 
 /* Scroll indicator */
