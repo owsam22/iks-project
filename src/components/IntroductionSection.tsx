@@ -1,28 +1,28 @@
-import { 
-  BookOpen, 
-  Lightbulb, 
-  Globe, 
-  History, 
+import {
+  BookOpen,
+  Lightbulb,
+  Globe,
+  History,
   Target,
   Compass
 } from "lucide-react";
 
 export default function IntroductionSection() {
   const pillars = [
-    { 
-      icon: <Target size={24} />, 
-      title: "Holistic Vision", 
-      desc: "Unlike fragmented modern science, IKS views knowledge as an interconnected whole where physics, ethics, and spirituality coexist." 
+    {
+      icon: <Target size={24} />,
+      title: "Holistic Vision",
+      desc: "Unlike fragmented modern science, IKS views knowledge as an interconnected whole where physics, ethics, and spirituality coexist."
     },
-    { 
-      icon: <Compass size={24} />, 
-      title: "Oral Tradition", 
-      desc: "The world's most sophisticated memory system allowed precise transmission of complex texts over millennia without a single syllable's change." 
+    {
+      icon: <Compass size={24} />,
+      title: "Oral Tradition",
+      desc: "The world's most sophisticated memory system allowed precise transmission of complex texts over millennia without a single syllable's change."
     },
-    { 
-      icon: <Globe size={24} />, 
-      title: "Global Impact", 
-      desc: "From the decimal system to surgical methods, Indian discoveries provided the bedrock for the global scientific revolution." 
+    {
+      icon: <Globe size={24} />,
+      title: "Global Impact",
+      desc: "From the decimal system to surgical methods, Indian discoveries provided the bedrock for the global scientific revolution."
     },
   ];
 
@@ -43,7 +43,7 @@ export default function IntroductionSection() {
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "80px", alignItems: "center" }}>
-          
+
           {/* Left: Text Content */}
           <div>
             <div style={{
@@ -101,10 +101,10 @@ export default function IntroductionSection() {
               border: "1px solid var(--border)",
               position: "relative", zIndex: 2
             }}>
-              <div style={{ 
-                width: "60px", height: "60px", borderRadius: "50%", 
-                background: "var(--primary)", display: "flex", 
-                alignItems: "center", justifyContent: "center", 
+              <div style={{
+                width: "60px", height: "60px", borderRadius: "50%",
+                background: "var(--primary)", display: "flex",
+                alignItems: "center", justifyContent: "center",
                 marginBottom: "24px", color: "white"
               }}>
                 <History size={32} />
@@ -115,9 +115,9 @@ export default function IntroductionSection() {
               <p style={{ fontSize: "16px", color: "var(--text-light)", lineHeight: 1.7, marginBottom: "32px" }}>
                 IKS is not a museum piece. It is a living tradition that continues to offer sustainable solutions for modern challenges — from climate change and mental health to data science and linguistics.
               </p>
-              
-              <div style={{ 
-                padding: "20px", background: "rgba(255,255,255,0.5)", 
+
+              <div style={{
+                padding: "20px", background: "rgba(255,255,255,0.5)",
                 borderRadius: "16px", border: "1px dashed var(--accent)"
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
