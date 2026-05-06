@@ -137,20 +137,23 @@ export default function Footer() {
                 <GraduationCap size={28} />
               </div>
               <div>
-                <div className="font-serif" style={{ color: "white", fontWeight: 700, fontSize: "18px", letterSpacing: "0.05em" }}>samarpan(owsam22)</div>
+                <div className="font-serif" style={{ color: "white", fontWeight: 700, fontSize: "18px", letterSpacing: "0.05em" }}>Samarpan (owsam22)</div>
                 <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "13px" }}>IKS Research & Design</div>
               </div>
             </div>
 
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
               {[
-                { icon: <Code size={18} />, label: "GitHub" },
-                { icon: <UserCircle size={18} />, label: "LinkedIn" },
-                { icon: <Globe size={18} />, label: "Portfolio" },
-                { icon: <Mail size={18} />, label: "Email" }
+                { icon: <Code size={18} />, label: "GitHub", href: "https://github.com/owsam22" },
+                { icon: <UserCircle size={18} />, label: "LinkedIn", href: "https://linkedin.com/in/owsam22" },
+                { icon: <Globe size={18} />, label: "Portfolio", href: "https://owsam22.github.io/portfolio" },
+                { icon: <Mail size={18} />, label: "Email", href: "mailto:22samarpan@gmail.com" }
               ].map((s) => (
-                <button
+                <a
                   key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   title={s.label}
                   style={{
                     width: "44px", height: "44px", borderRadius: "12px",
@@ -159,7 +162,7 @@ export default function Footer() {
                     cursor: "pointer", color: "white",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 
-                    fontFamily: "inherit"
+                    textDecoration: "none"
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLElement).style.background = "rgba(212, 175, 55, 0.15)";
@@ -173,7 +176,7 @@ export default function Footer() {
                   }}
                 >
                   {s.icon}
-                </button>
+                </a>
               ))}
             </div>
           </div>

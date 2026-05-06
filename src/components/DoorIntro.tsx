@@ -114,16 +114,20 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
           
           <div className="flex gap-6 mt-4">
             {[
-              { icon: <Code size={20} />, label: "GitHub" },
-              { icon: <UserCircle size={20} />, label: "LinkedIn" },
-              { icon: <Globe size={20} />, label: "Portfolio" }
+              { icon: <Code size={20} />, label: "GitHub", href: "https://github.com/owsam22" },
+              { icon: <UserCircle size={20} />, label: "LinkedIn", href: "https://linkedin.com/in/owsam22" },
+              { icon: <Globe size={20} />, label: "Portfolio", href: "https://owsam22.github.io" }
             ].map((s, idx) => (
-              <div key={idx} 
+              <a 
+                key={idx} 
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 rounded-xl border border-accent/40 flex items-center justify-center text-accent bg-accent/5 hover:bg-accent hover:text-navy transition-all duration-300 shadow-lg"
                 title={s.label}
               >
                 {s.icon}
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -144,6 +148,21 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
       {/* Texture overlay */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
         style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')" }} />
+      
+      <style>{`
+        @media (max-width: 640px) {
+          .door-screen h1 {
+            font-size: 48px !important;
+          }
+          .door-screen .p-8 {
+            padding: 24px !important;
+          }
+          .door-screen h2 {
+            font-size: 24px !important;
+            letter-spacing: 0.1em !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
