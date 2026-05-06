@@ -137,7 +137,7 @@ export default function Footer() {
                 <GraduationCap size={28} />
               </div>
               <div>
-                <div className="font-serif" style={{ color: "white", fontWeight: 700, fontSize: "18px", letterSpacing: "0.05em" }}>Owsam22</div>
+                <div className="font-serif" style={{ color: "white", fontWeight: 700, fontSize: "18px", letterSpacing: "0.05em" }}>samarpan(owsam22)</div>
                 <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "13px" }}>IKS Research & Design</div>
               </div>
             </div>
@@ -192,7 +192,7 @@ export default function Footer() {
           flexWrap: "wrap", gap: "24px"
         }}>
           <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.02em" }}>
-            © 2025 Owsam22 · Indian Knowledge System Digital Museum · Heritage Preservation Project
+            © 2026 samarpan (owsam22) · Indian Knowledge System Digital Museum · Heritage Preservation Project
           </div>
           <div style={{
             display: "flex", gap: "16px", alignItems: "center"

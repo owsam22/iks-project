@@ -59,7 +59,7 @@ export default function App() {
       <div
         style={{
           opacity: mainVisible ? 1 : 0,
-          transition: "opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: "opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
           minHeight: "100vh",
           background: "var(--bg)"
         }}

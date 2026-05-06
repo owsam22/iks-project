@@ -102,24 +102,16 @@ export default function LiteratureSection() {
         position: "absolute", inset: 0,
         backgroundImage: "url('/images/literature-bg.png')",
         backgroundSize: "cover", backgroundPosition: "center",
-        opacity: 0.05
+        opacity: 0.35
       }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
 
         {/* Section header */}
         <div style={{ textAlign: "center", marginBottom: "56px" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: "10px",
-            background: "rgba(212, 175, 55, 0.1)",
-            borderRadius: "50px", padding: "8px 24px",
-            border: "1px solid rgba(212, 175, 55, 0.3)",
-            marginBottom: "20px"
-          }}>
+          <div className="unit-badge">
             <BookOpen size={16} color="var(--accent-dark)" />
-            <span className="font-ancient" style={{ fontSize: "14px", color: "var(--accent-dark)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-              Unit II · Literature & Philosophy
-            </span>
+            <span>Unit II · Literature & Philosophy</span>
           </div>
           <h2 className="font-serif section-title" style={{ marginBottom: "20px" }}>
             Sahitya, Vedas & Darshanas

@@ -51,36 +51,6 @@ body::before {
   display: flex;
 }
 
-.door-left, .door-right {
-  width: 50%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  transition: transform 1.4s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.door-left {
-  background: linear-gradient(160deg, #1a0a00 0%, #3d1a00 40%, #6b3410 70%, #8B4513 100%);
-  border-right: 2px solid var(--accent);
-}
-
-.door-right {
-  background: linear-gradient(200deg, #0a0f1a 0%, #1F3A5F 50%, #0d2442 100%);
-  border-left: 2px solid var(--accent);
-}
-
-.door-left.open {
-  transform: translateX(-100%);
-}
-
-.door-right.open {
-  transform: translateX(100%);
-}
-
 .door-overlay {
   pointer-events: none;
   transition: opacity 0.6s ease 1.6s;
@@ -142,6 +112,28 @@ body::before {
   height: 4px;
   background: linear-gradient(90deg, var(--accent), #E8C87A);
   border-radius: 2px;
+}
+
+/* Unit Styling */
+.unit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50px;
+  padding: 8px 24px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(4px);
+}
+
+.unit-badge span {
+  font-family: 'Marcellus', serif;
+  font-size: 13px;
+  color: var(--accent-dark);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
 }
 
 /* Cards */
@@ -430,4 +422,37 @@ body::before {
   font-size: 40vw;
   line-height: 1;
   user-select: none;
+}
+
+/* New Intro Animations */
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-slow-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; filter: drop-shadow(0 0 10px var(--accent)); }
+  50% { opacity: 0.6; filter: drop-shadow(0 0 25px var(--accent)); }
+}
+
+@keyframes portal-reveal {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+.animate-rotate-slow-reverse {
+  animation: rotate-slow-reverse 25s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
 }

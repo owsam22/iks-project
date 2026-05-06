@@ -23,7 +23,10 @@ import {
   ChevronRight,
   BookOpen,
   Languages,
-  Gavel
+  Gavel,
+  Sparkles,
+  Zap,
+  CircleDot
 } from "lucide-react";
 
 const IconMap: Record<string, any> = {
@@ -46,10 +49,56 @@ const IconMap: Record<string, any> = {
   Sprout,
   BookOpen,
   Languages,
-  Gavel
+  Gavel,
+  MilkyWay: Stars
 };
 
 type Scholar = typeof allScholars[0];
+
+function ScholarAvatar({ scholar }: { scholar: Scholar }) {
+  const Icon = IconMap[scholar.icon as string] || Scroll;
+  
+  // Custom styled cards for major scholars instead of degraded images
+  if (scholar.name === "Aryabhata" || scholar.name === "Brahmagupta" || scholar.name === "Bhaskara II") {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center bg-indigo-950 p-6 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 animate-pulse-glow bg-[radial-gradient(circle_at_center,var(--accent)_0%,transparent_70%)]" />
+        <div className="relative z-10 w-32 h-32 rounded-full border-4 border-accent/30 flex items-center justify-center bg-accent/5 backdrop-blur-md mb-4 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+          <CircleDot size={64} className="text-accent animate-pulse" />
+          <div className="absolute inset-[-10px] animate-rotate-slow border border-accent/20 rounded-full border-dashed" />
+        </div>
+        <div className="relative z-10 font-serif text-accent text-xl font-bold tracking-widest uppercase">
+          Zero & Infinity
+        </div>
+      </div>
+    );
+  }
+
+  if (scholar.name === "Charaka" || scholar.name === "Sushruta") {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center bg-emerald-950 p-6 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')]" />
+        <div className="relative z-10 w-32 h-32 rounded-3xl rotate-45 border-4 border-emerald-400/30 flex items-center justify-center bg-emerald-400/5 backdrop-blur-md mb-4 shadow-[0_0_30px_rgba(52,211,153,0.2)]">
+          <Leaf size={64} className="text-emerald-400 -rotate-45" />
+        </div>
+        <div className="relative z-10 font-serif text-emerald-400 text-xl font-bold tracking-widest uppercase">
+          Ayurveda Science
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center" style={{ background: `linear-gradient(135deg, ${scholar.color}22, ${scholar.color}44)` }}>
+      <div className="w-24 h-24 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-4">
+        <Icon size={48} color={scholar.color} className="opacity-80" />
+      </div>
+      <div className="font-ancient text-[10px] tracking-[0.3em] uppercase opacity-50 font-bold" style={{ color: scholar.color }}>
+        {scholar.field}
+      </div>
+    </div>
+  );
+}
 
 function ScholarModal({ scholar, onClose }: { scholar: Scholar; onClose: () => void }) {
   const Icon = IconMap[scholar.icon as string] || Scroll;
@@ -77,7 +126,6 @@ function ScholarModal({ scholar, onClose }: { scholar: Scholar; onClose: () => v
           ><X size={20} /></button>
 
           <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
-            {/* Image or icon avatar */}
             <div style={{
               width: "120px", height: "120px", borderRadius: "20px",
               overflow: "hidden", flexShrink: 0,
@@ -86,12 +134,7 @@ function ScholarModal({ scholar, onClose }: { scholar: Scholar; onClose: () => v
               display: "flex", alignItems: "center", justifyContent: "center",
               boxShadow: "0 8px 16px rgba(0,0,0,0.2)"
             }}>
-              {scholar.image ? (
-                <img src={scholar.image} alt={scholar.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
-              ) : (
-                <Icon size={60} color="white" />
-              )}
+              <Icon size={60} color="white" />
             </div>
 
             <div>
@@ -120,7 +163,6 @@ function ScholarModal({ scholar, onClose }: { scholar: Scholar; onClose: () => v
 
         {/* Content */}
         <div style={{ padding: "40px" }}>
-          {/* Short desc */}
           <div style={{
             background: `${scholar.color}10`,
             borderLeft: `5px solid ${scholar.color}`,
@@ -210,27 +252,13 @@ export default function ScholarsSection() {
       position: "relative",
       overflow: "hidden"
     }}>
-      {/* Background image */}
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundImage: "url('/images/scholars-bg.jpg')",
-        backgroundSize: "cover", backgroundPosition: "center",
-        opacity: 0.08
-      }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "64px" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: "10px",
-            background: "rgba(27, 38, 59, 0.08)",
-            borderRadius: "50px", padding: "8px 24px",
-            border: "1px solid rgba(27, 38, 59, 0.15)",
-            marginBottom: "20px"
-          }}>
-            <span className="font-ancient" style={{ fontSize: "14px", color: "var(--primary)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-              Unit II · The Great Masters
-            </span>
+          <div className="unit-badge">
+            <Sparkles size={16} color="var(--accent-dark)" />
+            <span>Unit II · The Great Masters</span>
           </div>
           <h2 className="font-serif section-title" style={{ marginBottom: "20px", fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
             Ancient Scholars & Rishis
@@ -265,39 +293,24 @@ export default function ScholarsSection() {
           gap: "32px"
         }}>
           {filtered.map((scholar) => {
-            const Icon = IconMap[scholar.icon as string] || Scroll;
             return (
               <div
                 key={scholar.id}
-                className="scholar-card"
+                className="scholar-card group"
                 onClick={() => setSelectedScholar(scholar)}
                 style={{ background: "var(--card-bg)", border: "1px solid var(--border)", borderRadius: "12px" }}
               >
-                {/* Image / icon block */}
+                {/* Stylized Avatar block */}
                 <div style={{
-                  height: "240px", overflow: "hidden", position: "relative",
-                  background: `linear-gradient(135deg, ${scholar.color}22, ${scholar.color}44)`,
+                  height: "260px", overflow: "hidden", position: "relative",
                 }}>
-                  {scholar.image ? (
-                    <img
-                      src={scholar.image}
-                      alt={scholar.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
-                    />
-                  ) : (
-                    <div style={{
-                      display: "flex", flexDirection: "column",
-                      alignItems: "center", justifyContent: "center",
-                      height: "100%",
-                    }}>
-                      <Icon size={80} color={scholar.color} opacity={0.6} />
-                    </div>
-                  )}
+                  <ScholarAvatar scholar={scholar} />
+                  
                   {/* Overlay gradient */}
                   <div style={{
                     position: "absolute", bottom: 0, left: 0, right: 0,
-                    height: "100px",
-                    background: `linear-gradient(transparent, rgba(0,0,0,0.4))`
+                    height: "120px",
+                    background: `linear-gradient(transparent, rgba(0,0,0,0.6))`
                   }} />
                   {/* Era badge */}
                   <div style={{
@@ -335,11 +348,7 @@ export default function ScholarsSection() {
                   }}>
                     {scholar.shortDesc}
                   </p>
-                  <div style={{
-                    display: "flex", alignItems: "center", gap: "8px",
-                    color: "var(--accent-dark)", fontSize: "14px", fontWeight: 700,
-                    fontFamily: "Cinzel, serif"
-                  }}>
+                  <div className="flex items-center gap-2 text-accent-dark font-bold font-serif text-sm group-hover:gap-4 transition-all">
                     <span>View Profile</span>
                     <ChevronRight size={16} />
                   </div>

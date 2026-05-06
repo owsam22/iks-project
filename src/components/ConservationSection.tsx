@@ -58,24 +58,16 @@ export default function ConservationSection() {
         position: "absolute", inset: 0,
         backgroundImage: "url('/images/conservation-bg.png')",
         backgroundSize: "cover", backgroundPosition: "center",
-        opacity: 0.1, pointerEvents: "none"
+        opacity: 0.4, pointerEvents: "none"
       }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "72px" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: "10px",
-            background: "rgba(212, 175, 55, 0.12)",
-            borderRadius: "50px", padding: "8px 24px",
-            border: "1px solid rgba(212, 175, 55, 0.3)",
-            marginBottom: "20px"
-          }}>
+          <div className="unit-badge">
             <ShieldCheck size={16} color="var(--accent-dark)" />
-            <span className="font-ancient" style={{ fontSize: "14px", color: "var(--accent-dark)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-              Unit III · Preservation
-            </span>
+            <span>Unit III · Preservation</span>
           </div>
           <h2 className="font-serif section-title" style={{ marginBottom: "20px" }}>
             Preserving Our Intellectual Heritage

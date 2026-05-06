@@ -36,24 +36,16 @@ export default function ShastraSection() {
         position: "absolute", inset: 0,
         backgroundImage: "url('/images/unit3-bg.png')",
         backgroundSize: "cover", backgroundPosition: "center",
-        opacity: 0.06, pointerEvents: "none"
+        opacity: 0.35, pointerEvents: "none"
       }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "64px" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: "10px",
-            background: "rgba(27, 38, 59, 0.08)",
-            borderRadius: "50px", padding: "8px 24px",
-            border: "1px solid rgba(27, 38, 59, 0.15)",
-            marginBottom: "20px"
-          }}>
+          <div className="unit-badge">
             <Sparkles size={16} color="var(--primary)" />
-            <span className="font-ancient" style={{ fontSize: "14px", color: "var(--primary)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-              Unit III · Applied Knowledge
-            </span>
+            <span>Unit III · Applied Knowledge</span>
           </div>
           <h2 className="font-serif section-title" style={{ marginBottom: "20px" }}>
             Shastras — The Applied Sciences

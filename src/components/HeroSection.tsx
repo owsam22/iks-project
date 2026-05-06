@@ -45,7 +45,7 @@ export default function HeroSection() {
       {/* Overlay */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(27, 38, 59, 0.8) 50%, rgba(45, 36, 30, 0.75) 100%)"
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(27, 38, 59, 0.45) 50%, rgba(45, 36, 30, 0.4) 100%)"
       }} />
 
       {/* Mandala watermark */}
@@ -79,7 +79,7 @@ export default function HeroSection() {
         </div>
 
         {/* Hero content in 2 col */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+        <div className="content-grid">
 
           {/* Left: Text */}
           <div>
@@ -96,7 +96,7 @@ export default function HeroSection() {
             </div>
 
             <h1 className="font-serif" style={{
-              fontSize: "clamp(40px, 6vw, 80px)",
+              fontSize: "clamp(36px, 6vw, 80px)",
               fontWeight: 900, color: "#F8F5F0",
               lineHeight: 1.05, marginBottom: "28px",
               textShadow: "0 4px 20px rgba(0,0,0,0.3)"
@@ -107,7 +107,7 @@ export default function HeroSection() {
             </h1>
 
             <p style={{
-              fontSize: "clamp(16px, 1.5vw, 19px)",
+              fontSize: "clamp(15px, 1.5vw, 19px)",
               color: "rgba(248,245,240,0.8)",
               lineHeight: 1.8, maxWidth: "520px",
               marginBottom: "48px"
@@ -162,9 +162,8 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right: Pillar cards */}
           <div>
-            <div style={{
+            <div className="pillar-grid" style={{
               display: "grid", gridTemplateColumns: "1fr 1fr",
               gap: "20px"
             }}>
@@ -221,12 +220,31 @@ export default function HeroSection() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          #hero > div > div:nth-child(3) {
-            grid-template-columns: 1fr !important;
+        #hero .content-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 60px;
+          align-items: center;
+        }
+        @media (max-width: 1024px) {
+          #hero .content-grid {
+            grid-template-columns: 1fr;
+            gap: 80px;
           }
-          #hero > div > div:nth-child(3) > div:last-child {
-            display: none !important;
+          #hero .content-grid > div:first-child {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          #hero .content-grid p {
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+        @media (max-width: 640px) {
+          #hero .pillar-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

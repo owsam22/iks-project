@@ -38,7 +38,7 @@ export default function IntroductionSection() {
         position: "absolute", right: 0, top: 0, bottom: 0, width: "40%",
         backgroundImage: "url('/images/unit1-bg.png')",
         backgroundSize: "cover", backgroundPosition: "center",
-        opacity: 0.1, pointerEvents: "none"
+        opacity: 0.4, pointerEvents: "none"
       }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
@@ -46,17 +46,9 @@ export default function IntroductionSection() {
 
           {/* Left: Text Content */}
           <div>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: "10px",
-              background: "rgba(212, 175, 55, 0.1)",
-              borderRadius: "50px", padding: "8px 20px",
-              border: "1px solid rgba(212, 175, 55, 0.3)",
-              marginBottom: "24px"
-            }}>
+            <div className="unit-badge">
               <BookOpen size={16} color="var(--accent-dark)" />
-              <span className="font-ancient" style={{ fontSize: "13px", color: "var(--accent-dark)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-                Unit I · Foundations
-              </span>
+              <span>Unit I · Foundations</span>
             </div>
 
             <h2 className="font-serif section-title" style={{ marginBottom: "32px" }}>

@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { 
   Code, 
   UserCircle, 
   Globe, 
-  Mail, 
   Sparkles, 
-  MousePointerClick,
-  Compass
+  MousePointer2
 } from "lucide-react";
 
 interface DoorIntroProps {
@@ -15,242 +13,137 @@ interface DoorIntroProps {
 
 export default function DoorIntro({ onComplete }: DoorIntroProps) {
   const [phase, setPhase] = useState<"waiting" | "opening" | "done">("waiting");
-  const [clickReady, setClickReady] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  const triggerOpen = useCallback(() => {
+    if (phase !== "waiting") return;
+    setPhase("opening");
+    setTimeout(() => { 
+      setPhase("done"); 
+      onComplete(); 
+    }, 1200);
+  }, [phase, onComplete]);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setClickReady(true), 1200);
-    const t2 = setTimeout(() => {
-      setPhase("opening");
-    }, 4500);
-    const t3 = setTimeout(() => {
-      setPhase("done");
-      onComplete();
-    }, 6000);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
-  }, [onComplete]);
+    const t1 = setTimeout(() => setReady(true), 800);
+    // Faster auto-advance (4.5s)
+    const t2 = setTimeout(triggerOpen, 4500);
+    
+    const handleScroll = (e: WheelEvent | TouchEvent) => {
+      if (ready) triggerOpen();
+    };
 
-  const handleClick = () => {
-    if (!clickReady) return;
-    setPhase("opening");
-    setTimeout(() => { setPhase("done"); onComplete(); }, 1600);
-  };
+    window.addEventListener("wheel", handleScroll, { passive: true });
+    window.addEventListener("touchmove", handleScroll, { passive: true });
+
+    return () => { 
+      clearTimeout(t1); 
+      clearTimeout(t2);
+      window.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("touchmove", handleScroll);
+    };
+  }, [ready, triggerOpen]);
 
   if (phase === "done") return null;
 
   return (
-    <div className="door-screen" onClick={handleClick} style={{ cursor: clickReady ? 'pointer' : 'default' }}>
-      {/* LEFT DOOR — IKS */}
-      <div
-        className="door-left"
-        style={{
-          transform: phase === "opening" ? "translateX(-100%)" : "translateX(0)",
-          transition: "transform 1.6s cubic-bezier(0.76, 0, 0.24, 1)",
-          backgroundImage: `url('/images/intro-left.jpg')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          position: "relative",
-        }}
-      >
-        {/* Dark overlay */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(160deg, rgba(27, 38, 59, 0.9) 0%, rgba(139, 69, 19, 0.8) 100%)",
-        }} />
-
-        {/* Texture overlay */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')" }}></div>
-
-        {/* Particles */}
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className="particle" style={{
-            width: `${6 + i * 3}px`, height: `${6 + i * 3}px`,
-            left: `${15 + i * 12}%`, top: `${20 + (i * 17) % 60}%`,
-            animationDelay: `${i * 0.5}s`, animationDuration: `${4 + i}s`,
-            background: "var(--accent)"
-          }} />
-        ))}
-
-        <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "40px 32px" }}>
-          {/* Symbol */}
-          <div style={{
-            marginBottom: "24px", color: "var(--accent)",
-            filter: "drop-shadow(0 0 15px rgba(212, 175, 55, 0.5))"
-          }}>
-            <Sparkles size={64} />
-          </div>
-
-          {/* Sanskrit */}
-          <div className="font-devanagari" style={{
-            fontSize: "clamp(16px, 2.5vw, 24px)", color: "var(--accent)",
-            letterSpacing: "0.15em", marginBottom: "20px",
-            textShadow: "0 0 15px rgba(212, 175, 55, 0.4)"
-          }}>
-            ज्ञानं परमं बलम्
-          </div>
-
-          <div style={{
-            width: "80px", height: "2px",
-            background: "linear-gradient(90deg, transparent, var(--accent), transparent)",
-            margin: "0 auto 24px"
-          }} />
-
-          <h1 className="font-serif" style={{
-            fontSize: "clamp(24px, 4vw, 48px)", fontWeight: 900,
-            color: "#F8F5F0", lineHeight: 1.1,
-            textShadow: "0 4px 15px rgba(0,0,0,0.5)",
-            letterSpacing: "0.05em"
-          }}>
-            Indian<br />Knowledge<br />System
-          </h1>
-
-          <div className="font-ancient" style={{
-            marginTop: "24px", fontSize: "14px", color: "rgba(212, 175, 55, 0.8)",
-            letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 600
-          }}>
-            A Digital Museum
-          </div>
+    <div 
+      className="door-screen" 
+      style={{ 
+        background: "#0a0f1a",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+        animation: phase === "opening" ? "portal-reveal 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards" : "none"
+      }}
+    >
+      {/* Lightweight Background Mandala */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+        <div className="animate-rotate-slow" style={{ width: '90vw', height: '90vw' }}>
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-[0.3]" stroke="var(--accent)">
+            <circle cx="50" cy="50" r="48" />
+            <circle cx="50" cy="50" r="40" strokeDasharray="2, 4" />
+            {[...Array(24)].map((_, i) => (
+              <line key={i} x1="50" y1="2" x2="50" y2="8" transform={`rotate(${i * 15} 50 50)`} />
+            ))}
+          </svg>
         </div>
       </div>
 
-      {/* RIGHT DOOR — Owsam22 */}
-      <div
-        className="door-right"
-        style={{
-          transform: phase === "opening" ? "translateX(100%)" : "translateX(0)",
-          transition: "transform 1.6s cubic-bezier(0.76, 0, 0.24, 1)",
-          background: "linear-gradient(200deg, #1B263B 0%, #0D1B2A 100%)"
-        }}
-      >
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')" }}></div>
+      {/* Content Container */}
+      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl px-8">
+        {/* Top Text - Sanskrit */}
+        <div className="animate-pulse-glow font-devanagari mb-6" style={{
+          fontSize: "clamp(18px, 2.5vw, 28px)", color: "var(--accent)",
+          letterSpacing: "0.2em",
+        }}>
+          ज्ञानं परमं बलम्
+        </div>
 
-        <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "40px 32px" }}>
-          {/* Avatar Icon */}
-          <div style={{
-            width: "100px", height: "100px", borderRadius: "50%",
-            margin: "0 auto 24px",
-            background: "linear-gradient(135deg, var(--accent), #A67C00)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            color: "#0D1B2A",
-            border: "4px solid rgba(212, 175, 55, 0.3)",
-            boxShadow: "0 0 30px rgba(212, 175, 55, 0.2)"
+        {/* Main Title */}
+        <div className="mb-10">
+          <h1 className="font-serif leading-tight" style={{
+            fontSize: "clamp(36px, 7vw, 84px)", fontWeight: 900,
+            color: "#FFFFFF",
+            textShadow: "0 8px 24px rgba(0,0,0,0.6)",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase"
           }}>
-            <Compass size={48} />
+            Indian<br />
+            <span style={{ color: "var(--accent)" }}>Knowledge</span><br />
+            System
+          </h1>
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-6 mb-10 w-full max-w-xs">
+          <div className="h-px flex-1 bg-accent/30" />
+          <Sparkles className="text-accent" size={24} />
+          <div className="h-px flex-1 bg-accent/30" />
+        </div>
+
+        {/* Designer Credit - Improved Visibility */}
+        <div className="flex flex-col items-center gap-4 bg-black/20 p-8 rounded-3xl border border-white/5 backdrop-blur-sm">
+          <div className="font-ancient text-accent tracking-[0.4em] uppercase text-[10px] font-bold">
+            Curated By
           </div>
-
-          <div className="font-ancient" style={{
-            fontSize: "12px", letterSpacing: "0.3em",
-            color: "rgba(212, 175, 55, 0.8)", textTransform: "uppercase",
-            marginBottom: "12px", fontWeight: 700
-          }}>
-            Designed by
-          </div>
-
-          <h2 className="font-serif" style={{
-            fontSize: "clamp(28px, 4.5vw, 52px)", fontWeight: 700,
-            color: "#F8F5F0", marginBottom: "8px",
-            letterSpacing: "0.02em"
-          }}>
-            Owsam22
+          <h2 className="font-serif text-4xl md:text-5xl text-white tracking-widest font-bold drop-shadow-lg">
+            samarpan(owsam22)
           </h2>
-
-          <div style={{
-            fontSize: "15px", color: "rgba(212, 175, 55, 0.7)",
-            marginBottom: "36px", fontStyle: "italic", letterSpacing: "0.05em"
-          }}>
-            IKS Heritage Project
-          </div>
-
-          {/* Socials */}
-          <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
+          
+          <div className="flex gap-6 mt-4">
             {[
-              { icon: <Code size={20} />, label: "GitHub", href: "#" },
-              { icon: <UserCircle size={20} />, label: "LinkedIn", href: "#" },
-              { icon: <Globe size={20} />, label: "Portfolio", href: "#" },
-              { icon: <Mail size={20} />, label: "Email", href: "#" }
+              { icon: <Code size={20} />, label: "GitHub" },
+              { icon: <UserCircle size={20} />, label: "LinkedIn" },
+              { icon: <Globe size={20} />, label: "Portfolio" }
             ].map((s, idx) => (
-              <a key={idx} href={s.href}
-                onClick={(e) => e.stopPropagation()}
-                style={{
-                  width: "50px", height: "50px", borderRadius: "12px",
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(212, 175, 55, 0.2)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "white", textDecoration: "none",
-                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                  cursor: "pointer",
-                  backdropFilter: "blur(4px)"
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(212, 175, 55, 0.15)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(212, 175, 55, 0.2)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                }}
+              <div key={idx} 
+                className="w-12 h-12 rounded-xl border border-accent/40 flex items-center justify-center text-accent bg-accent/5 hover:bg-accent hover:text-navy transition-all duration-300 shadow-lg"
                 title={s.label}
               >
                 {s.icon}
-              </a>
+              </div>
             ))}
           </div>
-
-          {/* Subject info */}
-          <div style={{
-            marginTop: "48px", padding: "20px 24px",
-            background: "rgba(255,255,255,0.03)",
-            borderRadius: "16px", border: "1px solid rgba(212, 175, 55, 0.1)",
-            maxWidth: "280px", margin: "48px auto 0"
-          }}>
-            <div className="font-ancient" style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", marginBottom: "6px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700 }}>Subject</div>
-            <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.9)", fontWeight: 600, letterSpacing: "0.05em" }}>Indian Knowledge System</div>
-          </div>
         </div>
+
+        {/* Scroll Prompt */}
+        {ready && phase === "waiting" && (
+          <div className="absolute bottom-[-100px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-80">
+            <div className="animate-bounce flex flex-col items-center gap-2">
+              <MousePointer2 className="text-accent rotate-180" size={24} />
+              <span className="font-ancient text-accent text-[10px] tracking-[0.5em] uppercase font-black">
+                Scroll to Enter
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Click prompt */}
-      {clickReady && phase === "waiting" && (
-        <div style={{
-          position: "absolute", bottom: "40px", left: "50%", transform: "translateX(-50%)",
-          zIndex: 10, textAlign: "center",
-          animation: "fadeIn 0.8s ease"
-        }}>
-          <div className="scroll-indicator" style={{
-            color: "var(--accent)", fontSize: "14px",
-            letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700,
-            display: "flex", flexDirection: "column", alignItems: "center", gap: "12px"
-          }}>
-            <MousePointerClick size={24} />
-            Click to Enter
-          </div>
-        </div>
-      )}
-
-      {/* Center divider line with ornament */}
-      <div style={{
-        position: "absolute", top: "50%", left: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: 5, display: "flex", flexDirection: "column",
-        alignItems: "center", gap: "12px",
-        transition: "opacity 0.6s ease",
-        opacity: phase === "opening" ? 0 : 1
-      }}>
-        <div style={{ width: "1px", height: "120px", background: "linear-gradient(to bottom, transparent, var(--accent))" }} />
-        <div style={{
-          width: "44px", height: "44px", borderRadius: "50%",
-          background: "rgba(27, 38, 59, 0.8)",
-          border: "2px solid var(--accent)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          color: "var(--accent)",
-          boxShadow: "0 0 20px rgba(212, 175, 55, 0.3)"
-        }}>
-          <Sparkles size={20} />
-        </div>
-        <div style={{ width: "1px", height: "120px", background: "linear-gradient(to bottom, var(--accent), transparent)" }} />
-      </div>
+      {/* Texture overlay */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
+        style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')" }} />
     </div>
   );
 }
