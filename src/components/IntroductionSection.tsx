@@ -135,11 +135,11 @@ export default function IntroductionSection() {
       </div>
       <style>{`
         @media (max-width: 991px) {
-          #introduction > div > div {
+          .intro-grid {
             grid-template-columns: 1fr !important;
             gap: 60px !important;
           }
-          #introduction [style*="width: 40%"] {
+          #introduction .decorative-bg {
             display: none;
           }
         }

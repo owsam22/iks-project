@@ -29,7 +29,7 @@ export default function Footer() {
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
         {/* Top grid */}
-        <div style={{
+        <div className="footer-grid" style={{
           display: "grid",
           gridTemplateColumns: "2.5fr 1fr 1.5fr",
           gap: "80px",
@@ -189,7 +189,7 @@ export default function Footer() {
         }} />
 
         {/* Bottom row */}
-        <div style={{
+        <div className="footer-bottom" style={{
           display: "flex", justifyContent: "space-between", alignItems: "center",
           flexWrap: "wrap", gap: "24px"
         }}>
@@ -214,9 +214,13 @@ export default function Footer() {
 
       <style>{`
         @media (max-width: 991px) {
-          footer [style*="gridTemplateColumns: 2.5fr 1fr 1.5fr"] {
+          .footer-grid {
             grid-template-columns: 1fr !important;
             gap: 60px !important;
+          }
+          .footer-bottom {
+            justify-content: center !important;
+            text-align: center !important;
           }
         }
       `}</style>

@@ -96,9 +96,9 @@ export default function TimelineSection() {
         </div>
 
         {/* Timeline — vertical */}
-        <div style={{ position: "relative", padding: "40px 0" }}>
+        <div className="timeline-container" style={{ position: "relative", padding: "40px 0" }}>
           {/* Vertical line */}
-          <div style={{
+          <div className="timeline-line" style={{
             position: "absolute", left: "50%", top: 0, bottom: 0,
             width: "2px",
             background: "linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.5) 10%, rgba(212, 175, 55, 0.5) 90%, transparent)",
@@ -113,7 +113,7 @@ export default function TimelineSection() {
             return (
               <div
                 key={event.year}
-                className={`fade-in-section ${sectionVisible ? "visible" : ""}`}
+                className={`timeline-item fade-in-section ${sectionVisible ? "visible" : ""} ${isLeft ? "left-item" : "right-item"}`}
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 100px 1fr",
@@ -124,14 +124,10 @@ export default function TimelineSection() {
                 }}
               >
                 {/* Left content */}
-                {isLeft ? (
+                <div className="timeline-content-left" style={{ textAlign: "right", paddingRight: "40px", cursor: "pointer", display: isLeft ? "block" : "none" }}>
                   <div
                     onClick={() => setActiveEvent(activeEvent === i ? null : i)}
                     style={{
-                      textAlign: "right", paddingRight: "40px", cursor: "pointer"
-                    }}
-                  >
-                    <div style={{
                       background: "rgba(255,255,255,0.03)",
                       border: activeEvent === i ? `1px solid var(--accent)` : "1px solid rgba(212, 175, 55, 0.2)",
                       borderRadius: "24px",
@@ -142,38 +138,20 @@ export default function TimelineSection() {
                     }}
                     onMouseEnter={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)" }}
                     onMouseLeave={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)" }}
-                    >
-                      <div className="font-ancient" style={{
-                        fontSize: "12px", color: "var(--accent)", fontWeight: 700,
-                        textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px"
-                      }}>
-                        {event.era}
-                      </div>
-                      <div className="font-serif" style={{
-                        fontSize: "24px", fontWeight: 700, color: "white",
-                        marginBottom: "6px"
-                      }}>{event.event}</div>
-                      <div className="font-ancient" style={{
-                        fontSize: "20px", fontWeight: 700, color: "var(--accent-light)",
-                        marginBottom: activeEvent === i ? "16px" : "0"
-                      }}>{event.year}</div>
-                      {activeEvent === i && (
-                        <p style={{
-                          fontSize: "14px", color: "rgba(248,245,240,0.7)",
-                          lineHeight: 1.8, animation: "fadeIn 0.4s ease",
-                          textAlign: "right", borderTop: "1px solid rgba(212, 175, 55, 0.2)",
-                          paddingTop: "16px", marginTop: "16px"
-                        }}>{event.detail}</p>
-                      )}
-                    </div>
+                  >
+                    <div className="font-ancient" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px" }}>{event.era}</div>
+                    <div className="font-serif" style={{ fontSize: "24px", fontWeight: 700, color: "white", marginBottom: "6px" }}>{event.event}</div>
+                    <div className="font-ancient" style={{ fontSize: "20px", fontWeight: 700, color: "var(--accent-light)", marginBottom: activeEvent === i ? "16px" : "0" }}>{event.year}</div>
+                    {activeEvent === i && (
+                      <p style={{ fontSize: "14px", color: "rgba(248,245,240,0.7)", lineHeight: 1.8, animation: "fadeIn 0.4s ease", textAlign: "right", borderTop: "1px solid rgba(212, 175, 55, 0.2)", paddingTop: "16px", marginTop: "16px" }}>{event.detail}</p>
+                    )}
                   </div>
-                ) : <div />}
+                </div>
+
+                {!isLeft && <div className="spacer-left" />}
 
                 {/* Center dot */}
-                <div style={{
-                  display: "flex", justifyContent: "center", alignItems: "center",
-                  position: "relative", zIndex: 2
-                }}>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", zIndex: 2 }}>
                   <div
                     onClick={() => setActiveEvent(activeEvent === i ? null : i)}
                     style={{
@@ -193,12 +171,10 @@ export default function TimelineSection() {
                 </div>
 
                 {/* Right content */}
-                {!isLeft ? (
+                <div className="timeline-content-right" style={{ paddingLeft: "40px", cursor: "pointer", display: !isLeft ? "block" : "none" }}>
                   <div
                     onClick={() => setActiveEvent(activeEvent === i ? null : i)}
-                    style={{ paddingLeft: "40px", cursor: "pointer" }}
-                  >
-                    <div style={{
+                    style={{
                       background: "rgba(255,255,255,0.03)",
                       border: activeEvent === i ? `1px solid var(--accent)` : "1px solid rgba(212, 175, 55, 0.2)",
                       borderRadius: "24px",
@@ -209,32 +185,17 @@ export default function TimelineSection() {
                     }}
                     onMouseEnter={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)" }}
                     onMouseLeave={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)" }}
-                    >
-                      <div className="font-ancient" style={{
-                        fontSize: "12px", color: "var(--accent)", fontWeight: 700,
-                        textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px"
-                      }}>
-                        {event.era}
-                      </div>
-                      <div className="font-serif" style={{
-                        fontSize: "24px", fontWeight: 700, color: "white",
-                        marginBottom: "6px"
-                      }}>{event.event}</div>
-                      <div className="font-ancient" style={{
-                        fontSize: "20px", fontWeight: 700, color: "var(--accent-light)",
-                        marginBottom: activeEvent === i ? "16px" : "0"
-                      }}>{event.year}</div>
-                      {activeEvent === i && (
-                        <p style={{
-                          fontSize: "14px", color: "rgba(248,245,240,0.7)",
-                          lineHeight: 1.8, animation: "fadeIn 0.4s ease",
-                          borderTop: "1px solid rgba(212, 175, 55, 0.2)",
-                          paddingTop: "16px", marginTop: "16px"
-                        }}>{event.detail}</p>
-                      )}
-                    </div>
+                  >
+                    <div className="font-ancient" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px" }}>{event.era}</div>
+                    <div className="font-serif" style={{ fontSize: "24px", fontWeight: 700, color: "white", marginBottom: "6px" }}>{event.event}</div>
+                    <div className="font-ancient" style={{ fontSize: "20px", fontWeight: 700, color: "var(--accent-light)", marginBottom: activeEvent === i ? "16px" : "0" }}>{event.year}</div>
+                    {activeEvent === i && (
+                      <p style={{ fontSize: "14px", color: "rgba(248,245,240,0.7)", lineHeight: 1.8, animation: "fadeIn 0.4s ease", borderTop: "1px solid rgba(212, 175, 55, 0.2)", paddingTop: "16px", marginTop: "16px" }}>{event.detail}</p>
+                    )}
                   </div>
-                ) : <div />}
+                </div>
+
+                {isLeft && <div className="spacer-right" />}
               </div>
             );
           })}
@@ -254,25 +215,24 @@ export default function TimelineSection() {
 
       <style>{`
         @media (max-width: 991px) {
-          [style*="gridTemplateColumns: 1fr 100px 1fr"] {
+          .timeline-item {
             grid-template-columns: 80px 1fr !important;
             gap: 0 !important;
           }
-          [style*="gridTemplateColumns: 1fr 100px 1fr"] > div:first-child:empty {
-            display: none !important;
-          }
-          [style*="gridTemplateColumns: 1fr 100px 1fr"] > div:last-child:empty {
-            display: none !important;
-          }
-          #timeline [style*="textAlign: right"] {
-            textAlign: left !important;
+          .timeline-content-left, .timeline-content-right {
+            grid-column: 2 !important;
+            text-align: left !important;
+            padding-left: 20px !important;
             padding-right: 0 !important;
-            padding-left: 24px !important;
+            display: block !important;
           }
-          #timeline [style*="paddingLeft: 40px"] {
-            padding-left: 24px !important;
+          .spacer-left, .spacer-right, .timeline-content-left:empty, .timeline-content-right:empty {
+            display: none !important;
           }
-          #timeline [style*="left: 50%"] {
+          .timeline-content-left p {
+            text-align: left !important;
+          }
+          .timeline-line {
             left: 40px !important;
             transform: none !important;
           }
