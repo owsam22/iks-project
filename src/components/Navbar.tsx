@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Sparkles, Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#hero" },
@@ -85,13 +85,13 @@ export default function Navbar() {
           boxShadow: scrolled ? "0 0 15px rgba(212, 175, 55, 0.4)" : "none",
           transition: "all 0.3s ease"
         }}>
-          <Sparkles size={24} />
+          <span style={{ fontSize: "24px", fontWeight: "bold" }}>ॐ</span>
         </div>
         <div style={{ textAlign: "left" }}>
           <span className="font-serif" style={{
             color: "white", fontWeight: 700, fontSize: "20px",
             letterSpacing: "0.02em", display: "block", lineHeight: 1
-          }}>Indian Knowledge System</span>
+          }}> Indian Knowledge System</span>
           <span className="font-ancient" style={{ 
             color: "var(--accent)", fontSize: "10px", 
             letterSpacing: "0.1em", fontWeight: 700,
