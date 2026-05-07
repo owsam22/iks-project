@@ -3,7 +3,6 @@ import {
   UserCircle, 
   Globe, 
   Mail, 
-  Sparkles, 
   ArrowRight,
   Library,
   GraduationCap
@@ -46,7 +45,7 @@ export default function Footer() {
                 color: "#0D1B2A",
                 boxShadow: "0 0 20px rgba(212, 175, 55, 0.3)"
               }}>
-                <Sparkles size={24} />
+                <span style={{ fontSize: "24px", fontWeight: "bold" }}>ॐ</span>
               </div>
               <div>
                 <div className="font-serif" style={{ fontSize: "24px", fontWeight: 700, color: "white", letterSpacing: "0.02em" }}>
