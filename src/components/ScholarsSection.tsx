@@ -24,7 +24,6 @@ import {
   BookOpen,
   Languages,
   Gavel,
-  Sparkles,
   CircleDot
 } from "lucide-react";
 
@@ -57,8 +56,30 @@ type Scholar = typeof allScholars[0];
 function ScholarAvatar({ scholar }: { scholar: Scholar }) {
   const Icon = IconMap[scholar.icon as string] || Scroll;
   
-  // Custom styled cards for major scholars instead of degraded images
-  if (scholar.name === "Aryabhata" || scholar.name === "Brahmagupta" || scholar.name === "Bhaskara II") {
+  if (scholar.image) {
+    return (
+      <div className="w-full h-full relative group overflow-hidden bg-black/5">
+        <img 
+          src={scholar.image} 
+          alt={scholar.name} 
+          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+          <div className="text-white">
+            <div className="text-[10px] font-ancient tracking-[0.3em] uppercase opacity-70 mb-1">
+              {scholar.field}
+            </div>
+            <div className="text-lg font-serif font-bold text-accent">
+              {scholar.name}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Fallback for major scholars without images
+  if (scholar.name === "Brahmagupta" || scholar.name === "Bhaskara II") {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center bg-indigo-950 p-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 animate-pulse-glow bg-[radial-gradient(circle_at_center,var(--accent)_0%,transparent_70%)]" />
@@ -66,22 +87,8 @@ function ScholarAvatar({ scholar }: { scholar: Scholar }) {
           <CircleDot size={64} className="text-accent animate-pulse" />
           <div className="absolute inset-[-10px] animate-rotate-slow border border-accent/20 rounded-full border-dashed" />
         </div>
-        <div className="relative z-10 font-serif text-accent text-xl font-bold tracking-widest uppercase">
-          Zero & Infinity
-        </div>
-      </div>
-    );
-  }
-
-  if (scholar.name === "Charaka" || scholar.name === "Sushruta") {
-    return (
-      <div className="w-full h-full flex flex-col items-center justify-center bg-emerald-950 p-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')]" />
-        <div className="relative z-10 w-32 h-32 rounded-3xl rotate-45 border-4 border-emerald-400/30 flex items-center justify-center bg-emerald-400/5 backdrop-blur-md mb-4 shadow-[0_0_30px_rgba(52,211,153,0.2)]">
-          <Leaf size={64} className="text-emerald-400 -rotate-45" />
-        </div>
-        <div className="relative z-10 font-serif text-emerald-400 text-xl font-bold tracking-widest uppercase">
-          Ayurveda Science
+        <div className="relative z-10 font-serif text-accent text-xl font-bold tracking-widest uppercase text-center">
+          Math & Logic
         </div>
       </div>
     );
@@ -133,7 +140,11 @@ function ScholarModal({ scholar, onClose }: { scholar: Scholar; onClose: () => v
               display: "flex", alignItems: "center", justifyContent: "center",
               boxShadow: "0 8px 16px rgba(0,0,0,0.2)"
             }}>
-              <Icon size={60} color="white" />
+              {scholar.image ? (
+                <img src={scholar.image} alt={scholar.name} className="w-full h-full object-cover object-top" />
+              ) : (
+                <Icon size={60} color="white" />
+              )}
             </div>
 
             <div>
@@ -256,7 +267,7 @@ export default function ScholarsSection() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "64px" }}>
           <div className="unit-badge">
-            <Sparkles size={16} color="var(--accent-dark)" />
+            <span style={{ fontSize: "16px", fontWeight: "bold", color: "var(--accent-dark)" }}>ॐ</span>
             <span>Unit II · The Great Masters</span>
           </div>
           <h2 className="font-serif section-title" style={{ marginBottom: "20px", fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
@@ -301,7 +312,7 @@ export default function ScholarsSection() {
               >
                 {/* Stylized Avatar block */}
                 <div style={{
-                  height: "260px", overflow: "hidden", position: "relative",
+                  height: "220px", overflow: "hidden", position: "relative",
                 }}>
                   <ScholarAvatar scholar={scholar} />
                   

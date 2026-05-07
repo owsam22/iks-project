@@ -9,7 +9,6 @@ import {
   Music,
   ChevronDown,
   Globe,
-  Sparkles
 } from "lucide-react";
 
 const IconMap: Record<string, any> = {
@@ -44,7 +43,7 @@ export default function ShastraSection() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "64px" }}>
           <div className="unit-badge">
-            <Sparkles size={16} color="var(--primary)" />
+            <span style={{ fontSize: "16px", fontWeight: "bold", color: "var(--primary)" }}>ॐ</span>
             <span>Unit III · Applied Knowledge</span>
           </div>
           <h2 className="font-serif section-title" style={{ marginBottom: "20px" }}>
@@ -84,6 +83,18 @@ export default function ShastraSection() {
                 padding: "32px 32px 24px",
                 position: "relative", overflow: "hidden"
               }}>
+                {/* Background Image Overlay */}
+                <img 
+                  src={s.image} 
+                  alt="" 
+                  style={{
+                    position: "absolute", inset: 0, 
+                    width: "100%", height: "100%", 
+                    objectFit: "cover", opacity: 0.15,
+                    mixBlendMode: "overlay"
+                  }}
+                />
+                
                 {/* Large watermark icon */}
                 <div style={{
                   position: "absolute", top: "-20px", right: "-20px",
@@ -91,7 +102,7 @@ export default function ShastraSection() {
                   color: "white"
                 }}>{IconMap[s.icon]}</div>
 
-                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", gap: "20px" }}>
                   <div style={{
                     width: "64px", height: "64px", borderRadius: "16px",
                     background: "rgba(255,255,255,0.2)",

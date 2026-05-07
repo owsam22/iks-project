@@ -6,7 +6,6 @@ import {
   Binary, 
   Activity, 
   Scroll, 
-  Sparkles,
   ChevronDown,
   BookOpen,
   Languages,
@@ -62,7 +61,7 @@ const shadDarshan = [
   },
   {
     name: "Vedanta",
-    icon: <Sparkles size={24} />,
+    icon: <span style={{ fontSize: "24px", fontWeight: "bold" }}>ॐ</span>,
     color: "#C8A951",
     founder: "Badarayana / Adi Shankaracharya",
     core: "Non-duality & Ultimate Reality",
@@ -77,7 +76,7 @@ const IconMap: Record<string, any> = {
   "⚛️": <Atom size={20} />,
   "☯️": <Binary size={20} />,
   "🧘": <Activity size={20} />,
-  "🌟": <Sparkles size={20} />,
+  "🌟": <span style={{ fontSize: "20px", fontWeight: "bold" }}>ॐ</span>,
   "📚": <BookOpen size={20} />,
   "🌐": <Languages size={20} />,
   "✍️": <PenTool size={20} />,
@@ -146,10 +145,27 @@ export default function LiteratureSection() {
           marginBottom: "100px"
         }}>
           {/* Left: main info */}
-          <div className="parchment-texture" style={{
-            padding: "40px", borderRadius: "24px", border: "1px solid var(--border)",
+          <div className="parchment-texture overflow-hidden" style={{
+            padding: 0, borderRadius: "24px", border: "1px solid var(--border)",
             boxShadow: "0 20px 40px rgba(0,0,0,0.05)"
           }}>
+            {/* Header Image */}
+            <div style={{
+              width: "100%", height: "200px",
+              position: "relative", overflow: "hidden"
+            }}>
+              <img 
+                src={active.image} 
+                alt={active.title} 
+                className="w-full h-full object-cover transition-transform duration-700"
+              />
+              <div style={{
+                position: "absolute", inset: 0,
+                background: `linear-gradient(to bottom, transparent, ${active.bgColor || "rgba(255,255,255,0.8)"})`
+              }} />
+            </div>
+
+            <div style={{ padding: "40px" }}>
             <div style={{
               display: "flex", alignItems: "center", gap: "16px", marginBottom: "24px"
             }}>
@@ -183,7 +199,7 @@ export default function LiteratureSection() {
               boxShadow: "inset 0 0 20px rgba(0,0,0,0.02)"
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-                <Sparkles size={16} color="var(--accent-dark)" />
+                <span style={{ fontSize: "16px", fontWeight: "bold", color: "var(--accent-dark)" }}>ॐ</span>
                 <span style={{ fontSize: "13px", color: "var(--accent-dark)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>
                   Key Examples
                 </span>

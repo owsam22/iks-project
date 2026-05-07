@@ -4,14 +4,12 @@ import {
   ScrollText, 
   Leaf, 
   ShieldCheck, 
-  Globe, 
-  Sparkles,
+  Globe,
   ClipboardList,
   Search,
   BookOpen,
   GraduationCap,
   Landmark,
-  Heart,
   Stethoscope
 } from "lucide-react";
 
@@ -215,7 +213,7 @@ export default function ConservationSection() {
                       display: "flex", alignItems: "center", justifyContent: "center",
                       color: color, flexShrink: 0
                     }}>
-                      {CardIconMap[i] || <Sparkles size={24} />}
+                      {CardIconMap[i] || <span style={{ fontSize: "24px", fontWeight: "bold" }}>ॐ</span>}
                     </div>
                     <div>
                       <h4 className="font-serif" style={{
@@ -265,7 +263,7 @@ export default function ConservationSection() {
                 border: "1px solid rgba(212, 175, 55, 0.4)",
                 marginBottom: "24px"
               }}>
-                <Sparkles size={14} color="var(--accent)" />
+                <span style={{ fontSize: "14px", fontWeight: "bold", color: "var(--accent)" }}>ॐ</span>
                 <span className="font-ancient" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
                   Modern Transformation
                 </span>

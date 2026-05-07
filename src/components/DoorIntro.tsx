@@ -3,7 +3,6 @@ import {
   Code, 
   UserCircle, 
   Globe, 
-  Sparkles, 
   MousePointer2
 } from "lucide-react";
 
@@ -90,6 +89,7 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
             letterSpacing: "0.08em",
             textTransform: "uppercase"
           }}>
+            <span style={{ color: "var(--accent)", fontSize: "1.2em", display: "block", marginBottom: "0.2em" }}>ॐ</span>
             Indian<br />
             <span style={{ color: "var(--accent)" }}>Knowledge</span><br />
             System
@@ -99,16 +99,16 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
         {/* Divider */}
         <div className="flex items-center gap-6 mb-10 w-full max-w-xs">
           <div className="h-px flex-1 bg-accent/30" />
-          <Sparkles className="text-accent" size={24} />
+          <span className="text-accent" style={{ fontSize: '24px', fontWeight: 'bold' }}>ॐ</span>
           <div className="h-px flex-1 bg-accent/30" />
         </div>
 
-        {/* Designer Credit - Improved Visibility */}
-        <div className="flex flex-col items-center gap-4 bg-black/20 p-8 rounded-3xl border border-white/5 backdrop-blur-sm">
-          <div className="font-ancient text-accent tracking-[0.4em] uppercase text-[10px] font-bold">
+      {/* Designer Credit - Improved Visibility */}
+        <div className="flex flex-col items-center gap-4 bg-black/60 p-8 md:p-10 rounded-[2.5rem] border border-white/10 backdrop-blur-2xl w-[90%] max-w-lg mx-auto shadow-2xl relative">
+          <div className="font-ancient text-accent tracking-[0.2em] uppercase text-[10px] md:text-[12px] font-bold opacity-80">
             Curated By
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl text-white tracking-widest font-bold drop-shadow-lg">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-white font-bold drop-shadow-lg break-all text-center leading-tight">
             samarpan(owsam22)
           </h2>
           
@@ -123,7 +123,7 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-xl border border-accent/40 flex items-center justify-center text-accent bg-accent/5 hover:bg-accent hover:text-navy transition-all duration-300 shadow-lg"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-xl border border-accent/40 flex items-center justify-center text-accent bg-accent/5 hover:bg-accent hover:text-navy transition-all duration-300 shadow-lg"
                 title={s.label}
               >
                 {s.icon}
@@ -149,20 +149,6 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
         style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')" }} />
       
-      <style>{`
-        @media (max-width: 640px) {
-          .door-screen h1 {
-            font-size: 48px !important;
-          }
-          .door-screen .p-8 {
-            padding: 24px !important;
-          }
-          .door-screen h2 {
-            font-size: 24px !important;
-            letter-spacing: 0.1em !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
