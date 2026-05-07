@@ -25,7 +25,6 @@ import {
   Languages,
   Gavel,
   Sparkles,
-  Zap,
   CircleDot
 } from "lucide-react";
 

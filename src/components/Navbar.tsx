@@ -91,7 +91,7 @@ export default function Navbar() {
           <span className="font-serif" style={{
             color: "white", fontWeight: 700, fontSize: "20px",
             letterSpacing: "0.02em", display: "block", lineHeight: 1
-          }}>IKS</span>
+          }}>Indian Knowledge System</span>
           <span className="font-ancient" style={{ 
             color: "var(--accent)", fontSize: "10px", 
             letterSpacing: "0.1em", fontWeight: 700,
