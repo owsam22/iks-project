@@ -8,6 +8,7 @@ import {
   ChevronDown,
   GraduationCap
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 export default function HeroSection() {
   const scrollTo = (id: string) => {
@@ -64,56 +65,60 @@ export default function HeroSection() {
       }}>
 
         {/* Badge */}
-        <div style={{
-          display: "inline-flex", alignItems: "center", gap: "10px",
-          background: "rgba(212, 175, 55, 0.15)",
-          border: "1px solid rgba(212, 175, 55, 0.4)",
-          borderRadius: "50px", padding: "8px 20px",
-          marginBottom: "32px",
-          backdropFilter: "blur(4px)"
-        }}>
-          <GraduationCap size={16} color="var(--accent)" />
-          <span className="font-ancient" style={{ fontSize: "13px", color: "var(--accent)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600 }}>
-            Digital Museum · IKS Heritage
-          </span>
-        </div>
+        <ScrollReveal animation="slide-up">
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: "10px",
+            background: "rgba(212, 175, 55, 0.15)",
+            border: "1px solid rgba(212, 175, 55, 0.4)",
+            borderRadius: "50px", padding: "8px 20px",
+            marginBottom: "32px",
+            backdropFilter: "blur(4px)"
+          }}>
+            <GraduationCap size={16} color="var(--accent)" />
+            <span className="font-ancient" style={{ fontSize: "13px", color: "var(--accent)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600 }}>
+              Digital Museum · IKS Heritage
+            </span>
+          </div>
+        </ScrollReveal>
 
         {/* Hero content in 2 col */}
         <div className="content-grid">
 
           {/* Left: Text */}
           <div>
-            <div className="font-devanagari" style={{
-              fontSize: "clamp(18px, 2.5vw, 24px)",
-              color: "rgba(212, 175, 55, 0.9)",
-              marginBottom: "12px",
-              letterSpacing: "0.1em"
-            }}>
-              सा विद्या या विमुक्तये
-            </div>
-            <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", marginBottom: "28px", fontStyle: "italic", letterSpacing: "0.05em" }}>
-              "True knowledge is that which liberates"
-            </div>
+            <ScrollReveal animation="slide-left" delay={200}>
+              <div className="font-devanagari" style={{
+                fontSize: "clamp(18px, 2.5vw, 24px)",
+                color: "rgba(212, 175, 55, 0.9)",
+                marginBottom: "12px",
+                letterSpacing: "0.1em"
+              }}>
+                सा विद्या या विमुक्तये
+              </div>
+              <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", marginBottom: "28px", fontStyle: "italic", letterSpacing: "0.05em" }}>
+                "True knowledge is that which liberates"
+              </div>
 
-            <h1 className="font-serif" style={{
-              fontSize: "clamp(36px, 6vw, 80px)",
-              fontWeight: 900, color: "#F8F5F0",
-              lineHeight: 1.05, marginBottom: "28px",
-              textShadow: "0 4px 20px rgba(0,0,0,0.3)"
-            }}>
-              Indian<br />
-              <span className="gold-shimmer">Knowledge</span><br />
-              System
-            </h1>
+              <h1 className="font-serif" style={{
+                fontSize: "clamp(36px, 6vw, 80px)",
+                fontWeight: 900, color: "#F8F5F0",
+                lineHeight: 1.05, marginBottom: "28px",
+                textShadow: "0 4px 20px rgba(0,0,0,0.3)"
+              }}>
+                Indian<br />
+                <span className="gold-shimmer">Knowledge</span><br />
+                System
+              </h1>
 
-            <p style={{
-              fontSize: "clamp(15px, 1.5vw, 19px)",
-              color: "rgba(248,245,240,0.8)",
-              lineHeight: 1.8, maxWidth: "520px",
-              marginBottom: "48px"
-            }}>
-              Journey through the profound intellectual landscape of ancient India. Explore the systems of philosophy, science, and art that have guided human civilization for millennia.
-            </p>
+              <p style={{
+                fontSize: "clamp(15px, 1.5vw, 19px)",
+                color: "rgba(248,245,240,0.8)",
+                lineHeight: 1.8, maxWidth: "520px",
+                marginBottom: "48px"
+              }}>
+                Journey through the profound intellectual landscape of ancient India. Explore the systems of philosophy, science, and art that have guided human civilization for millennia.
+              </p>
+            </ScrollReveal>
 
             {/* CTAs */}
             <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
@@ -167,38 +172,40 @@ export default function HeroSection() {
               display: "grid", gridTemplateColumns: "1fr 1fr",
               gap: "20px"
             }}>
-              {pillars.map((p) => (
-                <button
-                  key={p.label}
-                  onClick={() => scrollTo(p.id)}
-                  style={{
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(212, 175, 55, 0.2)",
-                    borderRadius: "20px",
-                    padding: "24px 20px",
-                    textAlign: "left",
-                    cursor: "pointer",
-                    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                    fontFamily: "inherit",
-                    backdropFilter: "blur(4px)"
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(212, 175, 55, 0.12)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(-6px)";
-                    (e.currentTarget as HTMLElement).style.boxShadow = "0 15px 30px rgba(0,0,0,0.2)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(212, 175, 55, 0.2)";
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                  }}
-                >
-                  <div style={{ color: "var(--accent)", marginBottom: "16px" }}>{p.icon}</div>
-                  <div className="font-serif" style={{ color: "#F8F5F0", fontWeight: 700, fontSize: "17px", marginBottom: "6px" }}>{p.label}</div>
-                  <div style={{ color: "rgba(248,245,240,0.5)", fontSize: "13px", lineHeight: 1.4 }}>{p.sub}</div>
-                </button>
+              {pillars.map((p, i) => (
+                <ScrollReveal key={p.label} animation="scale" delay={400 + (i * 100)}>
+                  <button
+                    onClick={() => scrollTo(p.id)}
+                    style={{
+                      width: "100%",
+                      background: "rgba(255,255,255,0.03)",
+                      border: "1px solid rgba(212, 175, 55, 0.2)",
+                      borderRadius: "20px",
+                      padding: "24px 20px",
+                      textAlign: "left",
+                      cursor: "pointer",
+                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                      fontFamily: "inherit",
+                      backdropFilter: "blur(4px)"
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(212, 175, 55, 0.12)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(-6px)";
+                      (e.currentTarget as HTMLElement).style.boxShadow = "0 15px 30px rgba(0,0,0,0.2)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(212, 175, 55, 0.2)";
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                      (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                    }}
+                  >
+                    <div style={{ color: "var(--accent)", marginBottom: "16px" }}>{p.icon}</div>
+                    <div className="font-serif" style={{ color: "#F8F5F0", fontWeight: 700, fontSize: "17px", marginBottom: "6px" }}>{p.label}</div>
+                    <div style={{ color: "rgba(248,245,240,0.5)", fontSize: "13px", lineHeight: 1.4 }}>{p.sub}</div>
+                  </button>
+                </ScrollReveal>
               ))}
             </div>
           </div>

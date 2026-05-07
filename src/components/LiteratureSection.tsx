@@ -12,6 +12,7 @@ import {
   PenTool,
   Library
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const shadDarshan = [
   {
@@ -145,7 +146,7 @@ export default function LiteratureSection() {
           marginBottom: "100px"
         }}>
           {/* Left: main info */}
-          <div className="parchment-texture overflow-hidden" style={{
+          <ScrollReveal animation="slide-left" className="parchment-texture overflow-hidden" style={{
             padding: 0, borderRadius: "24px", border: "1px solid var(--border)",
             boxShadow: "0 20px 40px rgba(0,0,0,0.05)"
           }}>
@@ -209,7 +210,7 @@ export default function LiteratureSection() {
               </p>
             </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right: subsections */}
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -217,27 +218,29 @@ export default function LiteratureSection() {
               Major Components
             </h4>
             {active.subsections.map((sub, i) => (
-              <div key={i} style={{
-                background: "white",
-                border: "1px solid var(--border)",
-                borderRadius: "16px",
-                padding: "24px",
-                borderLeft: `5px solid ${active.color}`,
-                transition: "all 0.3s ease"
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "translateX(8px)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "translateX(0)")}
-              >
-                <div className="font-serif" style={{
-                  fontSize: "18px", fontWeight: 700,
-                  color: active.color, marginBottom: "8px"
-                }}>
-                  {sub.name}
+              <ScrollReveal key={i} animation="slide-right" delay={i * 100}>
+                <div style={{
+                  background: "white",
+                  border: "1px solid var(--border)",
+                  borderRadius: "16px",
+                  padding: "24px",
+                  borderLeft: `5px solid ${active.color}`,
+                  transition: "all 0.3s ease"
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateX(8px)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateX(0)")}
+                >
+                  <div className="font-serif" style={{
+                    fontSize: "18px", fontWeight: 700,
+                    color: active.color, marginBottom: "8px"
+                  }}>
+                    {sub.name}
+                  </div>
+                  <p style={{ fontSize: "14px", color: "var(--text-light)", lineHeight: 1.7 }}>
+                    {sub.desc}
+                  </p>
                 </div>
-                <p style={{ fontSize: "14px", color: "var(--text-light)", lineHeight: 1.7 }}>
-                  {sub.desc}
-                </p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -270,76 +273,82 @@ export default function LiteratureSection() {
             gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
             gap: "24px"
           }}>
-            {shadDarshan.map((d) => (
-              <div
+            {shadDarshan.map((d, i) => (
+              <ScrollReveal
                 key={d.name}
-                onClick={() => setExpandedDarshan(expandedDarshan === d.name ? null : d.name)}
-                style={{
-                  background: "white",
-                  border: expandedDarshan === d.name ? `2px solid var(--accent)` : "1px solid var(--border)",
-                  borderRadius: "24px",
-                  padding: "32px",
-                  cursor: "pointer",
-                  transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                  boxShadow: expandedDarshan === d.name ? `0 20px 40px rgba(212, 175, 55, 0.15)` : "0 4px 20px rgba(0,0,0,0.02)"
-                }}
-                onMouseEnter={(e) => {
-                  if (expandedDarshan !== d.name) {
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(-5px)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-light)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (expandedDarshan !== d.name) {
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-                  }
-                }}
+                animation="scale"
+                delay={(i % 3) * 100}
+                className="darshan-reveal-wrapper"
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "16px" }}>
-                  <div style={{
-                    width: "60px", height: "60px", borderRadius: "16px",
-                    background: `${d.color}10`,
-                    border: `1px solid ${d.color}20`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: d.color, flexShrink: 0
-                  }}>{d.icon}</div>
-                  <div style={{ flex: 1 }}>
-                    <div className="font-serif" style={{ fontSize: "22px", fontWeight: 700, color: d.color }}>
-                      {d.name}
-                    </div>
-                    <div style={{ fontSize: "13px", color: "var(--text-light)", fontWeight: 500 }}>{d.core}</div>
-                  </div>
-                  <div style={{
-                    color: d.color, transition: "transform 0.3s ease",
-                    transform: expandedDarshan === d.name ? "rotate(180deg)" : "rotate(0)"
-                  }}>
-                    <ChevronDown size={20} />
-                  </div>
-                </div>
-
-                <div className="font-ancient" style={{ fontSize: "12px", color: "var(--text-light)", marginBottom: expandedDarshan === d.name ? "20px" : "0", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                  Founder: <strong style={{ color: "var(--primary)" }}>{d.founder}</strong>
-                </div>
-
-                {expandedDarshan === d.name && (
-                  <div style={{ animation: "fadeIn 0.4s ease" }}>
-                    <p style={{ fontSize: "14px", lineHeight: 1.8, color: "var(--text)", marginBottom: "20px" }}>
-                      {d.desc}
-                    </p>
+                <div
+                  onClick={() => setExpandedDarshan(expandedDarshan === d.name ? null : d.name)}
+                  style={{
+                    background: "white",
+                    border: expandedDarshan === d.name ? `2px solid var(--accent)` : "1px solid var(--border)",
+                    borderRadius: "24px",
+                    padding: "32px",
+                    cursor: "pointer",
+                    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                    boxShadow: expandedDarshan === d.name ? `0 20px 40px rgba(212, 175, 55, 0.15)` : "0 4px 20px rgba(0,0,0,0.02)"
+                  }}
+                  onMouseEnter={(e) => {
+                    if (expandedDarshan !== d.name) {
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(-5px)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-light)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (expandedDarshan !== d.name) {
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                    }
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "16px" }}>
                     <div style={{
-                      background: `${d.color}05`,
-                      borderLeft: `4px solid ${d.color}`,
-                      borderRadius: "0 12px 12px 0", padding: "16px 20px"
-                    }}>
-                      <div className="font-ancient" style={{ fontSize: "11px", color: d.color, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "6px" }}>
-                        Modern Context
+                      width: "60px", height: "60px", borderRadius: "16px",
+                      background: `${d.color}10`,
+                      border: `1px solid ${d.color}20`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: d.color, flexShrink: 0
+                    }}>{d.icon}</div>
+                    <div style={{ flex: 1 }}>
+                      <div className="font-serif" style={{ fontSize: "22px", fontWeight: 700, color: d.color }}>
+                        {d.name}
                       </div>
-                      <p style={{ fontSize: "13px", color: "var(--text-light)", lineHeight: 1.6 }}>{d.modern}</p>
+                      <div style={{ fontSize: "13px", color: "var(--text-light)", fontWeight: 500 }}>{d.core}</div>
+                    </div>
+                    <div style={{
+                      color: d.color, transition: "transform 0.3s ease",
+                      transform: expandedDarshan === d.name ? "rotate(180deg)" : "rotate(0)"
+                    }}>
+                      <ChevronDown size={20} />
                     </div>
                   </div>
-                )}
-              </div>
+
+                  <div className="font-ancient" style={{ fontSize: "12px", color: "var(--text-light)", marginBottom: expandedDarshan === d.name ? "20px" : "0", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                    Founder: <strong style={{ color: "var(--primary)" }}>{d.founder}</strong>
+                  </div>
+
+                  {expandedDarshan === d.name && (
+                    <div style={{ animation: "fadeIn 0.4s ease" }}>
+                      <p style={{ fontSize: "14px", lineHeight: 1.8, color: "var(--text)", marginBottom: "20px" }}>
+                        {d.desc}
+                      </p>
+                      <div style={{
+                        background: `${d.color}05`,
+                        borderLeft: `4px solid ${d.color}`,
+                        borderRadius: "0 12px 12px 0", padding: "16px 20px"
+                      }}>
+                        <div className="font-ancient" style={{ fontSize: "11px", color: d.color, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "6px" }}>
+                          Modern Context
+                        </div>
+                        <p style={{ fontSize: "13px", color: "var(--text-light)", lineHeight: 1.6 }}>{d.modern}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

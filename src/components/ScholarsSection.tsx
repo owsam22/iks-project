@@ -26,6 +26,7 @@ import {
   Gavel,
   CircleDot
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const IconMap: Record<string, any> = {
   Scroll,

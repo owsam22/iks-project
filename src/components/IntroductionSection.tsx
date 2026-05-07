@@ -6,6 +6,7 @@ import {
   Target,
   Compass
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 export default function IntroductionSection() {
   const pillars = [
@@ -46,47 +47,51 @@ export default function IntroductionSection() {
 
           {/* Left: Text Content */}
           <div>
-            <div className="unit-badge">
-              <BookOpen size={16} color="var(--accent-dark)" />
-              <span>Unit I · Foundations</span>
-            </div>
+            <ScrollReveal animation="slide-left">
+              <div className="unit-badge">
+                <BookOpen size={16} color="var(--accent-dark)" />
+                <span>Unit I · Foundations</span>
+              </div>
 
-            <h2 className="font-serif section-title" style={{ marginBottom: "32px" }}>
-              What is Indian Knowledge System?
-            </h2>
+              <h2 className="font-serif section-title" style={{ marginBottom: "32px" }}>
+                What is Indian Knowledge System?
+              </h2>
 
-            <div style={{ fontSize: "18px", lineHeight: 1.8, color: "var(--text)", marginBottom: "40px" }}>
-              <p style={{ marginBottom: "24px" }}>
-                The <strong style={{ color: "var(--primary)" }}>Indian Knowledge System (IKS)</strong> is a comprehensive ecosystem of knowledge, encompassing both the ancient and the modern, the scientific and the spiritual. It represents a 5,000-year continuous intellectual tradition that has profoundly influenced human civilization.
-              </p>
-              <p>
-                From the abstract heights of Vedic philosophy to the practical depths of metallurgy, agriculture, and medicine, IKS is characterized by its empirical foundation, logical rigour, and a uniquely holistic worldview that seeks harmony between the individual, society, and the cosmos.
-              </p>
-            </div>
+              <div style={{ fontSize: "18px", lineHeight: 1.8, color: "var(--text)", marginBottom: "40px" }}>
+                <p style={{ marginBottom: "24px" }}>
+                  The <strong style={{ color: "var(--primary)" }}>Indian Knowledge System (IKS)</strong> is a comprehensive ecosystem of knowledge, encompassing both the ancient and the modern, the scientific and the spiritual. It represents a 5,000-year continuous intellectual tradition that has profoundly influenced human civilization.
+                </p>
+                <p>
+                  From the abstract heights of Vedic philosophy to the practical depths of metallurgy, agriculture, and medicine, IKS is characterized by its empirical foundation, logical rigour, and a uniquely holistic worldview that seeks harmony between the individual, society, and the cosmos.
+                </p>
+              </div>
+            </ScrollReveal>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
               {pillars.map((p, i) => (
-                <div key={i} style={{ display: "flex", gap: "20px" }}>
-                  <div style={{
-                    width: "56px", height: "56px", borderRadius: "16px",
-                    background: "white", display: "flex", alignItems: "center",
-                    justifyContent: "center", color: "var(--accent-dark)",
-                    boxShadow: "0 10px 20px rgba(0,0,0,0.05)", flexShrink: 0,
-                    border: "1px solid var(--border)"
-                  }}>
-                    {p.icon}
+                <ScrollReveal key={i} animation="slide-up" delay={i * 100}>
+                  <div style={{ display: "flex", gap: "20px" }}>
+                    <div style={{
+                      width: "56px", height: "56px", borderRadius: "16px",
+                      background: "white", display: "flex", alignItems: "center",
+                      justifyContent: "center", color: "var(--accent-dark)",
+                      boxShadow: "0 10px 20px rgba(0,0,0,0.05)", flexShrink: 0,
+                      border: "1px solid var(--border)"
+                    }}>
+                      {p.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-serif" style={{ fontSize: "20px", color: "var(--primary)", marginBottom: "6px" }}>{p.title}</h4>
+                      <p style={{ fontSize: "15px", color: "var(--text-light)", lineHeight: 1.6 }}>{p.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-serif" style={{ fontSize: "20px", color: "var(--primary)", marginBottom: "6px" }}>{p.title}</h4>
-                    <p style={{ fontSize: "15px", color: "var(--text-light)", lineHeight: 1.6 }}>{p.desc}</p>
-                  </div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
 
           {/* Right: Feature Image/Card */}
-          <div style={{ position: "relative" }}>
+          <ScrollReveal animation="slide-right" className="relative">
             <div className="parchment-texture" style={{
               borderRadius: "32px", padding: "40px",
               boxShadow: "0 30px 60px rgba(0,0,0,0.1)",
@@ -129,7 +134,7 @@ export default function IntroductionSection() {
               backgroundImage: "radial-gradient(var(--accent) 2px, transparent 2px)",
               backgroundSize: "20px 20px", opacity: 0.2, zIndex: 1
             }} />
-          </div>
+          </ScrollReveal>
 
         </div>
       </div>

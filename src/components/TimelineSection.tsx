@@ -16,6 +16,7 @@ import {
   ChevronRight,
   Info
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const IconMap: Record<string, any> = {
   Scroll,
@@ -111,92 +112,97 @@ export default function TimelineSection() {
             const Icon = IconMap[event.icon as string] || Info;
 
             return (
-              <div
-                key={event.year}
-                className={`timeline-item fade-in-section ${sectionVisible ? "visible" : ""} ${isLeft ? "left-item" : "right-item"}`}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 100px 1fr",
-                  gap: "0",
-                  marginBottom: "40px",
-                  transition: `opacity 0.8s ease ${delay}s, transform 0.8s ease ${delay}s`,
-                  alignItems: "center"
-                }}
+              <ScrollReveal 
+                key={event.year} 
+                animation={isLeft ? "slide-left" : "slide-right"}
+                delay={100}
               >
-                {/* Left content */}
-                <div className="timeline-content-left" style={{ textAlign: "right", paddingRight: "40px", cursor: "pointer", display: isLeft ? "block" : "none" }}>
-                  <div
-                    onClick={() => setActiveEvent(activeEvent === i ? null : i)}
-                    style={{
-                      background: "rgba(255,255,255,0.03)",
-                      border: activeEvent === i ? `1px solid var(--accent)` : "1px solid rgba(212, 175, 55, 0.2)",
-                      borderRadius: "24px",
-                      padding: "24px 32px",
-                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                      boxShadow: activeEvent === i ? `0 15px 40px rgba(212, 175, 55, 0.15)` : "none",
-                      backdropFilter: "blur(8px)"
-                    }}
-                    onMouseEnter={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)" }}
-                    onMouseLeave={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)" }}
-                  >
-                    <div className="font-ancient" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px" }}>{event.era}</div>
-                    <div className="font-serif" style={{ fontSize: "24px", fontWeight: 700, color: "white", marginBottom: "6px" }}>{event.event}</div>
-                    <div className="font-ancient" style={{ fontSize: "20px", fontWeight: 700, color: "var(--accent-light)", marginBottom: activeEvent === i ? "16px" : "0" }}>{event.year}</div>
-                    {activeEvent === i && (
-                      <p style={{ fontSize: "14px", color: "rgba(248,245,240,0.7)", lineHeight: 1.8, animation: "fadeIn 0.4s ease", textAlign: "right", borderTop: "1px solid rgba(212, 175, 55, 0.2)", paddingTop: "16px", marginTop: "16px" }}>{event.detail}</p>
-                    )}
+                <div
+                  className={`timeline-item fade-in-section visible ${isLeft ? "left-item" : "right-item"}`}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 100px 1fr",
+                    gap: "0",
+                    marginBottom: "40px",
+                    transition: `all 0.8s ease`,
+                    alignItems: "center"
+                  }}
+                >
+                  {/* Left content */}
+                  <div className="timeline-content-left" style={{ textAlign: "right", paddingRight: "40px", cursor: "pointer", display: isLeft ? "block" : "none" }}>
+                    <div
+                      onClick={() => setActiveEvent(activeEvent === i ? null : i)}
+                      style={{
+                        background: "rgba(255,255,255,0.03)",
+                        border: activeEvent === i ? `1px solid var(--accent)` : "1px solid rgba(212, 175, 55, 0.2)",
+                        borderRadius: "24px",
+                        padding: "24px 32px",
+                        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                        boxShadow: activeEvent === i ? `0 15px 40px rgba(212, 175, 55, 0.15)` : "none",
+                        backdropFilter: "blur(8px)"
+                      }}
+                      onMouseEnter={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)" }}
+                      onMouseLeave={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)" }}
+                    >
+                      <div className="font-ancient" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px" }}>{event.era}</div>
+                      <div className="font-serif" style={{ fontSize: "24px", fontWeight: 700, color: "white", marginBottom: "6px" }}>{event.event}</div>
+                      <div className="font-ancient" style={{ fontSize: "20px", fontWeight: 700, color: "var(--accent-light)", marginBottom: activeEvent === i ? "16px" : "0" }}>{event.year}</div>
+                      {activeEvent === i && (
+                        <p style={{ fontSize: "14px", color: "rgba(248,245,240,0.7)", lineHeight: 1.8, animation: "fadeIn 0.4s ease", textAlign: "right", borderTop: "1px solid rgba(212, 175, 55, 0.2)", paddingTop: "16px", marginTop: "16px" }}>{event.detail}</p>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                {!isLeft && <div className="spacer-left" />}
+                  {!isLeft && <div className="spacer-left" />}
 
-                {/* Center dot */}
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", zIndex: 2 }}>
-                  <div
-                    onClick={() => setActiveEvent(activeEvent === i ? null : i)}
-                    style={{
-                      width: "60px", height: "60px", borderRadius: "50%",
-                      background: activeEvent === i ? "var(--accent)" : "#1B263B",
-                      border: "2px solid var(--accent)",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      color: activeEvent === i ? "#1B263B" : "var(--accent)",
-                      cursor: "pointer",
-                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                      transform: activeEvent === i ? "scale(1.1)" : "scale(1)",
-                      boxShadow: activeEvent === i ? `0 0 30px var(--accent)` : "none"
-                    }}
-                  >
-                    <Icon size={28} />
+                  {/* Center dot */}
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", zIndex: 2 }}>
+                    <div
+                      onClick={() => setActiveEvent(activeEvent === i ? null : i)}
+                      style={{
+                        width: "60px", height: "60px", borderRadius: "50%",
+                        background: activeEvent === i ? "var(--accent)" : "#1B263B",
+                        border: "2px solid var(--accent)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        color: activeEvent === i ? "#1B263B" : "var(--accent)",
+                        cursor: "pointer",
+                        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                        transform: activeEvent === i ? "scale(1.1)" : "scale(1)",
+                        boxShadow: activeEvent === i ? `0 0 30px var(--accent)` : "none"
+                      }}
+                    >
+                      <Icon size={28} />
+                    </div>
                   </div>
-                </div>
 
-                {/* Right content */}
-                <div className="timeline-content-right" style={{ paddingLeft: "40px", cursor: "pointer", display: !isLeft ? "block" : "none" }}>
-                  <div
-                    onClick={() => setActiveEvent(activeEvent === i ? null : i)}
-                    style={{
-                      background: "rgba(255,255,255,0.03)",
-                      border: activeEvent === i ? `1px solid var(--accent)` : "1px solid rgba(212, 175, 55, 0.2)",
-                      borderRadius: "24px",
-                      padding: "24px 32px",
-                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                      boxShadow: activeEvent === i ? `0 15px 40px rgba(212, 175, 55, 0.15)` : "none",
-                      backdropFilter: "blur(8px)"
-                    }}
-                    onMouseEnter={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)" }}
-                    onMouseLeave={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)" }}
-                  >
-                    <div className="font-ancient" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px" }}>{event.era}</div>
-                    <div className="font-serif" style={{ fontSize: "24px", fontWeight: 700, color: "white", marginBottom: "6px" }}>{event.event}</div>
-                    <div className="font-ancient" style={{ fontSize: "20px", fontWeight: 700, color: "var(--accent-light)", marginBottom: activeEvent === i ? "16px" : "0" }}>{event.year}</div>
-                    {activeEvent === i && (
-                      <p style={{ fontSize: "14px", color: "rgba(248,245,240,0.7)", lineHeight: 1.8, animation: "fadeIn 0.4s ease", borderTop: "1px solid rgba(212, 175, 55, 0.2)", paddingTop: "16px", marginTop: "16px" }}>{event.detail}</p>
-                    )}
+                  {/* Right content */}
+                  <div className="timeline-content-right" style={{ paddingLeft: "40px", cursor: "pointer", display: !isLeft ? "block" : "none" }}>
+                    <div
+                      onClick={() => setActiveEvent(activeEvent === i ? null : i)}
+                      style={{
+                        background: "rgba(255,255,255,0.03)",
+                        border: activeEvent === i ? `1px solid var(--accent)` : "1px solid rgba(212, 175, 55, 0.2)",
+                        borderRadius: "24px",
+                        padding: "24px 32px",
+                        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                        boxShadow: activeEvent === i ? `0 15px 40px rgba(212, 175, 55, 0.15)` : "none",
+                        backdropFilter: "blur(8px)"
+                      }}
+                      onMouseEnter={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)" }}
+                      onMouseLeave={(e) => { if(activeEvent !== i) (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)" }}
+                    >
+                      <div className="font-ancient" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "8px" }}>{event.era}</div>
+                      <div className="font-serif" style={{ fontSize: "24px", fontWeight: 700, color: "white", marginBottom: "6px" }}>{event.event}</div>
+                      <div className="font-ancient" style={{ fontSize: "20px", fontWeight: 700, color: "var(--accent-light)", marginBottom: activeEvent === i ? "16px" : "0" }}>{event.year}</div>
+                      {activeEvent === i && (
+                        <p style={{ fontSize: "14px", color: "rgba(248,245,240,0.7)", lineHeight: 1.8, animation: "fadeIn 0.4s ease", borderTop: "1px solid rgba(212, 175, 55, 0.2)", paddingTop: "16px", marginTop: "16px" }}>{event.detail}</p>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                {isLeft && <div className="spacer-right" />}
-              </div>
+                  {isLeft && <div className="spacer-right" />}
+                </div>
+              </ScrollReveal>
             );
           })}
         </div>

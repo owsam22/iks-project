@@ -47,6 +47,10 @@ export default function Navbar() {
       const elementPosition = elementRect - bodyRect;
       const offsetPosition = elementPosition - offset;
 
+      // When using custom smooth scroll, we just update the target
+      // But since targetScrollY is in App.tsx, we'll use a custom event or window property
+      (window as any).targetScrollY = offsetPosition;
+      
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"

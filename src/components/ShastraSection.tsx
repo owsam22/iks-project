@@ -10,6 +10,7 @@ import {
   ChevronDown,
   Globe,
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const IconMap: Record<string, any> = {
   Scale: <Scale size={28} />,
@@ -62,122 +63,123 @@ export default function ShastraSection() {
           gap: "32px",
           marginBottom: "100px"
         }}>
-          {shastraData.map((s) => (
-            <div
-              key={s.name}
-              onClick={() => setActiveShastra(activeShatra === s.name ? null : s.name)}
-              style={{
-                background: "white",
-                borderRadius: "24px",
-                border: activeShatra === s.name ? `2px solid var(--accent)` : "1px solid var(--border)",
-                overflow: "hidden",
-                cursor: "pointer",
-                transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                boxShadow: activeShatra === s.name ? `0 20px 60px rgba(0,0,0,0.15)` : "0 4px 24px rgba(0,0,0,0.03)",
-                transform: activeShatra === s.name ? "translateY(-8px)" : "translateY(0)"
-              }}
-            >
-              {/* Card header */}
-              <div style={{
-                background: s.gradient,
-                padding: "32px 32px 24px",
-                position: "relative", overflow: "hidden"
-              }}>
-                {/* Background Image Overlay */}
-                <img 
-                  src={s.image} 
-                  alt="" 
-                  style={{
-                    position: "absolute", inset: 0, 
-                    width: "100%", height: "100%", 
-                    objectFit: "cover", opacity: 0.15,
-                    mixBlendMode: "overlay"
-                  }}
-                />
-                
-                {/* Large watermark icon */}
+          {shastraData.map((s, i) => (
+            <ScrollReveal key={s.name} animation="slide-up" delay={(i % 3) * 100}>
+              <div
+                onClick={() => setActiveShastra(activeShatra === s.name ? null : s.name)}
+                style={{
+                  background: "white",
+                  borderRadius: "24px",
+                  border: activeShatra === s.name ? `2px solid var(--accent)` : "1px solid var(--border)",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                  boxShadow: activeShatra === s.name ? `0 20px 60px rgba(0,0,0,0.15)` : "0 4px 24px rgba(0,0,0,0.03)",
+                  transform: activeShatra === s.name ? "translateY(-8px)" : "translateY(0)"
+                }}
+              >
+                {/* Card header */}
                 <div style={{
-                  position: "absolute", top: "-20px", right: "-20px",
-                  fontSize: "120px", opacity: 0.12, pointerEvents: "none",
-                  color: "white"
-                }}>{IconMap[s.icon]}</div>
-
-                <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", gap: "20px" }}>
+                  background: s.gradient,
+                  padding: "32px 32px 24px",
+                  position: "relative", overflow: "hidden"
+                }}>
+                  {/* Background Image Overlay */}
+                  <img 
+                    src={s.image} 
+                    alt="" 
+                    style={{
+                      position: "absolute", inset: 0, 
+                      width: "100%", height: "100%", 
+                      objectFit: "cover", opacity: 0.15,
+                      mixBlendMode: "overlay"
+                    }}
+                  />
+                  
+                  {/* Large watermark icon */}
                   <div style={{
-                    width: "64px", height: "64px", borderRadius: "16px",
-                    background: "rgba(255,255,255,0.2)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "white", flexShrink: 0,
-                    border: "1px solid rgba(255,255,255,0.3)",
-                    backdropFilter: "blur(4px)"
+                    position: "absolute", top: "-20px", right: "-20px",
+                    fontSize: "120px", opacity: 0.12, pointerEvents: "none",
+                    color: "white"
                   }}>{IconMap[s.icon]}</div>
-                  <div style={{ flex: 1 }}>
-                    <h3 className="font-serif" style={{
-                      fontSize: "24px", fontWeight: 700, color: "white",
-                      marginBottom: "4px"
-                    }}>{s.name}</h3>
-                    <div className="font-ancient" style={{ fontSize: "12px", color: "rgba(255,255,255,0.8)", textTransform: "uppercase", letterSpacing: "0.1em" }}>{s.desc}</div>
-                  </div>
-                  <div style={{
-                    color: "rgba(255,255,255,0.8)",
-                    transition: "transform 0.4s ease",
-                    transform: activeShatra === s.name ? "rotate(180deg)" : "rotate(0)"
-                  }}>
-                    <ChevronDown size={24} />
+
+                  <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", gap: "20px" }}>
+                    <div style={{
+                      width: "64px", height: "64px", borderRadius: "16px",
+                      background: "rgba(255,255,255,0.2)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: "white", flexShrink: 0,
+                      border: "1px solid rgba(255,255,255,0.3)",
+                      backdropFilter: "blur(4px)"
+                    }}>{IconMap[s.icon]}</div>
+                    <div style={{ flex: 1 }}>
+                      <h3 className="font-serif" style={{
+                        fontSize: "24px", fontWeight: 700, color: "white",
+                        marginBottom: "4px"
+                      }}>{s.name}</h3>
+                      <div className="font-ancient" style={{ fontSize: "12px", color: "rgba(255,255,255,0.8)", textTransform: "uppercase", letterSpacing: "0.1em" }}>{s.desc}</div>
+                    </div>
+                    <div style={{
+                      color: "rgba(255,255,255,0.8)",
+                      transition: "transform 0.4s ease",
+                      transform: activeShatra === s.name ? "rotate(180deg)" : "rotate(0)"
+                    }}>
+                      <ChevronDown size={24} />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div style={{ padding: "32px" }}>
-                <p style={{
-                  fontSize: "15px", lineHeight: 1.85, color: "var(--text)",
-                  marginBottom: activeShatra === s.name ? "24px" : "0",
-                  display: "-webkit-box",
-                  WebkitLineClamp: activeShatra === s.name ? "none" : 3,
-                  WebkitBoxOrient: "vertical",
-                  overflow: activeShatra === s.name ? "visible" : "hidden"
-                }}>
-                  {s.detail}
-                </p>
+                {/* Content */}
+                <div style={{ padding: "32px" }}>
+                  <p style={{
+                    fontSize: "15px", lineHeight: 1.85, color: "var(--text)",
+                    marginBottom: activeShatra === s.name ? "24px" : "0",
+                    display: "-webkit-box",
+                    WebkitLineClamp: activeShatra === s.name ? "none" : 3,
+                    WebkitBoxOrient: "vertical",
+                    overflow: activeShatra === s.name ? "visible" : "hidden"
+                  }}>
+                    {s.detail}
+                  </p>
 
-                {activeShatra === s.name && (
-                  <div style={{ animation: "fadeIn 0.5s ease" }}>
-                    {/* Indian example */}
-                    <div style={{
-                      background: "rgba(0,0,0,0.03)",
-                      borderLeft: `5px solid ${s.color}`,
-                      borderRadius: "4px 12px 12px 4px", padding: "20px 24px",
-                      marginBottom: "24px"
-                    }}>
+                  {activeShatra === s.name && (
+                    <div style={{ animation: "fadeIn 0.5s ease" }}>
+                      {/* Indian example */}
                       <div style={{
-                        fontSize: "12px", color: s.color, fontWeight: 700,
-                        textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "8px"
+                        background: "rgba(0,0,0,0.03)",
+                        borderLeft: `5px solid ${s.color}`,
+                        borderRadius: "4px 12px 12px 4px", padding: "20px 24px",
+                        marginBottom: "24px"
                       }}>
-                        🏺 Historical Evidence
-                      </div>
-                      <p style={{ fontSize: "14px", color: "var(--text)", lineHeight: 1.7, fontStyle: "italic" }}>{s.example}</p>
-                    </div>
-
-                    {/* Modern link */}
-                    <div style={{
-                      display: "flex", alignItems: "flex-start", gap: "16px",
-                      background: "var(--bg)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "16px", padding: "20px"
-                    }}>
-                      <Globe size={20} color="var(--primary)" style={{ marginTop: "4px", flexShrink: 0 }} />
-                      <div>
-                        <div style={{ fontSize: "11px", color: "var(--primary)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "6px" }}>
-                          Modern Relevance
+                        <div style={{
+                          fontSize: "12px", color: s.color, fontWeight: 700,
+                          textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "8px"
+                        }}>
+                          🏺 Historical Evidence
                         </div>
-                        <p style={{ fontSize: "13px", color: "var(--text-light)", lineHeight: 1.65 }}>{s.modernLink}</p>
+                        <p style={{ fontSize: "14px", color: "var(--text)", lineHeight: 1.7, fontStyle: "italic" }}>{s.example}</p>
+                      </div>
+
+                      {/* Modern link */}
+                      <div style={{
+                        display: "flex", alignItems: "flex-start", gap: "16px",
+                        background: "var(--bg)",
+                        border: "1px solid var(--border)",
+                        borderRadius: "16px", padding: "20px"
+                      }}>
+                        <Globe size={20} color="var(--primary)" style={{ marginTop: "4px", flexShrink: 0 }} />
+                        <div>
+                          <div style={{ fontSize: "11px", color: "var(--primary)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "6px" }}>
+                            Modern Relevance
+                          </div>
+                          <p style={{ fontSize: "13px", color: "var(--text-light)", lineHeight: 1.65 }}>{s.modernLink}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
