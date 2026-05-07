@@ -456,3 +456,44 @@ body::before {
 .animate-pulse-glow {
   animation: pulse-glow 4s ease-in-out infinite;
 }
+/* Scroll Reveal Animations */
+.reveal-hidden {
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+.reveal-fade {
+  transform: none;
+}
+
+.reveal-slide-up {
+  transform: translateY(60px);
+}
+
+.reveal-slide-left {
+  transform: translateX(-60px);
+}
+
+.reveal-slide-right {
+  transform: translateX(60px);
+}
+
+.reveal-scale {
+  transform: scale(0.9);
+}
+
+/* Smooth Scroll Improvement */
+html {
+  scroll-behavior: smooth !important;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
