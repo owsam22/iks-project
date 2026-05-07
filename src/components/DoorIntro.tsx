@@ -103,16 +103,18 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
           <div className="h-px flex-1 bg-accent/30" />
         </div>
 
-      {/* Designer Credit - Improved Visibility */}
-        <div className="flex flex-col items-center gap-4 bg-black/60 p-8 md:p-10 rounded-[2.5rem] border border-white/10 backdrop-blur-2xl w-[90%] max-w-lg mx-auto shadow-2xl relative">
-          <div className="font-ancient text-accent tracking-[0.2em] uppercase text-[10px] md:text-[12px] font-bold opacity-80">
+      {/* Designer Credit - Professional Layout */}
+        <div className="flex flex-col items-center gap-4 bg-black/60 p-8 md:p-10 rounded-[2.5rem] border border-white/10 backdrop-blur-2xl w-[85%] max-w-sm md:max-w-md mx-auto shadow-2xl relative">
+          <div className="font-ancient text-accent tracking-[0.3em] uppercase text-[9px] md:text-[11px] font-bold opacity-70">
             Curated By
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-white font-bold drop-shadow-lg break-all text-center leading-tight">
-            samarpan(owsam22)
-          </h2>
+          <div className="w-full text-center">
+            <h2 className="font-serif text-[clamp(1.2rem,5vw,2.2rem)] text-white font-bold drop-shadow-lg leading-none m-0">
+              samarpan(owsam22)
+            </h2>
+          </div>
           
-          <div className="flex gap-6 mt-4">
+          <div className="flex gap-5 mt-3">
             {[
               { icon: <Code size={20} />, label: "GitHub", href: "https://github.com/owsam22" },
               { icon: <UserCircle size={20} />, label: "LinkedIn", href: "https://linkedin.com/in/owsam22" },
