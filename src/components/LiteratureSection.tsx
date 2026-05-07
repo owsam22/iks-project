@@ -208,6 +208,7 @@ export default function LiteratureSection() {
                 {active.examples}
               </p>
             </div>
+            </div>
           </div>
 
           {/* Right: subsections */}
