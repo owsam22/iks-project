@@ -34,44 +34,12 @@ export default function App() {
         setScrollProgress(currentProgress);
       };
 
-      // Custom smooth scroll logic for premium feel
-      let targetScrollY = window.scrollY;
-      let currentScrollY = window.scrollY;
-      const lerp = 0.08;
-
-      const handleWheel = (e: WheelEvent) => {
-        if (e.ctrlKey) return;
-        targetScrollY += e.deltaY * 0.8;
-        targetScrollY = Math.max(0, Math.min(targetScrollY, document.documentElement.scrollHeight - window.innerHeight));
-      };
-
-      const smoothScrollLoop = () => {
-        // Sync with external targets (like Navbar clicks)
-        if ((window as any).targetScrollY !== undefined) {
-          targetScrollY = (window as any).targetScrollY;
-          delete (window as any).targetScrollY;
-        }
-
-        currentScrollY += (targetScrollY - currentScrollY) * lerp;
-        if (Math.abs(targetScrollY - currentScrollY) > 0.1) {
-          window.scrollTo(0, currentScrollY);
-        }
-        requestAnimationFrame(smoothScrollLoop);
-      };
-
-      // Only enable on desktop for better performance
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (!isMobile) {
-        window.addEventListener("wheel", handleWheel, { passive: false });
-        requestAnimationFrame(smoothScrollLoop);
-      }
-
-      window.addEventListener("scroll", handleScroll);
+      // Only keep the scroll progress tracker
+      window.addEventListener("scroll", handleScroll, { passive: true });
       
       return () => {
         document.body.style.overflow = "";
         window.removeEventListener("scroll", handleScroll);
-        window.removeEventListener("wheel", handleWheel);
       };
     }
   }, [doorDone]);
