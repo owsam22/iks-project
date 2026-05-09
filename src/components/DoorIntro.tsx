@@ -49,12 +49,13 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
     <div 
       className="door-screen" 
       style={{ 
-        background: "#0a0f1a",
+        background: "var(--primary)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
-        animation: phase === "opening" ? "portal-reveal 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards" : "none"
+        animation: phase === "opening" ? "slide-up-out 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards" : "none",
+        zIndex: 9999
       }}
     >
       {/* Lightweight Background Mandala */}
