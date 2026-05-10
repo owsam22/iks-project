@@ -26,8 +26,8 @@ export default function ShastraSection() {
 
   return (
     <section id="shastra" style={{
-      padding: "100px clamp(20px, 6vw, 96px)",
-      background: "#F2E8CF",
+      padding: "120px clamp(20px, 6vw, 96px)",
+      background: "var(--bg-alt)",
       position: "relative",
       overflow: "hidden"
     }}>
@@ -43,15 +43,15 @@ export default function ShastraSection() {
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "64px" }}>
-          <div className="unit-badge">
-            <span style={{ fontSize: "16px", fontWeight: "bold", color: "var(--primary)" }}>ॐ</span>
+          <div className="section-badge">
+            <span className="font-serif" style={{ fontSize: "14px", color: "var(--accent-dark)" }}>ॐ</span>
             <span>Unit III · Applied Knowledge</span>
           </div>
-          <h2 className="font-serif section-title" style={{ marginBottom: "20px" }}>
+          <h2 className="section-title" style={{ marginBottom: "16px" }}>
             Shastras — The Applied Sciences
           </h2>
-          <div className="accent-bar" style={{ margin: "0 auto 24px", width: "80px" }} />
-          <p className="section-subtitle" style={{ maxWidth: "650px", margin: "0 auto", fontSize: "1.2rem" }}>
+          <div className="accent-bar" style={{ margin: "0 auto 24px" }} />
+          <p className="section-subtitle" style={{ margin: "0 auto", textAlign: "center" }}>
             Beyond philosophy — India systematised every domain of human application into formal Shastras (sciences), from linguistics and music to architecture and agriculture.
           </p>
         </div>
@@ -68,20 +68,20 @@ export default function ShastraSection() {
               <div
                 onClick={() => setActiveShastra(activeShatra === s.name ? null : s.name)}
                 style={{
-                  background: "white",
+                  background: "var(--card-bg)",
                   borderRadius: "24px",
-                  border: activeShatra === s.name ? `2px solid var(--accent)` : "1px solid var(--border)",
+                  border: activeShatra === s.name ? `2px solid var(--accent)` : "1px solid var(--border-soft)",
                   overflow: "hidden",
                   cursor: "pointer",
                   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                  boxShadow: activeShatra === s.name ? `0 20px 60px rgba(0,0,0,0.15)` : "0 4px 24px rgba(0,0,0,0.03)",
+                  boxShadow: activeShatra === s.name ? `var(--shadow-lg)` : "var(--shadow-sm)",
                   transform: activeShatra === s.name ? "translateY(-8px)" : "translateY(0)"
                 }}
               >
                 {/* Card header */}
                 <div style={{
                   background: s.gradient,
-                  padding: "32px 32px 24px",
+                  padding: "36px 32px 28px",
                   position: "relative", overflow: "hidden"
                 }}>
                   {/* Background Image Overlay */}
@@ -91,40 +91,34 @@ export default function ShastraSection() {
                     style={{
                       position: "absolute", inset: 0, 
                       width: "100%", height: "100%", 
-                      objectFit: "cover", opacity: 0.15,
+                      objectFit: "cover", opacity: 0.18,
                       mixBlendMode: "overlay"
                     }}
                   />
                   
-                  {/* Large watermark icon */}
-                  <div style={{
-                    position: "absolute", top: "-20px", right: "-20px",
-                    fontSize: "120px", opacity: 0.12, pointerEvents: "none",
-                    color: "white"
-                  }}>{IconMap[s.icon]}</div>
-
                   <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", gap: "20px" }}>
                     <div style={{
-                      width: "64px", height: "64px", borderRadius: "16px",
-                      background: "rgba(255,255,255,0.2)",
+                      width: "60px", height: "60px", borderRadius: "14px",
+                      background: "rgba(255,255,255,0.15)",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       color: "white", flexShrink: 0,
-                      border: "1px solid rgba(255,255,255,0.3)",
-                      backdropFilter: "blur(4px)"
+                      border: "1px solid rgba(255,255,255,0.25)",
+                      backdropFilter: "blur(8px)"
                     }}>{IconMap[s.icon]}</div>
                     <div style={{ flex: 1 }}>
                       <h3 className="font-serif" style={{
                         fontSize: "24px", fontWeight: 700, color: "white",
-                        marginBottom: "4px"
+                        marginBottom: "4px", letterSpacing: "0.02em"
                       }}>{s.name}</h3>
-                      <div className="font-ancient" style={{ fontSize: "12px", color: "rgba(255,255,255,0.8)", textTransform: "uppercase", letterSpacing: "0.1em" }}>{s.desc}</div>
+                      <div className="font-ancient" style={{ fontSize: "11px", color: "rgba(255,255,255,0.7)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700 }}>{s.desc}</div>
                     </div>
                     <div style={{
-                      color: "rgba(255,255,255,0.8)",
+                      color: "white",
                       transition: "transform 0.4s ease",
-                      transform: activeShatra === s.name ? "rotate(180deg)" : "rotate(0)"
+                      transform: activeShatra === s.name ? "rotate(180deg)" : "rotate(0)",
+                      opacity: 0.8
                     }}>
-                      <ChevronDown size={24} />
+                      <ChevronDown size={22} />
                     </div>
                   </div>
                 </div>
@@ -132,8 +126,9 @@ export default function ShastraSection() {
                 {/* Content */}
                 <div style={{ padding: "32px" }}>
                   <p style={{
-                    fontSize: "15px", lineHeight: 1.85, color: "var(--text)",
-                    marginBottom: activeShatra === s.name ? "24px" : "0",
+                    fontSize: "15px", lineHeight: 1.85, color: "var(--text-muted)",
+                    fontFamily: "Lora, serif",
+                    marginBottom: activeShatra === s.name ? "28px" : "0",
                     display: "-webkit-box",
                     WebkitLineClamp: activeShatra === s.name ? "none" : 3,
                     WebkitBoxOrient: "vertical",
@@ -146,33 +141,36 @@ export default function ShastraSection() {
                     <div style={{ animation: "fadeIn 0.5s ease" }}>
                       {/* Indian example */}
                       <div style={{
-                        background: "rgba(0,0,0,0.03)",
-                        borderLeft: `5px solid ${s.color}`,
-                        borderRadius: "4px 12px 12px 4px", padding: "20px 24px",
-                        marginBottom: "24px"
+                        background: "rgba(201,168,76,0.06)",
+                        borderLeft: `4px solid ${s.color}`,
+                        borderRadius: "0 12px 12px 0", padding: "20px 24px",
+                        marginBottom: "28px",
+                        border: "1px solid rgba(201,168,76,0.15)",
+                        borderLeftWidth: "4px"
                       }}>
                         <div style={{
-                          fontSize: "12px", color: s.color, fontWeight: 700,
-                          textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "8px"
+                          fontSize: "11px", color: "var(--accent-dark)", fontWeight: 700,
+                          textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "10px"
                         }}>
-                          🏺 Historical Evidence
+                          🏺 Historical Heritage
                         </div>
-                        <p style={{ fontSize: "14px", color: "var(--text)", lineHeight: 1.7, fontStyle: "italic" }}>{s.example}</p>
+                        <p style={{ fontSize: "14px", color: "var(--text)", lineHeight: 1.75, fontStyle: "italic", fontFamily: "Lora, serif" }}>{s.example}</p>
                       </div>
 
                       {/* Modern link */}
                       <div style={{
                         display: "flex", alignItems: "flex-start", gap: "16px",
                         background: "var(--bg)",
-                        border: "1px solid var(--border)",
-                        borderRadius: "16px", padding: "20px"
+                        border: "1px solid var(--border-soft)",
+                        borderRadius: "16px", padding: "20px",
+                        boxShadow: "inset 0 2px 8px rgba(0,0,0,0.02)"
                       }}>
-                        <Globe size={20} color="var(--primary)" style={{ marginTop: "4px", flexShrink: 0 }} />
+                        <Globe size={18} color="var(--primary)" style={{ marginTop: "2px", flexShrink: 0, opacity: 0.7 }} />
                         <div>
-                          <div style={{ fontSize: "11px", color: "var(--primary)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "6px" }}>
-                            Modern Relevance
+                          <div className="font-ancient" style={{ fontSize: "11px", color: "var(--primary)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "6px" }}>
+                            Global Impact
                           </div>
-                          <p style={{ fontSize: "13px", color: "var(--text-light)", lineHeight: 1.65 }}>{s.modernLink}</p>
+                          <p style={{ fontSize: "13px", color: "var(--text-light)", lineHeight: 1.65, fontFamily: "Lora, serif" }}>{s.modernLink}</p>
                         </div>
                       </div>
                     </div>

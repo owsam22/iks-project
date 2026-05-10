@@ -108,16 +108,16 @@ export default function LiteratureSection() {
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
 
         {/* Section header */}
-        <div style={{ textAlign: "center", marginBottom: "56px" }}>
-          <div className="unit-badge">
-            <BookOpen size={16} color="var(--accent-dark)" />
+        <div style={{ textAlign: "center", marginBottom: "64px" }}>
+          <div className="section-badge">
+            <BookOpen size={14} color="var(--accent-dark)" />
             <span>Unit II · Literature & Philosophy</span>
           </div>
-          <h2 className="font-serif section-title" style={{ marginBottom: "20px" }}>
-            Sahitya, Vedas & Darshanas
+          <h2 className="section-title" style={{ marginBottom: "16px" }}>
+            Sahitya, Vedas &amp; Darshanas
           </h2>
-          <div className="accent-bar" style={{ margin: "0 auto 24px", width: "80px" }} />
-          <p className="section-subtitle" style={{ maxWidth: "650px", margin: "0 auto", fontSize: "1.2rem" }}>
+          <div className="accent-bar" style={{ margin: "0 auto 24px" }} />
+          <p className="section-subtitle" style={{ margin: "0 auto", textAlign: "center" }}>
             India's literary and philosophical tradition is unmatched — from the world's oldest hymns to the most sophisticated philosophical systems ever devised.
           </p>
         </div>
@@ -147,65 +147,68 @@ export default function LiteratureSection() {
         }}>
           {/* Left: main info */}
           <ScrollReveal animation="slide-left" className="parchment-texture overflow-hidden" style={{
-            padding: 0, borderRadius: "24px", border: "1px solid var(--border)",
-            boxShadow: "0 20px 40px rgba(0,0,0,0.05)"
+            padding: 0, borderRadius: "28px", border: "1px solid var(--border)",
+            boxShadow: "var(--shadow-lg)"
           }}>
             {/* Header Image */}
             <div style={{
-              width: "100%", height: "200px",
-              position: "relative", overflow: "hidden"
+              width: "100%", height: "240px",
+              position: "relative", overflow: "hidden",
+              borderBottom: "1px solid var(--border)"
             }}>
               <img 
                 src={active.image} 
                 alt={active.title} 
-                className="w-full h-full object-cover transition-transform duration-700"
+                className="w-full h-full object-cover transition-transform duration-1000 hover:scale-110"
               />
               <div style={{
                 position: "absolute", inset: 0,
-                background: `linear-gradient(to bottom, transparent, ${active.bgColor || "rgba(255,255,255,0.8)"})`
+                background: `linear-gradient(to top, var(--card-bg-alt), transparent 60%)`
               }} />
             </div>
 
             <div style={{ padding: "40px" }}>
             <div style={{
-              display: "flex", alignItems: "center", gap: "16px", marginBottom: "24px"
+              display: "flex", alignItems: "center", gap: "20px", marginBottom: "28px"
             }}>
               <div style={{
-                width: "64px", height: "64px", borderRadius: "16px",
-                background: `${active.color}15`,
-                border: `1px solid ${active.color}30`,
+                width: "68px", height: "68px", borderRadius: "18px",
+                background: `var(--bg)`,
+                border: `1.5px solid var(--border)`,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                color: active.color
+                color: active.color,
+                boxShadow: "var(--shadow-sm)"
               }}>{IconMap[active.icon] || <Scroll size={32} />}</div>
               <div>
-                <div className="font-ancient" style={{ fontSize: "12px", color: active.color, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "4px" }}>
+                <div className="font-ancient" style={{ fontSize: "11px", color: "var(--accent-dark)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: "6px" }}>
                   {active.period}
                 </div>
-                <h3 className="font-serif" style={{ fontSize: "32px", fontWeight: 700, color: "var(--primary)" }}>
+                <h3 className="font-serif" style={{ fontSize: "36px", fontWeight: 700, color: "var(--primary)", lineHeight: 1.1 }}>
                   {active.title}
                 </h3>
               </div>
             </div>
 
-            <p style={{ fontSize: "16px", lineHeight: 1.9, color: "var(--text)", marginBottom: "32px" }}>
+            <p style={{ fontSize: "16px", lineHeight: 1.9, color: "var(--text-muted)", marginBottom: "36px", fontFamily: "Lora, serif" }}>
               {active.description}
             </p>
 
             {/* Examples box */}
             <div style={{
-              background: "white",
-              border: `1px solid ${active.color}20`,
+              background: "rgba(255,255,255,0.45)",
+              border: `1px solid var(--border-soft)`,
+              borderLeft: "4px solid var(--saffron)",
               borderRadius: "16px",
-              padding: "24px",
-              boxShadow: "inset 0 0 20px rgba(0,0,0,0.02)"
+              padding: "24px 28px",
+              boxShadow: "var(--shadow-sm)"
             }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-                <span style={{ fontSize: "16px", fontWeight: "bold", color: "var(--accent-dark)" }}>ॐ</span>
-                <span style={{ fontSize: "13px", color: "var(--accent-dark)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                  Key Examples
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
+                <span style={{ fontSize: "20px", color: "var(--accent)" }}>✦</span>
+                <span className="font-ancient" style={{ fontSize: "11px", color: "var(--accent-dark)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em" }}>
+                  Key Examples & Verses
                 </span>
               </div>
-              <p style={{ fontSize: "14px", color: "var(--text)", lineHeight: 1.8, fontStyle: "italic" }}>
+              <p style={{ fontSize: "15px", color: "var(--text)", lineHeight: 1.8, fontStyle: "italic", fontFamily: "Lora, serif" }}>
                 {active.examples}
               </p>
             </div>
@@ -213,30 +216,36 @@ export default function LiteratureSection() {
           </ScrollReveal>
 
           {/* Right: subsections */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            <h4 className="font-ancient" style={{ fontSize: "16px", color: "var(--primary)", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700 }}>
-              Major Components
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <h4 className="font-ancient" style={{ fontSize: "13px", color: "var(--text-light)", marginBottom: "4px", textTransform: "uppercase", letterSpacing: "0.25em", fontWeight: 700 }}>
+              The Major Pillars
             </h4>
             {active.subsections.map((sub, i) => (
               <ScrollReveal key={i} animation="slide-right" delay={i * 100}>
-                <div style={{
-                  background: "white",
-                  border: "1px solid var(--border)",
-                  borderRadius: "16px",
-                  padding: "24px",
-                  borderLeft: `5px solid ${active.color}`,
-                  transition: "all 0.3s ease"
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateX(8px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateX(0)")}
+                <div 
+                  className="feature-card"
+                  style={{
+                    padding: "24px 28px",
+                    borderLeft: `5px solid ${active.color}`,
+                    transition: "all 0.3s ease",
+                    background: "var(--card-bg)"
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform = "translateX(8px)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform = "translateX(0)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  }}
                 >
                   <div className="font-serif" style={{
-                    fontSize: "18px", fontWeight: 700,
-                    color: active.color, marginBottom: "8px"
+                    fontSize: "20px", fontWeight: 700,
+                    color: "var(--primary)", marginBottom: "8px"
                   }}>
                     {sub.name}
                   </div>
-                  <p style={{ fontSize: "14px", color: "var(--text-light)", lineHeight: 1.7 }}>
+                  <p style={{ fontSize: "14.5px", color: "var(--text-muted)", lineHeight: 1.7, fontFamily: "Lora, serif" }}>
                     {sub.desc}
                   </p>
                 </div>

@@ -23,10 +23,8 @@ import {
   ChevronRight,
   BookOpen,
   Languages,
-  Gavel,
-  CircleDot
+  Gavel
 } from "lucide-react";
-import ScrollReveal from "./ScrollReveal";
 
 const IconMap: Record<string, any> = {
   Scroll,
@@ -59,37 +57,22 @@ function ScholarAvatar({ scholar }: { scholar: Scholar }) {
   
   if (scholar.image) {
     return (
-      <div className="w-full h-full relative group overflow-hidden bg-black/5">
+      <div className="w-full h-full relative group overflow-hidden">
         <img 
           src={scholar.image} 
           alt={scholar.name} 
-          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full transition-transform duration-700 group-hover:scale-105"
+          style={{ objectFit: "cover", objectPosition: "top center" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
           <div className="text-white">
             <div className="text-[10px] font-ancient tracking-[0.3em] uppercase opacity-70 mb-1">
               {scholar.field}
             </div>
-            <div className="text-lg font-serif font-bold text-accent">
+            <div className="text-lg font-serif font-bold" style={{ color: "var(--accent-light)" }}>
               {scholar.name}
             </div>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Fallback for major scholars without images
-  if (scholar.name === "Brahmagupta" || scholar.name === "Bhaskara II") {
-    return (
-      <div className="w-full h-full flex flex-col items-center justify-center bg-indigo-950 p-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 animate-pulse-glow bg-[radial-gradient(circle_at_center,var(--accent)_0%,transparent_70%)]" />
-        <div className="relative z-10 w-32 h-32 rounded-full border-4 border-accent/30 flex items-center justify-center bg-accent/5 backdrop-blur-md mb-4 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
-          <CircleDot size={64} className="text-accent animate-pulse" />
-          <div className="absolute inset-[-10px] animate-rotate-slow border border-accent/20 rounded-full border-dashed" />
-        </div>
-        <div className="relative z-10 font-serif text-accent text-xl font-bold tracking-widest uppercase text-center">
-          Math & Logic
         </div>
       </div>
     );
@@ -259,23 +242,28 @@ export default function ScholarsSection() {
   return (
     <section id="scholars" style={{
       padding: "100px clamp(20px, 6vw, 96px)",
-      background: "#F2E8CF",
+      background: "var(--bg-alt)",
       position: "relative",
       overflow: "hidden"
     }}>
+      {/* Top saffron border */}
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0, height: "3px",
+        background: "linear-gradient(90deg, transparent, var(--saffron), var(--accent), var(--saffron), transparent)"
+      }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1300px", margin: "0 auto" }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "64px" }}>
-          <div className="unit-badge">
-            <span style={{ fontSize: "16px", fontWeight: "bold", color: "var(--accent-dark)" }}>ॐ</span>
+          <div className="unit-badge" style={{ marginBottom: "20px" }}>
+            <span style={{ fontSize: "18px", color: "var(--accent-dark)" }}>ॐ</span>
             <span>Unit II · The Great Masters</span>
           </div>
-          <h2 className="font-serif section-title" style={{ marginBottom: "20px", fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
-            Ancient Scholars & Rishis
+          <h2 className="font-serif section-title" style={{ marginBottom: "16px", fontSize: "clamp(2.2rem, 5vw, 3.8rem)" }}>
+            Ancient Scholars &amp; Rishis
           </h2>
-          <div className="accent-bar" style={{ margin: "0 auto 24px", width: "80px" }} />
-          <p className="section-subtitle" style={{ maxWidth: "650px", margin: "0 auto", fontSize: "1.2rem" }}>
+          <div className="accent-bar" style={{ margin: "0 auto 20px" }} />
+          <p className="section-subtitle" style={{ margin: "0 auto", textAlign: "center" }}>
             Witness the architects of Indian thought — mathematicians who invented zero, surgeons who pioneered plastic surgery, and linguists who codified the world's most perfect grammar.
           </p>
         </div>
@@ -369,17 +357,25 @@ export default function ScholarsSection() {
           })}
         </div>
 
-        {/* Bottom note */}
+        {/* Bottom quote */}
         <div style={{
-          textAlign: "center", marginTop: "80px",
-          padding: "32px 40px",
-          background: "rgba(27, 38, 59, 0.05)",
+          textAlign: "center", marginTop: "72px",
+          padding: "40px 48px",
+          background: "var(--card-bg)",
           borderRadius: "20px",
-          border: "1px solid rgba(27, 38, 59, 0.1)",
-          maxWidth: "900px", margin: "80px auto 0"
+          border: "1px solid var(--border-soft)",
+          borderLeft: "4px solid var(--saffron)",
+          maxWidth: "860px", margin: "72px auto 0",
+          boxShadow: "var(--shadow-sm)"
         }}>
-          <p style={{ fontSize: "16px", color: "var(--text-light)", fontStyle: "italic", lineHeight: 1.8 }}>
-            "Knowledge was not merely information to be collected, but a spiritual discipline to be realized. These scholars harmonized empirical observation with philosophical depth."
+          <div style={{ fontSize: "28px", color: "var(--accent)", marginBottom: "12px", opacity: 0.6 }}>"</div>
+          <p style={{
+            fontFamily: "Lora, serif",
+            fontSize: "17px", color: "var(--text-muted)",
+            fontStyle: "italic", lineHeight: 1.85
+          }}>
+            Knowledge was not merely information to be collected, but a spiritual discipline to be realized.
+            These scholars harmonized empirical observation with philosophical depth.
           </p>
         </div>
       </div>

@@ -62,81 +62,97 @@ export default function Navbar() {
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
-      background: scrolled ? "rgba(13, 27, 42, 0.95)" : "transparent",
-      backdropFilter: scrolled ? "blur(12px)" : "none",
+      background: scrolled ? "rgba(10, 18, 32, 0.97)" : "transparent",
+      backdropFilter: scrolled ? "blur(16px)" : "none",
       padding: "0 clamp(16px, 5vw, 80px)",
-      height: scrolled ? "72px" : "96px",
+      height: scrolled ? "70px" : "92px",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      borderBottom: scrolled ? "1px solid rgba(212, 175, 55, 0.2)" : "1px solid transparent",
-      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+      borderBottom: scrolled ? "1px solid rgba(201,168,76,0.18)" : "1px solid transparent",
+      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+      boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.25)" : "none"
     }}>
       {/* Logo */}
       <button
         onClick={() => scrollTo("#hero")}
         style={{
           background: "none", border: "none", cursor: "pointer",
-          display: "flex", alignItems: "center", gap: "12px",
+          display: "flex", alignItems: "center", gap: "14px",
           textDecoration: "none"
         }}
       >
         <div style={{
-          width: "40px", height: "40px", borderRadius: "10px",
-          background: "linear-gradient(135deg, var(--accent), #A67C00)",
+          width: "42px", height: "42px", borderRadius: "11px",
+          background: "linear-gradient(135deg, var(--saffron) 0%, var(--accent) 100%)",
           display: "flex", alignItems: "center", justifyContent: "center",
           color: "#0D1B2A",
-          boxShadow: scrolled ? "0 0 15px rgba(212, 175, 55, 0.4)" : "none",
-          transition: "all 0.3s ease"
-        }}>
-          <span style={{ fontSize: "24px", fontWeight: "bold" }}>ॐ</span>
-        </div>
+          boxShadow: scrolled ? "0 0 18px rgba(232,137,12,0.35)" : "none",
+          transition: "all 0.35s ease",
+          fontFamily: "Noto Serif Devanagari, serif",
+          fontSize: "22px", fontWeight: "bold"
+        }}>ॐ</div>
         <div style={{ textAlign: "left" }}>
           <span className="font-serif" style={{
-            color: "white", fontWeight: 700, fontSize: "20px",
-            letterSpacing: "0.02em", display: "block", lineHeight: 1
-          }}> Indian Knowledge System</span>
-          <span className="font-ancient" style={{ 
-            color: "var(--accent)", fontSize: "10px", 
-            letterSpacing: "0.1em", fontWeight: 700,
-            display: scrolled ? "none" : "block", marginTop: "4px"
-          }}>MUSEUM</span>
+            color: "#F7F1E3", fontWeight: 700, fontSize: "18px",
+            letterSpacing: "0.03em", display: "block", lineHeight: 1
+          }}>Indian Knowledge System</span>
+          <span className="font-ancient" style={{
+            color: "var(--accent)", fontSize: "9px",
+            letterSpacing: "0.22em", fontWeight: 700, textTransform: "uppercase",
+            display: scrolled ? "none" : "block", marginTop: "5px", opacity: 0.8
+          }}>Digital Museum</span>
         </div>
       </button>
 
       {/* Desktop Nav */}
-      <div style={{
-        display: "flex", gap: "12px", alignItems: "center"
-      }} className="desktop-nav">
-        {navLinks.map((link) => (
-          <button
-            key={link.href}
-            onClick={() => scrollTo(link.href)}
-            style={{
-              background: active === link.href.replace("#", "") ? "rgba(212, 175, 55, 0.1)" : "none",
-              border: "none", cursor: "pointer",
-              fontFamily: "var(--font-ancient)",
-              color: active === link.href.replace("#", "") ? "var(--accent)" : "rgba(255,255,255,0.7)",
-              fontSize: "13px", fontWeight: 700, letterSpacing: "0.1em",
-              textTransform: "uppercase", padding: "8px 16px",
-              borderRadius: "50px", transition: "all 0.3s ease"
-            }}
-            onMouseEnter={(e) => {
-              if (active !== link.href.replace("#", "")) {
-                (e.currentTarget as HTMLElement).style.color = "white";
-                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (active !== link.href.replace("#", "")) {
-                (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.7)";
-                (e.currentTarget as HTMLElement).style.background = "none";
-              }
-            }}
-          >
-            {link.label}
-          </button>
-        ))}
+      <div style={{ display: "flex", gap: "6px", alignItems: "center" }} className="desktop-nav">
+        {navLinks.map((link) => {
+          const isActive = active === link.href.replace("#", "");
+          return (
+            <button
+              key={link.href}
+              onClick={() => scrollTo(link.href)}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                fontFamily: "Marcellus, serif",
+                color: isActive ? "var(--accent)" : "rgba(247,241,227,0.65)",
+                fontSize: "12px",
+                fontWeight: 700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                padding: "10px 14px",
+                borderRadius: "8px",
+                transition: "all 0.25s ease",
+                position: "relative",
+              }}
+              onMouseEnter={(e) => {
+                if (!isActive) {
+                  (e.currentTarget as HTMLElement).style.color = "var(--accent-light)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(201,168,76,0.08)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) {
+                  (e.currentTarget as HTMLElement).style.color = "rgba(247,241,227,0.65)";
+                  (e.currentTarget as HTMLElement).style.background = "none";
+                }
+              }}
+            >
+              {link.label}
+              {isActive && (
+                <span style={{
+                  position: "absolute", bottom: "5px", left: "50%", transform: "translateX(-50%)",
+                  width: "20px", height: "2px", borderRadius: "1px",
+                  background: "linear-gradient(90deg, var(--saffron), var(--accent))",
+                  display: "block"
+                }} />
+              )}
+            </button>
+          );
+        })}
       </div>
 
       {/* Mobile Toggle */}
@@ -144,26 +160,31 @@ export default function Navbar() {
         onClick={() => setMenuOpen(!menuOpen)}
         className="mobile-menu-btn"
         style={{
-          background: "rgba(212, 175, 55, 0.1)", border: "1px solid rgba(212, 175, 55, 0.3)",
+          background: "rgba(201,168,76,0.1)",
+          border: "1px solid rgba(201,168,76,0.25)",
           cursor: "pointer", color: "var(--accent)",
           width: "44px", height: "44px", borderRadius: "12px",
-          display: "none", alignItems: "center", justifyContent: "center"
+          display: "none", alignItems: "center", justifyContent: "center",
+          transition: "all 0.2s ease"
         }}
       >
-        {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        {menuOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
 
       {/* Mobile Menu Overlay */}
       <div style={{
-        position: "fixed", top: scrolled ? "72px" : "96px", left: 0, right: 0,
-        height: menuOpen ? "calc(100vh - 72px)" : "0",
-        background: "rgba(13, 27, 42, 0.98)",
-        backdropFilter: "blur(20px)",
+        position: "fixed",
+        top: scrolled ? "70px" : "92px",
+        left: 0, right: 0,
+        height: menuOpen ? "calc(100vh - 70px)" : "0",
+        background: "rgba(9, 15, 26, 0.98)",
+        backdropFilter: "blur(24px)",
         overflow: "hidden",
-        transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
         display: "flex", flexDirection: "column",
-        padding: menuOpen ? "32px" : "0 32px",
-        zIndex: 999
+        padding: menuOpen ? "32px 28px" : "0 28px",
+        zIndex: 999,
+        borderTop: "1px solid rgba(201,168,76,0.15)"
       }}>
         {navLinks.map((link, i) => (
           <button

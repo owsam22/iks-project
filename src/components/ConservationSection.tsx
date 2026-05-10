@@ -63,15 +63,15 @@ export default function ConservationSection() {
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "72px" }}>
-          <div className="unit-badge">
-            <ShieldCheck size={16} color="var(--accent-dark)" />
+          <div className="section-badge">
+            <ShieldCheck size={14} color="var(--accent-dark)" />
             <span>Unit III · Preservation</span>
           </div>
-          <h2 className="font-serif section-title" style={{ marginBottom: "20px" }}>
+          <h2 className="section-title" style={{ marginBottom: "16px" }}>
             Preserving Our Intellectual Heritage
           </h2>
-          <div className="accent-bar" style={{ margin: "0 auto 24px", width: "80px" }} />
-          <p className="section-subtitle" style={{ maxWidth: "700px", margin: "0 auto", fontSize: "1.2rem" }}>
+          <div className="accent-bar" style={{ margin: "0 auto 24px" }} />
+          <p className="section-subtitle" style={{ margin: "0 auto", textAlign: "center" }}>
             IKS is not just preserved in books — it lives in communities, ecosystems, and practices. Learn how India is protecting, digitising, and reviving its vast knowledge inheritance.
           </p>
         </div>
@@ -238,18 +238,18 @@ export default function ConservationSection() {
 
         {/* NEP 2020 Highlight */}
         <div style={{
-          background: "linear-gradient(135deg, #1B263B, #0D1B2A)",
+          background: "linear-gradient(135deg, #0A192F, #0D1B2A)",
           borderRadius: "40px",
           padding: "80px clamp(24px, 5vw, 100px)",
           position: "relative",
           overflow: "hidden",
-          border: "1px solid rgba(212, 175, 55, 0.2)",
-          boxShadow: "0 40px 100px rgba(0,0,0,0.3)"
+          border: "1px solid rgba(212, 175, 55, 0.25)",
+          boxShadow: "var(--shadow-lg)"
         }}>
           {/* Decorative watermark */}
           <div style={{
             position: "absolute", bottom: "-50px", right: "-50px",
-            fontSize: "400px", opacity: 0.03, pointerEvents: "none", color: "var(--accent)"
+            fontSize: "400px", opacity: 0.04, pointerEvents: "none", color: "var(--accent)"
           }}>
             <GraduationCap size={400} />
           </div>
@@ -257,26 +257,26 @@ export default function ConservationSection() {
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "80px", alignItems: "center", position: "relative", zIndex: 2 }}>
             <div>
               <div style={{
-                display: "inline-flex", alignItems: "center", gap: "8px",
+                display: "inline-flex", alignItems: "center", gap: "10px",
                 background: "rgba(212, 175, 55, 0.15)",
                 borderRadius: "50px", padding: "8px 24px",
                 border: "1px solid rgba(212, 175, 55, 0.4)",
-                marginBottom: "24px"
+                marginBottom: "28px"
               }}>
-                <span style={{ fontSize: "14px", fontWeight: "bold", color: "var(--accent)" }}>ॐ</span>
-                <span className="font-ancient" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                <span className="font-serif" style={{ fontSize: "14px", fontWeight: "bold", color: "var(--accent)" }}>ॐ</span>
+                <span className="font-ancient" style={{ fontSize: "11px", color: "var(--accent)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>
                   Modern Transformation
                 </span>
               </div>
               <h3 className="font-serif" style={{
-                fontSize: "clamp(32px, 4vw, 48px)", color: "white",
-                fontWeight: 700, marginBottom: "24px", letterSpacing: "0.02em"
+                fontSize: "clamp(36px, 4.5vw, 52px)", color: "white",
+                fontWeight: 700, marginBottom: "24px", letterSpacing: "0.02em", lineHeight: 1.1
               }}>
                 NEP 2020: The IKS <span className="gold-shimmer">Renaissance</span>
               </h3>
               <p style={{
-                fontSize: "18px", color: "rgba(255,255,255,0.7)",
-                lineHeight: 1.9, marginBottom: "40px"
+                fontSize: "18px", color: "rgba(255,255,255,0.65)",
+                lineHeight: 1.9, marginBottom: "40px", fontFamily: "Lora, serif"
               }}>
                 The National Education Policy 2020 marks a historic turning point, mandating the integration of Indian Knowledge Systems across all levels of the modern education system — from primary schools to advanced research at IITs.
               </p>

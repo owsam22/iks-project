@@ -1,12 +1,12 @@
-import { 
-  Book, 
-  Leaf, 
-  Calculator, 
-  Users, 
-  Building2, 
-  ShieldCheck, 
+import {
+  Book,
+  Leaf,
+  Calculator,
+  Users,
+  Building2,
+  ShieldCheck,
   ChevronDown,
-  GraduationCap
+  GraduationCap,
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
@@ -16,12 +16,12 @@ export default function HeroSection() {
   };
 
   const pillars = [
-    { icon: <Calculator size={24} />, label: "Mathematics", sub: "Aryabhata · Brahmagupta", id: "scholars" },
-    { icon: <Leaf size={24} />, label: "Medicine", sub: "Charaka · Sushruta", id: "scholars" },
-    { icon: <Book size={24} />, label: "Literature", sub: "Vedas · Upanishads", id: "literature" },
-    { icon: <Users size={24} />, label: "Philosophy", sub: "6 Darshanas · Yoga", id: "literature" },
-    { icon: <Building2 size={24} />, label: "Architecture", sub: "Vastu · Shilpa", id: "shastra" },
-    { icon: <ShieldCheck size={24} />, label: "Conservation", sub: "IKS Preservation", id: "conservation" },
+    { icon: <Calculator size={22} />, label: "Mathematics", sub: "Aryabhata · Brahmagupta", id: "scholars" },
+    { icon: <Leaf size={22} />, label: "Ayurveda", sub: "Charaka · Sushruta", id: "scholars" },
+    { icon: <Book size={22} />, label: "Literature", sub: "Vedas · Upanishads", id: "literature" },
+    { icon: <Users size={22} />, label: "Philosophy", sub: "Shad Darshanas · Yoga", id: "literature" },
+    { icon: <Building2 size={22} />, label: "Architecture", sub: "Vastu · Shilpa Shastra", id: "shastra" },
+    { icon: <ShieldCheck size={22} />, label: "Preservation", sub: "IKS Conservation", id: "conservation" },
   ];
 
   return (
@@ -40,170 +40,260 @@ export default function HeroSection() {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Texture Overlay */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')" }}></div>
-      
-      {/* Overlay */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(27, 38, 59, 0.45) 50%, rgba(45, 36, 30, 0.4) 100%)"
-      }} />
+      {/* Rich dark overlay with warm tones */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(150deg, rgba(8,14,28,0.82) 0%, rgba(13,27,42,0.75) 45%, rgba(22,12,4,0.72) 100%)",
+        }}
+      />
 
-      {/* Mandala watermark */}
-      <div style={{
-        position: "absolute", right: "-5%", top: "50%",
-        transform: "translateY(-50%)",
-        fontSize: "50vw", opacity: 0.04, pointerEvents: "none",
-        userSelect: "none", lineHeight: 1,
-        color: "var(--accent)"
-      }}>☸️</div>
+      {/* Subtle horizontal line separators */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "12%",
+          left: 0,
+          right: 0,
+          height: "1px",
+          background:
+            "linear-gradient(90deg, transparent, rgba(201,168,76,0.18), transparent)",
+          pointerEvents: "none",
+        }}
+      />
 
-      <div style={{
-        position: "relative", zIndex: 2,
-        padding: "120px clamp(20px, 6vw, 96px) 60px",
-        maxWidth: "1400px", margin: "0 auto", width: "100%"
-      }}>
+      {/* Paper texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "url('https://www.transparenttextures.com/patterns/natural-paper.png')",
+          opacity: 0.06,
+        }}
+      />
 
-        {/* Badge */}
+      {/* Decorative OM watermark */}
+      <div
+        style={{
+          position: "absolute",
+          right: "2%",
+          top: "50%",
+          transform: "translateY(-50%)",
+          fontSize: "clamp(300px, 42vw, 560px)",
+          opacity: 0.035,
+          pointerEvents: "none",
+          userSelect: "none",
+          lineHeight: 1,
+          fontFamily: "Noto Serif Devanagari, serif",
+          color: "#C9A84C",
+          filter: "blur(1px)",
+        }}
+      >
+        ॐ
+      </div>
+
+      {/* Content */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          padding: "130px clamp(20px, 6vw, 96px) 80px",
+          maxWidth: "1440px",
+          margin: "0 auto",
+          width: "100%",
+        }}
+      >
+        {/* Top badge */}
         <ScrollReveal animation="slide-up">
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: "10px",
-            background: "rgba(212, 175, 55, 0.15)",
-            border: "1px solid rgba(212, 175, 55, 0.4)",
-            borderRadius: "50px", padding: "8px 20px",
-            marginBottom: "32px",
-            backdropFilter: "blur(4px)"
-          }}>
-            <GraduationCap size={16} color="var(--accent)" />
-            <span className="font-ancient" style={{ fontSize: "13px", color: "var(--accent)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600 }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              background: "rgba(201,168,76,0.12)",
+              border: "1px solid rgba(201,168,76,0.35)",
+              borderRadius: "50px",
+              padding: "8px 22px",
+              marginBottom: "40px",
+              backdropFilter: "blur(6px)",
+            }}
+          >
+            <GraduationCap size={15} color="#C9A84C" />
+            <span
+              className="font-ancient"
+              style={{
+                fontSize: "11px",
+                color: "#C9A84C",
+                letterSpacing: "0.28em",
+                textTransform: "uppercase",
+                fontWeight: 700,
+              }}
+            >
               Digital Museum · IKS Heritage
             </span>
           </div>
         </ScrollReveal>
 
-        {/* Hero content in 2 col */}
-        <div className="content-grid">
-
-          {/* Left: Text */}
+        {/* 2-column content grid */}
+        <div className="hero-grid">
+          {/* Left: text */}
           <div>
-            <ScrollReveal animation="slide-left" delay={200}>
-              <div className="font-devanagari" style={{
-                fontSize: "clamp(18px, 2.5vw, 24px)",
-                color: "rgba(212, 175, 55, 0.9)",
-                marginBottom: "12px",
-                letterSpacing: "0.1em"
-              }}>
+            <ScrollReveal animation="slide-left" delay={100}>
+              {/* Sanskrit verse */}
+              <div
+                className="font-devanagari"
+                style={{
+                  fontSize: "clamp(16px, 2vw, 22px)",
+                  color: "rgba(201,168,76,0.85)",
+                  marginBottom: "8px",
+                  letterSpacing: "0.08em",
+                }}
+              >
                 सा विद्या या विमुक्तये
               </div>
-              <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", marginBottom: "28px", fontStyle: "italic", letterSpacing: "0.05em" }}>
+              <div
+                style={{
+                  fontSize: "13px",
+                  color: "rgba(247,241,227,0.42)",
+                  marginBottom: "32px",
+                  fontStyle: "italic",
+                  letterSpacing: "0.06em",
+                  fontFamily: "Lora, serif",
+                }}
+              >
                 "True knowledge is that which liberates"
               </div>
 
-              <h1 className="font-serif" style={{
-                fontSize: "clamp(36px, 6vw, 80px)",
-                fontWeight: 900, color: "#F8F5F0",
-                lineHeight: 1.05, marginBottom: "28px",
-                textShadow: "0 4px 20px rgba(0,0,0,0.3)"
-              }}>
-                Indian<br />
-                <span className="gold-shimmer">Knowledge</span><br />
+              {/* Main heading */}
+              <h1
+                className="font-serif"
+                style={{
+                  fontSize: "clamp(38px, 6vw, 82px)",
+                  fontWeight: 900,
+                  color: "#F7F1E3",
+                  lineHeight: 1.08,
+                  marginBottom: "28px",
+                  letterSpacing: "0.04em",
+                  textShadow: "0 4px 24px rgba(0,0,0,0.4)",
+                }}
+              >
+                Indian
+                <br />
+                <span className="gold-shimmer">Knowledge</span>
+                <br />
                 System
               </h1>
 
-              <p style={{
-                fontSize: "clamp(15px, 1.5vw, 19px)",
-                color: "rgba(248,245,240,0.8)",
-                lineHeight: 1.8, maxWidth: "520px",
-                marginBottom: "48px"
-              }}>
-                Journey through the profound intellectual landscape of ancient India. Explore the systems of philosophy, science, and art that have guided human civilization for millennia.
+              {/* Description */}
+              <p
+                style={{
+                  fontFamily: "Lora, serif",
+                  fontSize: "clamp(15px, 1.4vw, 18px)",
+                  color: "rgba(247,241,227,0.72)",
+                  lineHeight: 1.9,
+                  maxWidth: "500px",
+                  marginBottom: "48px",
+                }}
+              >
+                Journey through the profound intellectual landscape of ancient
+                India. Explore the systems of philosophy, science, and art that
+                have guided human civilization for five millennia.
               </p>
             </ScrollReveal>
 
             {/* CTAs */}
-            <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-              <button
-                onClick={() => scrollTo("scholars")}
-                style={{
-                  padding: "16px 36px", borderRadius: "50px",
-                  background: "linear-gradient(135deg, var(--accent), #A67C00)",
-                  color: "#0a0f1a", fontWeight: 700,
-                  fontSize: "16px", border: "none", cursor: "pointer",
-                  letterSpacing: "0.05em",
-                  boxShadow: "0 10px 40px rgba(212, 175, 55, 0.4)",
-                  transition: "all 0.3s ease",
-                  fontFamily: "Cinzel, serif",
-                  display: "flex", alignItems: "center", gap: "10px"
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
-              >
-                <Book size={18} /> Explore Scholars
-              </button>
-              <button
-                onClick={() => scrollTo("introduction")}
-                style={{
-                  padding: "16px 36px", borderRadius: "50px",
-                  background: "rgba(255,255,255,0.05)",
-                  color: "rgba(248,245,240,0.95)", fontWeight: 600,
-                  fontSize: "16px",
-                  border: "1.5px solid rgba(212, 175, 55, 0.3)",
-                  cursor: "pointer", letterSpacing: "0.05em",
-                  transition: "all 0.3s ease",
-                  fontFamily: "Cinzel, serif",
-                  backdropFilter: "blur(8px)"
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
-                  (e.currentTarget as HTMLElement).style.background = "rgba(212, 175, 55, 0.1)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(212, 175, 55, 0.3)";
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
-                }}
-              >
-                Start Learning
-              </button>
-            </div>
+            <ScrollReveal animation="slide-up" delay={200}>
+              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+                <button className="btn-primary" onClick={() => scrollTo("scholars")}>
+                  <Book size={16} /> Explore Scholars
+                </button>
+                <button className="btn-secondary" onClick={() => scrollTo("introduction")}>
+                  Start Learning
+                </button>
+              </div>
+            </ScrollReveal>
           </div>
 
+          {/* Right: pillar grid */}
           <div>
-            <div className="pillar-grid" style={{
-              display: "grid", gridTemplateColumns: "1fr 1fr",
-              gap: "20px"
-            }}>
+            <div className="pillar-grid">
               {pillars.map((p, i) => (
-                <ScrollReveal key={p.label} animation="scale" delay={400 + (i * 100)}>
+                <ScrollReveal key={p.label} animation="scale" delay={300 + i * 80}>
                   <button
                     onClick={() => scrollTo(p.id)}
                     style={{
                       width: "100%",
-                      background: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(212, 175, 55, 0.2)",
-                      borderRadius: "20px",
+                      background: "rgba(247,241,227,0.04)",
+                      border: "1px solid rgba(201,168,76,0.18)",
+                      borderRadius: "18px",
                       padding: "24px 20px",
                       textAlign: "left",
                       cursor: "pointer",
-                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                      transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
                       fontFamily: "inherit",
-                      backdropFilter: "blur(4px)"
+                      backdropFilter: "blur(6px)",
+                      position: "relative",
+                      overflow: "hidden",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(212, 175, 55, 0.12)";
-                      (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
-                      (e.currentTarget as HTMLElement).style.transform = "translateY(-6px)";
-                      (e.currentTarget as HTMLElement).style.boxShadow = "0 15px 30px rgba(0,0,0,0.2)";
+                      (e.currentTarget as HTMLElement).style.background =
+                        "rgba(201,168,76,0.1)";
+                      (e.currentTarget as HTMLElement).style.borderColor =
+                        "rgba(201,168,76,0.5)";
+                      (e.currentTarget as HTMLElement).style.transform =
+                        "translateY(-5px)";
+                      (e.currentTarget as HTMLElement).style.boxShadow =
+                        "0 12px 32px rgba(0,0,0,0.25)";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
-                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(212, 175, 55, 0.2)";
-                      (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                      (e.currentTarget as HTMLElement).style.background =
+                        "rgba(247,241,227,0.04)";
+                      (e.currentTarget as HTMLElement).style.borderColor =
+                        "rgba(201,168,76,0.18)";
+                      (e.currentTarget as HTMLElement).style.transform =
+                        "translateY(0)";
                       (e.currentTarget as HTMLElement).style.boxShadow = "none";
                     }}
                   >
-                    <div style={{ color: "var(--accent)", marginBottom: "16px" }}>{p.icon}</div>
-                    <div className="font-serif" style={{ color: "#F8F5F0", fontWeight: 700, fontSize: "17px", marginBottom: "6px" }}>{p.label}</div>
-                    <div style={{ color: "rgba(248,245,240,0.5)", fontSize: "13px", lineHeight: 1.4 }}>{p.sub}</div>
+                    {/* Saffron top accent line */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: 0, left: 0, right: 0,
+                        height: "2px",
+                        background:
+                          "linear-gradient(90deg, var(--saffron), var(--accent))",
+                        opacity: 0,
+                        transition: "opacity 0.3s",
+                      }}
+                    />
+                    <div style={{ color: "#C9A84C", marginBottom: "14px" }}>
+                      {p.icon}
+                    </div>
+                    <div
+                      className="font-serif"
+                      style={{
+                        color: "#F7F1E3",
+                        fontWeight: 700,
+                        fontSize: "16px",
+                        marginBottom: "5px",
+                        letterSpacing: "0.03em",
+                      }}
+                    >
+                      {p.label}
+                    </div>
+                    <div
+                      style={{
+                        color: "rgba(247,241,227,0.45)",
+                        fontSize: "12px",
+                        fontFamily: "Marcellus, serif",
+                        letterSpacing: "0.05em",
+                      }}
+                    >
+                      {p.sub}
+                    </div>
                   </button>
                 </ScrollReveal>
               ))}
@@ -216,43 +306,60 @@ export default function HeroSection() {
           className="scroll-indicator"
           onClick={() => scrollTo("introduction")}
           style={{
-            marginTop: "80px", textAlign: "center", cursor: "pointer",
-            color: "rgba(255,255,255,0.4)", fontSize: "14px", letterSpacing: "0.2em",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: "10px"
+            marginTop: "72px",
+            textAlign: "center",
+            cursor: "pointer",
+            color: "rgba(247,241,227,0.38)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "10px",
           }}
         >
-          <div style={{ textTransform: "uppercase", fontWeight: 500 }}>Scroll to Explore</div>
-          <ChevronDown size={24} className="animate-bounce" />
+          <span
+            className="font-ancient"
+            style={{
+              fontSize: "10px",
+              letterSpacing: "0.35em",
+              textTransform: "uppercase",
+            }}
+          >
+            Scroll to Explore
+          </span>
+          <ChevronDown size={22} />
         </div>
       </div>
 
       <style>{`
-        #hero .content-grid {
+        .hero-grid {
           display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
-          gap: 60px;
+          grid-template-columns: 1.3fr 0.9fr;
+          gap: 64px;
           align-items: center;
         }
-        @media (max-width: 1024px) {
-          #hero .content-grid {
+        .pillar-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 18px;
+        }
+        @media (max-width: 1100px) {
+          .hero-grid {
             grid-template-columns: 1fr;
-            gap: 80px;
+            gap: 56px;
           }
-          #hero .content-grid > div:first-child {
+          .hero-grid > div:first-child {
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
           }
-          #hero .content-grid p {
+          .hero-grid > div:first-child p {
             margin-left: auto;
             margin-right: auto;
           }
         }
-        @media (max-width: 640px) {
-          #hero .pillar-grid {
-            grid-template-columns: 1fr !important;
-          }
+        @media (max-width: 560px) {
+          .pillar-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
         }
       `}</style>
     </section>
