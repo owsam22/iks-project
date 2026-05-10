@@ -115,15 +115,8 @@ function ScholarModal({ scholar, onClose }: { scholar: Scholar; onClose: () => v
             }}
           ><X size={20} /></button>
 
-          <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
-            <div style={{
-              width: "120px", height: "120px", borderRadius: "20px",
-              overflow: "hidden", flexShrink: 0,
-              border: "4px solid rgba(255,255,255,0.3)",
-              background: "rgba(0,0,0,0.2)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: "0 8px 16px rgba(0,0,0,0.2)"
-            }}>
+          <div className="scholar-modal-header">
+            <div className="scholar-modal-avatar">
               {scholar.image ? (
                 <img src={scholar.image} alt={scholar.name} className="w-full h-full object-cover object-top" />
               ) : (
@@ -138,8 +131,8 @@ function ScholarModal({ scholar, onClose }: { scholar: Scholar; onClose: () => v
               }}>
                 {scholar.field}
               </div>
-              <h2 className="font-serif" style={{
-                fontSize: "32px", fontWeight: 700,
+              <h2 className="font-serif scholar-modal-title" style={{
+                fontWeight: 700,
                 color: "white", marginBottom: "8px"
               }}>{scholar.name}</h2>
               <div style={{
@@ -163,12 +156,12 @@ function ScholarModal({ scholar, onClose }: { scholar: Scholar; onClose: () => v
             padding: "20px 24px",
             marginBottom: "32px"
           }}>
-            <p style={{ fontSize: "18px", fontWeight: 500, color: "var(--text)", lineHeight: 1.6, fontStyle: "italic" }}>
+            <p className="scholar-modal-short-desc" style={{ fontWeight: 500, color: "var(--text)", lineHeight: 1.6, fontStyle: "italic" }}>
               "{scholar.shortDesc}"
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: "40px" }}>
+          <div className="scholar-modal-grid">
             <div>
               <h3 className="font-serif" style={{ fontSize: "20px", color: scholar.color, marginBottom: "12px", borderBottom: `1px solid ${scholar.color}30`, paddingBottom: "8px" }}>
                 📜 Major Contributions
@@ -383,6 +376,72 @@ export default function ScholarsSection() {
       {selectedScholar && (
         <ScholarModal scholar={selectedScholar} onClose={() => setSelectedScholar(null)} />
       )}
+      <style>{`
+        .scholar-modal-header {
+          display: flex;
+          gap: 28px;
+          align-items: center;
+        }
+        .scholar-modal-avatar {
+          width: 120px;
+          height: 120px;
+          border-radius: 20px;
+          overflow: hidden;
+          flex-shrink: 0;
+          border: 4px solid rgba(255,255,255,0.3);
+          background: rgba(0,0,0,0.2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .scholar-modal-title {
+          font-size: 32px;
+        }
+        .scholar-modal-short-desc {
+          font-size: 18px;
+        }
+        .scholar-modal-grid {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+          .scholar-modal-header {
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+          }
+          .scholar-modal-avatar {
+            width: 100px;
+            height: 100px;
+          }
+          .scholar-modal-title {
+            font-size: 24px;
+          }
+          .scholar-modal-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+          .scholar-modal-short-desc {
+            font-size: 16px;
+          }
+          .modal-box {
+            max-height: 95vh;
+            border-radius: 16px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .scholar-card {
+            margin-bottom: 16px;
+          }
+          #scholars {
+            padding: 60px 16px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
