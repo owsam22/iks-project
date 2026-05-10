@@ -40,7 +40,7 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
     <div
       className="door-screen"
       style={{
-        background: "linear-gradient(160deg, #0a1628 0%, #0D1B2A 40%, #1a0e05 100%)",
+        background: "linear-gradient(160deg, #FFFFFF 0%, #FFF9EB 40%, #F5E6BE 100%)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -54,13 +54,13 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')",
-          opacity: 0.04,
+          opacity: 0.12,
         }}
       />
 
       {/* Outer mandala ring */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="animate-rotate-slow" style={{ width: "92vmin", height: "92vmin", opacity: 0.12 }}>
+        <div className="animate-rotate-slow" style={{ width: "92vmin", height: "92vmin", opacity: 0.15 }}>
           <svg viewBox="0 0 100 100" className="w-full h-full fill-none" stroke="#C9A84C" strokeWidth="0.25">
             <circle cx="50" cy="50" r="49" />
             <circle cx="50" cy="50" r="42" strokeDasharray="1.5 3" />
@@ -84,7 +84,7 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
 
       {/* Inner counter-rotating ring */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="animate-rotate-slow-reverse" style={{ width: "60vmin", height: "60vmin", opacity: 0.15 }}>
+        <div className="animate-rotate-slow-reverse" style={{ width: "60vmin", height: "60vmin", opacity: 0.2 }}>
           <svg viewBox="0 0 100 100" className="w-full h-full fill-none" stroke="#E8890C" strokeWidth="0.3">
             <circle cx="50" cy="50" r="48" strokeDasharray="2 4" />
             {[...Array(16)].map((_, i) => (
@@ -101,7 +101,7 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
           width: "40vmin",
           height: "40vmin",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%)",
         }}
       />
 
@@ -112,31 +112,31 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
         <div
           className="font-devanagari animate-pulse-glow mb-4"
           style={{
-            fontSize: "clamp(14px, 2vw, 20px)",
-            color: "#C9A84C",
+            fontSize: "clamp(14px, 2.2vw, 22px)",
+            color: "#8C6D1F",
             letterSpacing: "0.25em",
-            opacity: 0.85,
+            opacity: 0.9,
           }}
         >
           ज्ञानं परमं बलम्
         </div>
 
         {/* Lotus divider */}
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px", width: "180px" }}>
-          <div style={{ flex: 1, height: "1px", background: "rgba(201,168,76,0.35)" }} />
-          <span style={{ color: "#C9A84C", fontSize: "18px" }}>✦</span>
-          <div style={{ flex: 1, height: "1px", background: "rgba(201,168,76,0.35)" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "28px", width: "200px" }}>
+          <div style={{ flex: 1, height: "1px", background: "rgba(140,109,31,0.3)" }} />
+          <span style={{ color: "#8C6D1F", fontSize: "18px" }}>✦</span>
+          <div style={{ flex: 1, height: "1px", background: "rgba(140,109,31,0.3)" }} />
         </div>
 
         {/* Om symbol */}
         <div
           className="font-serif"
           style={{
-            fontSize: "clamp(48px, 8vw, 80px)",
+            fontSize: "clamp(48px, 10vw, 96px)",
             color: "#C9A84C",
             lineHeight: 1,
             marginBottom: "12px",
-            textShadow: "0 0 40px rgba(201,168,76,0.4)",
+            textShadow: "0 0 40px rgba(201,168,76,0.25)",
           }}
         >
           ॐ
@@ -146,13 +146,12 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
         <h1
           className="font-serif"
           style={{
-            fontSize: "clamp(28px, 5.5vw, 64px)",
+            fontSize: "clamp(32px, 6vw, 72px)",
             fontWeight: 900,
-            color: "#F7F1E3",
+            color: "#2A1E0F",
             lineHeight: 1.12,
-            letterSpacing: "0.1em",
+            letterSpacing: "0.08em",
             textTransform: "uppercase",
-            textShadow: "0 4px 24px rgba(0,0,0,0.5)",
             marginBottom: "6px",
           }}
         >
@@ -161,10 +160,10 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
         <h1
           className="font-serif gold-shimmer"
           style={{
-            fontSize: "clamp(28px, 5.5vw, 64px)",
+            fontSize: "clamp(32px, 6vw, 72px)",
             fontWeight: 900,
             lineHeight: 1.12,
-            letterSpacing: "0.1em",
+            letterSpacing: "0.08em",
             textTransform: "uppercase",
             marginBottom: "6px",
           }}
@@ -174,14 +173,13 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
         <h1
           className="font-serif"
           style={{
-            fontSize: "clamp(28px, 5.5vw, 64px)",
+            fontSize: "clamp(32px, 6vw, 72px)",
             fontWeight: 900,
-            color: "#F7F1E3",
+            color: "#2A1E0F",
             lineHeight: 1.12,
-            letterSpacing: "0.1em",
+            letterSpacing: "0.08em",
             textTransform: "uppercase",
-            textShadow: "0 4px 24px rgba(0,0,0,0.5)",
-            marginBottom: "36px",
+            marginBottom: "40px",
           }}
         >
           System
@@ -191,11 +189,12 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
         <p
           className="font-ancient"
           style={{
-            fontSize: "clamp(12px, 1.5vw, 15px)",
-            color: "rgba(247,241,227,0.55)",
-            letterSpacing: "0.3em",
+            fontSize: "clamp(12px, 1.8vw, 16px)",
+            color: "#5A4530",
+            letterSpacing: "0.35em",
             textTransform: "uppercase",
-            marginBottom: "40px",
+            marginBottom: "48px",
+            fontWeight: 600,
           }}
         >
           A Digital Heritage Museum
@@ -204,23 +203,25 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
         {/* Creator card */}
         <div
           style={{
-            background: "rgba(13,27,42,0.7)",
-            border: "1px solid rgba(201,168,76,0.25)",
-            borderRadius: "20px",
-            padding: "24px 36px",
+            background: "rgba(255, 255, 255, 0.75)",
+            border: "1px solid rgba(201,168,76,0.35)",
+            borderRadius: "24px",
+            padding: "28px 40px",
             backdropFilter: "blur(20px)",
             width: "100%",
-            maxWidth: "400px",
+            maxWidth: "440px",
+            boxShadow: "0 12px 32px rgba(42, 30, 15, 0.08)",
           }}
         >
           <div
             className="font-ancient"
             style={{
-              fontSize: "10px",
-              color: "rgba(201,168,76,0.6)",
+              fontSize: "11px",
+              color: "#8C6D1F",
               letterSpacing: "0.35em",
               textTransform: "uppercase",
-              marginBottom: "10px",
+              marginBottom: "12px",
+              fontWeight: 700,
             }}
           >
             Curated By
@@ -228,21 +229,21 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
           <h2
             className="font-serif"
             style={{
-              fontSize: "clamp(18px, 3vw, 26px)",
-              color: "#F7F1E3",
+              fontSize: "clamp(20px, 3.5vw, 28px)",
+              color: "#2A1E0F",
               fontWeight: 700,
               letterSpacing: "0.06em",
-              marginBottom: "16px",
+              marginBottom: "20px",
             }}
           >
             Samarpan · owsam22
           </h2>
 
-          <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
+          <div style={{ display: "flex", gap: "14px", justifyContent: "center" }}>
             {[
-              { icon: <Code size={16} />, label: "GitHub", href: "https://github.com/owsam22" },
-              { icon: <UserCircle size={16} />, label: "LinkedIn", href: "https://linkedin.com/in/owsam22" },
-              { icon: <Globe size={16} />, label: "Portfolio", href: "https://owsam22.github.io" },
+              { icon: <Code size={18} />, label: "GitHub", href: "https://github.com/owsam22" },
+              { icon: <UserCircle size={18} />, label: "LinkedIn", href: "https://linkedin.com/in/owsam22" },
+              { icon: <Globe size={18} />, label: "Portfolio", href: "https://owsam22.github.io" },
             ].map((s) => (
               <a
                 key={s.label}
@@ -251,25 +252,29 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
                 rel="noopener noreferrer"
                 title={s.label}
                 style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "10px",
-                  border: "1px solid rgba(201,168,76,0.3)",
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "12px",
+                  border: "1.5px solid rgba(201,168,76,0.3)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#C9A84C",
+                  color: "#8C6D1F",
                   background: "rgba(201,168,76,0.06)",
-                  transition: "all 0.3s ease",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(201,168,76,0.18)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(201,168,76,0.15)";
                   (e.currentTarget as HTMLElement).style.borderColor = "#C9A84C";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 16px rgba(201, 168, 76, 0.2)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.background = "rgba(201,168,76,0.06)";
                   (e.currentTarget as HTMLElement).style.borderColor = "rgba(201,168,76,0.3)";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
                 }}
               >
                 {s.icon}
@@ -281,19 +286,20 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
         {/* Scroll hint */}
         {ready && phase === "waiting" && (
           <div
-            className="flex flex-col items-center gap-3 mt-10"
+            className="flex flex-col items-center gap-3 mt-12"
             style={{ animation: "fadeIn 0.8s ease" }}
           >
             <div className="animate-bounce">
-              <MousePointer2 className="rotate-180" size={20} style={{ color: "#C9A84C" }} />
+              <MousePointer2 className="rotate-180" size={24} style={{ color: "#8C6D1F" }} />
             </div>
             <span
               className="font-ancient"
               style={{
-                fontSize: "10px",
-                color: "rgba(201,168,76,0.6)",
+                fontSize: "11px",
+                color: "#8C6D1F",
                 letterSpacing: "0.5em",
                 textTransform: "uppercase",
+                fontWeight: 700,
               }}
             >
               Scroll to Enter
@@ -301,6 +307,7 @@ export default function DoorIntro({ onComplete }: DoorIntroProps) {
           </div>
         )}
       </div>
+
     </div>
   );
 }
