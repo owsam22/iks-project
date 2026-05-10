@@ -57,12 +57,7 @@ export default function ShastraSection() {
         </div>
 
         {/* Shastra cards - 2×3 grid */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
-          gap: "32px",
-          marginBottom: "100px"
-        }}>
+        <div className="shastra-grid">
           {shastraData.map((s, i) => (
             <ScrollReveal key={s.name} animation="slide-up" delay={(i % 3) * 100}>
               <div
@@ -182,15 +177,7 @@ export default function ShastraSection() {
         </div>
 
         {/* 64 Kala visual */}
-        <div className="parchment-texture" style={{
-          borderRadius: "40px",
-          padding: "80px clamp(24px, 4vw, 64px)",
-          textAlign: "center",
-          position: "relative",
-          overflow: "hidden",
-          border: "1px solid var(--border)",
-          boxShadow: "0 40px 100px rgba(0,0,0,0.1)"
-        }}>
+        <div className="parchment-texture kala-section">
           <div style={{
             position: "absolute", top: "-40px", right: "-40px",
             fontSize: "300px", opacity: 0.04, pointerEvents: "none"
@@ -261,9 +248,41 @@ export default function ShastraSection() {
         </div>
       </div>
       <style>{`
+        .shastra-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+          gap: 32px;
+          margin-bottom: 100px;
+        }
+        .kala-section {
+          border-radius: 40px;
+          padding: 80px clamp(24px, 4vw, 64px);
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          border: 1px solid var(--border);
+          box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+        }
+
         @media (max-width: 991px) {
-          #shastra > div > div:nth-of-type(2) {
-            grid-template-columns: 1fr !important;
+          .shastra-grid {
+            grid-template-columns: 1fr;
+          }
+          #shastra {
+            padding: 80px 20px !important;
+          }
+          .kala-section {
+            padding: 60px 20px;
+            border-radius: 24px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .shastra-grid {
+            gap: 20px;
+          }
+          .kala-section h3 {
+            font-size: 28px !important;
           }
         }
       `}</style>

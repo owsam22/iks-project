@@ -123,10 +123,7 @@ export default function LiteratureSection() {
         </div>
 
         {/* Tab navigation */}
-        <div style={{
-          display: "flex", gap: "12px", justifyContent: "center",
-          flexWrap: "wrap", marginBottom: "56px", overflowX: "auto"
-        }}>
+        <div className="tab-nav-container">
           {literatureData.map((tab) => (
             <button
               key={tab.id}
@@ -140,11 +137,7 @@ export default function LiteratureSection() {
         </div>
 
         {/* Tab content */}
-        <div style={{
-          display: "grid", gridTemplateColumns: "1.1fr 0.9fr",
-          gap: "60px", alignItems: "start",
-          marginBottom: "100px"
-        }}>
+        <div className="literature-main-grid">
           {/* Left: main info */}
           <ScrollReveal animation="slide-left" className="parchment-texture overflow-hidden" style={{
             padding: 0, borderRadius: "28px", border: "1px solid var(--border)",
@@ -183,7 +176,7 @@ export default function LiteratureSection() {
                 <div className="font-ancient" style={{ fontSize: "11px", color: "var(--accent-dark)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: "6px" }}>
                   {active.period}
                 </div>
-                <h3 className="font-serif" style={{ fontSize: "36px", fontWeight: 700, color: "var(--primary)", lineHeight: 1.1 }}>
+                <h3 className="font-serif literature-active-title" style={{ fontWeight: 700, color: "var(--primary)", lineHeight: 1.1 }}>
                   {active.title}
                 </h3>
               </div>
@@ -277,11 +270,7 @@ export default function LiteratureSection() {
             </p>
           </div>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-            gap: "24px"
-          }}>
+          <div className="shad-darshan-grid">
             {shadDarshan.map((d, i) => (
               <ScrollReveal
                 key={d.name}
@@ -363,10 +352,55 @@ export default function LiteratureSection() {
         </div>
       </div>
       <style>{`
+        .tab-nav-container {
+          display: flex;
+          gap: 12px;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-bottom: 56px;
+        }
+        .literature-main-grid {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 60px;
+          align-items: start;
+          margin-bottom: 100px;
+        }
+        .literature-active-title {
+          font-size: 36px;
+        }
+        .shad-darshan-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 24px;
+        }
+
         @media (max-width: 991px) {
-          #literature > div > div:nth-of-type(3) {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
+          .literature-main-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+          .tab-nav-container {
+            justify-content: flex-start;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            padding-bottom: 12px;
+            -webkit-overflow-scrolling: touch;
+          }
+          .literature-active-title {
+            font-size: 28px;
+          }
+          #literature {
+            padding: 80px 20px !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .shad-darshan-grid {
+            grid-template-columns: 1fr;
+          }
+          .darshan-reveal-wrapper > div {
+            padding: 24px !important;
           }
         }
       `}</style>

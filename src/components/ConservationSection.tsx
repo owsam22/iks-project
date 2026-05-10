@@ -99,13 +99,7 @@ export default function ConservationSection() {
         </div>
 
         {/* Content */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "0.8fr 2.2fr",
-          gap: "60px",
-          alignItems: "start",
-          marginBottom: "100px"
-        }}>
+        <div className="conservation-grid">
           {/* Left: section intro */}
           <div style={{ position: "sticky", top: "100px" }}>
             <div className="parchment-texture" style={{
@@ -254,7 +248,7 @@ export default function ConservationSection() {
             <GraduationCap size={400} />
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "80px", alignItems: "center", position: "relative", zIndex: 2 }}>
+          <div className="nep-grid">
             <div>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: "10px",
@@ -295,7 +289,7 @@ export default function ConservationSection() {
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+            <div className="nep-cards-grid">
               {[
                 { icon: "📖", title: "Curriculum Integration", desc: "Mandatory IKS modules in higher education" },
                 { icon: "🏛️", title: "19 IKS Centers", desc: "Dedicated research centers established at IITs" },
@@ -327,15 +321,54 @@ export default function ConservationSection() {
         </div>
       </div>
       <style>{`
+        .conservation-grid {
+          display: grid;
+          grid-template-columns: 0.8fr 2.2fr;
+          gap: 60px;
+          align-items: start;
+          margin-bottom: 100px;
+        }
+        .nep-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 1fr;
+          gap: 80px;
+          align-items: center;
+          position: relative;
+          z-index: 2;
+        }
+        .nep-cards-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+        }
+
         @media (max-width: 991px) {
-          #conservation > div > div:nth-of-type(3),
-          #conservation > div > div:nth-of-type(4) {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
+          .conservation-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+          .nep-grid {
+            grid-template-columns: 1fr;
+            gap: 48px;
+          }
+          .nep-cards-grid {
+            grid-template-columns: 1fr 1fr;
           }
           #conservation [style*="position: sticky"] {
             position: relative !important;
             top: 0 !important;
+          }
+          #conservation {
+            padding: 80px 20px !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .nep-cards-grid {
+            grid-template-columns: 1fr;
+          }
+          .nep-grid h3 {
+            font-size: 32px !important;
           }
         }
       `}</style>

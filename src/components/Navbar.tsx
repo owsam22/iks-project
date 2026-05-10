@@ -93,11 +93,11 @@ export default function Navbar() {
           fontSize: "22px", fontWeight: "bold"
         }}>ॐ</div>
         <div style={{ textAlign: "left" }}>
-          <span className="font-serif" style={{
-            color: "#F7F1E3", fontWeight: 700, fontSize: "18px",
+          <span className="font-serif nav-logo-text" style={{
+            color: "#F7F1E3", fontWeight: 700,
             letterSpacing: "0.03em", display: "block", lineHeight: 1
           }}>Indian Knowledge System</span>
-          <span className="font-ancient" style={{
+          <span className="font-ancient nav-logo-sub" style={{
             color: "var(--accent)", fontSize: "9px",
             letterSpacing: "0.22em", fontWeight: 700, textTransform: "uppercase",
             display: scrolled ? "none" : "block", marginTop: "5px", opacity: 0.8
@@ -209,9 +209,14 @@ export default function Navbar() {
       </div>
 
       <style>{`
+        .nav-logo-text { font-size: 18px; }
         @media (max-width: 991px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
+        }
+        @media (max-width: 480px) {
+          .nav-logo-text { font-size: 15px; }
+          .nav-logo-sub { display: none !important; }
         }
       `}</style>
     </nav>
